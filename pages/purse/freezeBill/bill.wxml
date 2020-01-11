@@ -1,0 +1,20 @@
+<view class="bill">
+  <view class="bill_wrapper">
+    <view class="bill_bd" wx:for="{{billList}}" wx:key="id" wx:for-item="item" bindtap='goOrder' data-tradeid="{{item.tradeId}}">
+      <view class="bill_type">
+        <view class="">{{item.title}}</view>
+      </view>
+      <view class="bill_date">
+        <view style="word-wrap:break-word;word-break:break-all;">{{item.content}}</view>
+        <view style="font-size:24rpx;color:#666;">{{item.createDate}}</view>
+      </view>
+      <view class="bill_amount">
+        <view style="font-size:24rpx;color:#666;margin-top: 14rpx;font-weight:bold;">
+          <view class='clr_orange' style="font-weight:normal;color:{{mainColor}}">{{item.frozenAccount}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="tips" hidden="{{showtips}}">{{tips}}</view>
+  </view>
+</view>

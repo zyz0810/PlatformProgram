@@ -1,0 +1,23 @@
+<view class="header {{[isx ? 'isx' : '', isAndroid ? 'android' : '']}}" wx:if="{{showNav}}">
+  <!-- <view class="header-placeholder" wx:if="{{fixed}}" /> -->
+  <view class="header-wrap" style="{{fixed ? 'position:fixed;' : ''}}background-color:{{backgroundColor}};color:{{color}};">
+    <button class="back" bind:tap="backFunction" style="display:{{back==0?'none':''}}"><text class='iconfont icon-zuojiantou'></text></button>
+    <view class="header-title bold">
+      <view bindtap='showNav' class='nav_btn'>
+        <image src='/resources/images/mulu.png'></image>
+      </view>
+      <view class='nav_platform f14 tl clr_mediumGray' hidden="{{showMuLu}}">
+        <view class='nav_platform_item' bindtap='goPlatFormIndex'>
+          <text class='iconfont icon-yonghuzhongxin-shouye f20'></text>首页</view>
+        <view class='nav_platform_item' bindtap='goCart'>
+          <text class='iconfont icon-gouwuche-xuanzhong f20'></text>购物车</view>
+        <view class='nav_platform_item' bindtap='goFavorite'>
+          <text class='iconfont icon-xing f20'></text>我的收藏</view>
+        <view class='nav_platform_item' bindtap='goMember'>
+          <text class='iconfont icon-danseshixintubiao- f20'></text>个人中心</view>
+      </view>
+      <view class='teannt_name overone'><slot></slot></view>
+    </view>
+    <view class="header-right" style="display:{{back==0?'none':''}}" />
+  </view>
+</view>

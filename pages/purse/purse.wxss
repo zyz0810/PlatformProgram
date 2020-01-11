@@ -1,0 +1,167 @@
+/* pages/index/purse/purse.wxss */
+
+/* .purseTop{
+  background: #666;
+  width: 100%;
+  border-bottom: 1px solid #fff;
+}
+
+.purseTop .title{
+  padding-top:5vw;
+  padding-left: 6vw;    
+}
+.freezeBalance{
+  padding-bottom: 3vw;
+  padding-left: 6vw;    
+}
+
+.purseTop .amount{
+  padding:6vw 0 4vw 6vw;
+}
+.purseMd{
+   background: #535353;
+   width: 100%;
+}
+.purseMd .flex-item view{
+  padding: 2vw 0;
+}
+.purseMd .flex-item view:last-child{
+  padding-top: 0;
+}
+
+.purseBt{
+  width: 100%;
+  background: #fff;
+}
+.purseBt view{
+  padding: 5vw 0;
+} */
+
+page {
+  background: #fff;
+}
+
+.topTips {
+  background: #cdb59b;
+  padding: 1% 54rpx;
+  /* position: fixed; *//* top: 0; *//* left: 0; */
+  width: 100%;
+  z-index: 999;
+  box-sizing: border-box;
+}
+
+.topTips .right::after {
+  border-color: #fff;
+}
+
+.purse_info_bg {
+  background: #f8f8f8;
+  padding: 50rpx 54rpx 54rpx;
+}
+
+.purse_info {
+  padding: 6%;
+  border-radius: 20rpx;
+  background: -webkit-linear-gradient(left, #ea7489, #fc5558); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(right, #ea7489, #fc5558); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(right, #ea7489, #fc5558); /* Firefox 3.6 - 15 */
+  background: linear-gradient(right, #ea7489, #fc5558); /* 标准的语法 */
+}
+
+.purse_info .flex {
+  margin-top: 40rpx;
+  margin-bottom: 50rpx;
+}
+
+.purse_info .cashBtn {
+  color: #cea4aa;
+  border: 1px solid #cea4aa;
+  padding: 6rpx 35rpx;
+  line-height: 66rpx;
+  border-radius: 30rpx;
+}
+
+.purse_info_same {
+  padding: 4% 54rpx;
+  border-bottom: 15rpx solid #f8f8f8;
+}
+
+.purse_info_same .center>view:nth-child(1) {
+  margin-bottom: 10rpx;
+}
+
+.purse_info_same .cashBtn {
+  border: 1px solid #666;
+  padding: 6rpx 35rpx;
+  border-radius: 30rpx;
+}
+
+.purseBill .billList {
+  border-bottom: 1px solid #f8f8f8;
+  padding: 3% 54rpx;
+}
+
+.purseBill .billList:first-child {
+  border-top: 1px solid #f8f8f8;
+}
+
+.purseBill .billList .left {
+  margin-right: 20rpx;
+}
+
+.purseBill .billList .center {
+  justify-content: space-between;
+}
+
+.purseBill .billList .left image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+
+.purseBill .billList .right .desc {
+  margin-top: 30rpx;
+}
+
+.clr_orange {
+  color: #ff6d06;
+}
+
+.bottomTips {
+  padding: 2% 54rpx;
+}
+
+.bottomTips .left text.iconfont {
+  margin-right: 15rpx;
+}
+
+.iconBg {
+  background: #fff;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  display: inline-block;
+}
+
+.iconBg .iconfont {
+  color: #ea7489;
+}
+
+.link {
+  width: 100%;
+  background: #fff;
+  /* margin-top: 2vw; */
+  position: relative;
+  z-index: 99;
+}
+
+.link .lineItem {
+  padding: 4vw 4vw 4vw 0;
+  border-bottom: 1px solid #f4f4f4;
+  margin-left: 4vw;
+}
+
+.link .lineItem.border_bottom::after {
+  left: 15px;
+}

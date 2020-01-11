@@ -1,0 +1,29 @@
+<!--pages/pay/success.wxml-->
+<view class="container">
+  <view class="successIcon tc">
+    <text class="iconfont icon-zhifuwancheng baseColor f70"></text>
+  </view>
+  <view class="tc">
+    <text class="f16 baseColor">订单提交成功</text>
+  </view>
+  <view class="tc">
+    <text class="bold f40">￥0</text>
+  </view>
+  <view class="successCont">
+    <view class="lineItem">
+      <view class="left clr_lightGray f14">订单号</view>
+      <view class="right tr f16">{{snData.sn}}</view>
+    </view>
+    <view class="lineItem">
+      <view class="left clr_lightGray f14">下单商家</view>
+      <view class="right tr f16">{{snData.tenantName}}</view>
+    </view>
+    <view class="lineItem">
+      <view class="left  clr_lightGray f14">下单时间</view>
+      <view class="right tr f16">{{snData.createDate}}</view>
+    </view>
+  </view>
+  <!-- <view class='technical_support'>
+    <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+  </view> -->
+</view>

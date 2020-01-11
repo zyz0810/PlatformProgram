@@ -1,0 +1,53 @@
+<!--pages/purse/auth/index.wxml-->
+<view class='auth'>
+  <view class='lineItem f12 topTips clr-white'>
+    <view class='left'>
+      <text class='iconfont icon-tishi' style='margin-top:6rpx;'></text>
+    </view>
+    <view class='center'>根据监督要求，首次提现前需完成实名认证</view>
+    <view class='right clr-white'></view>
+  </view>
+</view>
+<form bindsubmit="revise">
+
+  <view class='inputPart'>
+    <view class="line">
+      <view class="head">
+        真实姓名
+      </view>
+      <view class="classname">
+        <input bindinput="name" placeholder="请输入您的真实姓名" placeholder-style="font-size:14px" />
+      </view>
+    </view>
+
+    <view class="line border_none">
+      <view class="head">
+        身份证号
+      </view>
+      <view class="classname">
+        <input type="idcard" bindinput="idCard" placeholder="请输入18位有效身份证号" maxlength='18' placeholder-style="font-size:14px" />
+      </view>
+    </view>
+  </view>
+
+  <view class='f16 font500  authInfo'>本人身份证照片</view>
+  <view style='background:#fff;'>
+    <image src='http://cdn.laiyijia.com/upload/image/201904/40609c68-ae23-4a13-aab7-8a61418cc229.png' style='width:750rpx;padding:40rpx 0' mode='widthFix'></image>
+  </view>
+  <view class='flex uploadImg'>
+    <view class='flex-item'>
+      <image src='{{zhengmian}}' bindtap="uploadzheng"></image>
+      <view class='tc f14'>人像面</view>
+    </view>
+    <view class='flex-item'>
+      <image src="{{fanmian}}" bindtap="uploadfan"></image>
+      <view class='tc f14'>国徽面</view>
+    </view>
+  </view>
+  <form bindsubmit="submit" report-submit>
+    <view class="next f14">
+      <button class='submit formButton' form-type="submit" style='background:{{bgBtn}}'>提交
+      </button>
+    </view>
+  </form>
+</form>

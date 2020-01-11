@@ -1,0 +1,130 @@
+/* pages/shelf/package/index.wxss */
+
+page {
+  background: #f5f5f5;
+}
+
+.WxEmojiView {
+  /* background: red; */
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.header {
+  position: relative;
+}
+
+.header image {
+  display: block;
+  width: 750rpx;
+}
+
+.defaultHead .platform_title {
+  padding: 30rpx 20rpx;
+  font-weight: 500;
+  background: transparent;
+}
+
+.platform_title .left {
+  height: 30rpx;
+  width: 8rpx;
+  margin: 6rpx 10rpx 0 0;
+}
+
+.right.contact {
+  flex-direction: row;
+}
+
+.contact .content {
+  margin-left: 6%;
+  padding: 3% 6% 3% 0;
+  border-bottom: 1px solid#f5f5f5;
+}
+
+.contact button {
+  background: #fff;
+  padding: 0 10rpx;
+  line-height: 1;
+  margin-left: 20rpx;
+}
+
+.contact button::after, .contact button::before {
+  display: none;
+  border: 0;
+}
+
+/* 货架套餐列表详情 */
+
+.brand_tit, .packageList {
+  padding: 2% 0;
+}
+
+.packageList .left {
+  width: 21vw;
+  height: 21vw;
+  margin-right: 20rpx;
+}
+
+.packageList .left image {
+  width: 100%;
+  height: 100%;
+}
+
+.packageList .center {
+  justify-content: flex-start;
+  width: 50vw;
+}
+
+/* .packageList .center>view {
+  margin-bottom: 10rpx;
+} */
+
+.packageList .right .butBtn {
+  color: #fff;
+  padding: 6rpx 10rpx;
+  border-radius: 6rpx;
+}
+
+.brand_logo {
+  width: 21vw;
+  height: 21vw;
+  margin-right: 20rpx;
+}
+
+.brand_logo image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.brand_list {
+  padding: 20rpx;
+  margin: 0 20rpx 20rpx 20rpx;
+  background: #fff;
+}
+
+.brand_list>.lineItem>.center {
+  /* padding: 2% 0; */
+  justify-content: space-between;
+  padding: 5rpx 0;
+}
+
+.brand_tit.lineItem .center {
+  justify-content: center;
+}
+
+.brand_name {
+  margin-bottom: 10rpx;
+}
+.brand_intro{
+  width: 180rpx;
+  max-height: 64rpx;
+  display: block !important;
+}
+.wxParse-p{
+  width: 100%;
+}

@@ -1,0 +1,38 @@
+<!-- 
+  横向轮播图
+  fn:点击事件 
+  showDot:显示指示点  false
+  autoplay:自动轮播   true
+  interval:轮播间隔   2000
+  name:轮播图名称
+  _swiper:swiper高度根据图片高度计算 
+-->
+
+<template name="adSwiper">
+  <view style="position:relative;width:100%;height:750rpx;">
+    <video poster="{{videoCover}}" wx:if='{{videoUrl != null && videoShow}}' style="width:100%;height:750rpx;" src="{{videoUrl}}" loop="true">
+      <!-- <cover-view class='category tc' style='width:40vw;left:30vw;' wx:if='{{videoUrl != null && videoShow &&!showAction}}'>
+        <cover-view class='cover_view_btn video_btn f12 baseBg clr-white' data-type="1" bindtap="_swiper_video_toogle">视频</cover-view>
+        <cover-view class='cover_view_btn video_btn f12' data-type="2" bindtap="_swiper_video_toogle">图片</cover-view>
+      </cover-view> -->
+
+      <view class='category tc' style='width:40vw;left:30vw;' wx:if='{{videoUrl != null && videoShow &&!showAction}}'>
+        <text class='cetagory_btn f12 active baseBg clr-white' data-type="1" bindtap="_swiper_video_toogle">视频</text>
+        <text class='cetagory_btn f12' data-type="2" bindtap="_swiper_video_toogle">图片</text>
+      </view>
+
+    </video>
+    <view class='category tc' wx:if='{{!videoShow && videoUrl!=null}}'>
+      <text class="cetagory_btn f12 {{videoShow ? 'active baseBg' : ''}}" data-type="1" bindtap="_swiper_video_toogle">视频</text>
+      <text class="cetagory_btn f12 {{!videoShow ? 'active baseBg' : ''}}" data-type="2" bindtap="_swiper_video_toogle">图片</text>
+    </view>
+    <swiper wx:if="{{(videoUrl == null) || !videoShow}}" circular indicator-active-color="rgba(255,255,255,0.6)" indicator-dots="{{showDot?showDot:false}}" autoplay="{{autoplay?autoplay:false}}" interval="{{interval?interval:2000}}" style="height:750rpx;"
+      class="adSwiper">
+      <block wx:for="{{data}}" wx:key="{{key}}">
+        <swiper-item>
+          <image bindtap="{{fn?fn:'adSwiperTap'}}" lazy-load='true' data-imgsrc="{{key?item[key]:item}}" data-linkId='{{item.linkId?item.linkId:""}}' data-index="{{index}}" data-name="{{name?name:'swiper'}}" mode="widthFix" src="{{key?item[key]:item}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+</template>

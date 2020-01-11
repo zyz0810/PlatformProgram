@@ -1,0 +1,12 @@
+/* pages/home/article/article.wxss */
+@import "../wxParse/wxParse.wxss";
+.article{
+   padding: 0 0 10rpx; 
+  background: #fff;
+  position: relative;
+  z-index: 99;
+}
+.title{
+  line-height: 3em;
+  padding: 0 5px;
+}

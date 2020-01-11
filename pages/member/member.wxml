@@ -1,0 +1,185 @@
+<view class="container">
+  <shadow-component />
+  <view class="pageTop" style='border-bottom:2vw solid #ececec'>
+    <view class="details">
+      <view class="head">
+        <open-data type="userAvatarUrl" style="overflow: hidden;" class="image"></open-data>
+      </view>
+      <view>
+        <open-data type="userNickName" class="name overone clr_white f14"></open-data>
+        <view class="label">
+          <text wx:if="{{memberInfo.partner}}">合伙人</text>
+        </view>
+      </view>
+      <view class="myWallet" bindtap="purse">
+        <text class="iconfont icon-qianbao f20"></text>我的钱包
+        <text class="iconfont icon-icon"></text>
+      </view>
+    </view>
+    <view class="pageTopBottom f16">
+      <view bindtap='goFavorite'>
+        <view class="f14">{{favoriteProductCout}}</view>
+        <view>收藏</view>
+      </view>
+      <view bindtap='goCoupon'>
+        <view class="f14">{{couponLength}}</view>
+        <view>券包</view>
+      </view>
+      <!-- <view bindtap='goMemberCard'>
+        <view class="f14">{{memberInfo.cardCount}}</view>
+        <view>卡包</view>
+      </view> -->
+      <view bindtap='goMessage'>
+        <view class="f14">{{count}}</view>
+        <view>消息</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="item">
+    <view class="lineItem" data-current="0" bindtap="toOrder">
+      <view class="left">
+        <text class="iconfont icon-wodedingdan baseColor"></text>
+      </view>
+      <view class="center ">
+        <view>我的订单</view>
+      </view>
+      <view class="right">
+        <view>查看全部订单
+          <text class="iconfont icon-icon f12"></text>
+        </view>
+      </view>
+    </view>
+
+    <view class="itemBottom">
+      <view data-current="1" bindtap="toOrder">
+        <text class="iconfont icon-daifukuan2"></text>
+        <text class="orderType">待付款</text>
+        <text class="tips baseBg" wx:if="{{memberInfo.unpaid}}">{{memberInfo.unpaid<100?memberInfo.unpaid:'99+'}}</text>
+      </view>
+      <view data-current="2" bindtap="toOrder">
+        <text class="iconfont icon-daifahuo1"></text>
+        <text class="orderType">待发货</text>
+        <text class="tips baseBg" wx:if="{{memberInfo.unshipped}}">{{memberInfo.unshipped<100?memberInfo.unshipped:'99+'}}</text>
+      </view>
+      <view data-current="3" bindtap="toOrder">
+        <text class="iconfont icon-daishouhuo1"></text>
+        <text class="orderType">待收货</text>
+        <text class="tips baseBg" wx:if="{{memberInfo.unreciver}}">{{memberInfo.unreciver<100?memberInfo.unreciver:'99+'}}</text>
+      </view>
+      <view data-current="4" bindtap="toOrder">
+        <text class="iconfont icon-daipingjia1"></text>
+        <text class="orderType">待评价</text>
+        <text class="tips baseBg" wx:if="{{memberInfo.unreview}}">{{memberInfo.unreview<100?memberInfo.unreview:'99+'}}</text>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="content">
+
+
+
+    <view class="lineItem" bindtap="goAuth">
+      <view class="left">
+        <text class="iconfont icon-hehuoren baseColor" style='color:{{mainColor}}'></text>
+      </view>
+      <view class="center">
+        <view>实名认证</view>
+      </view>
+      <view class="right">
+        <view wx:if="{{memberInfo.authStatus == 'none'}}">未认证</view>
+        <view wx:if="{{memberInfo.authStatus == 'fail'}}">认证未通过</view>
+        <view wx:elif="{{memberInfo.authStatus == 'wait'}}">认证中</view>
+        <view wx:elif="{{memberInfo.authStatus == 'success'}}">已认证</view>
+      </view>
+    </view>
+
+    <!-- <view class="lineItem lineItem_access" bindtap="chooseAddress">
+      <view class="left">
+        <text class="iconfont icon-hehuoren"></text>
+      </view>
+      <view class="center">
+        <view>收货地址</view>
+      </view>
+      <view class="right">
+      </view>
+    </view> -->
+
+    <view class="lineItem lineItem_access" bindtap="password">
+      <view class="left">
+        <text class="iconfont icon-yinhangqiabangding baseColor"></text>
+      </view>
+      <view class="center">
+        <view>修改支付密码</view>
+      </view>
+      <view class="right">
+      </view>
+    </view>
+
+    <view class="lineItem" bindtap="bindPhone">
+      <view class="left">
+        <text class="iconfont icon-bangdingshouji baseColor"></text>
+      </view>
+      <view class="center">
+        <view>绑定手机号</view>
+      </view>
+      <view class="right">
+        <view wx:if="{{memberInfo.bindMobile == 'none'}}">未绑定</view>
+        <view wx:elif="{{memberInfo.bindMobile == 'binded'}}">已绑定</view>
+        <view wx:elif="{{memberInfo.bindMobile == 'unbind'}}">已解绑</view>
+      </view>
+    </view>
+    <view class="lineItem lineItem_access" bindtap="goAddress">
+      <view class="left">
+        <text class="iconfont icon-dizhi01 baseColor"></text>
+      </view>
+      <view class="center">
+        <view>收货地址</view>
+      </view>
+      <view class="right">
+        <view></view>
+      </view>
+    </view>
+    <!-- <view class="lineItem" bindtap="callUs">
+      <view class="left">
+        <text class="iconfont icon-lianxiwomen baseColor"></text>
+      </view>
+      <view class="center">
+        <view>官方客服</view>
+      </view>
+      <view class="right">
+        <view></view>
+      </view>
+    </view> -->
+
+
+
+    <view class="lineItem  lineItem_access" bindtap="goAgreement">
+      <view class="left">
+        <text class="iconfont icon-zixundianji baseColor"></text>
+      </view>
+      <view class="center">
+        <view>平台资讯</view>
+      </view>
+      <view class="right">
+        <view></view>
+      </view>
+    </view>
+
+  </view>
+
+  <view class='technical_support static'>
+    <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+  </view>
+
+  <view class='actionMask' bindtap='maskTap' wx:if="{{showToggle}}"></view>
+  <view class='cardOption f16 tc' wx:if="{{showToggle}}">
+    <view>
+      <view class='bindCard' bindtap='bindCard'>立即绑卡</view>
+      <view class='openCard' bindtap='openCard'>立即激活</view>
+    </view>
+  </view>
+
+
+</view>

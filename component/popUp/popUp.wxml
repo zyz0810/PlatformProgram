@@ -1,0 +1,6 @@
+<view class="wrapper" wx:if="{{show}}">
+    <view class="mask" catchtap="close" catchtouchmove="true"></view>
+    <view class="content" catchtouchmove="true">
+        <slot></slot>
+    </view>
+</view>

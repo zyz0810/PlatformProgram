@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "search": "/component/search/search",
+    "product-list": "/component/productList/productList",
+    "technical-component": "/component/technical/technical"
+  },
+  "navigationBarTitleText": "分类",
+  "enablePullDownRefresh": true
+}

@@ -1,0 +1,22 @@
+<view class='container'>
+  <block wx:for="{{newsList}}" wx:key="id" wx:for-item="item">
+    <view class='newsListItem lineItem' bindtap='gonewsView' data-id="{{item.id}}">
+      <view class='left'>
+        <image src='{{item.image}}'></image>
+      </view>
+      <view class='center f16'>
+        <view class="overtwo">{{item.title}}</view>
+        <view class='f14 clr_lightGray desc'>
+          <text>{{item.createDate}}</text>
+          <view>
+            <text class='iconfont icon-chakan'></text>
+            <text>{{item.hits}}</text>
+          </view>
+        </view>
+      </view>
+      <view class='right'>
+      </view>
+    </view>
+  </block>
+  <view class="tips" hidden="{{showtips}}">{{tips}}</view>
+</view>

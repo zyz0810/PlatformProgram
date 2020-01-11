@@ -1,0 +1,14 @@
+<!-- 通讯录 -->
+<template name="bankListM">
+       <view class="bankCard f14">
+          <view class="cardImage">
+            <image src="{{item.logo?item.logo:'/resources/images/bank.png'}}"></image>
+          </view>
+          <view class="cardDetails">
+            <view class="name">{{item.bankName}}</view>
+            <view class="cardType">借记卡</view>
+            <view class="number">**** **** **** {{item.cardNo}}</view>
+          </view>
+          <view class="deleteIcon" data-id="{{item.id}}" bindtap='deleteCard'><text class='iconfont icon-delete-01'></text></view>
+      </view>
+</template>

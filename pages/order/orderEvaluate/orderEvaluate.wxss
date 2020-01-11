@@ -1,0 +1,85 @@
+.container {
+  padding-top: 2vw;
+}
+
+.evalTitle {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2%;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.evalTitle image {
+  display: block;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.evalTitle .title {
+  flex: 1;
+  margin-left: 2%;
+}
+
+.evalInput {
+  padding: 2%;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.evalInput textarea {
+  width: 100%;
+  height: 180rpx;
+}
+
+.evalImgList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+swiper-item  .scrollWrap .tips{
+  padding-bottom: 150rpx;
+}
+
+.evalImgList>view {
+  width: 240rpx;
+  height: 240rpx;
+  padding: 2%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.evalImgList icon {
+  position: absolute;
+  top: -8rpx;
+  right: -8rpx;
+  z-index: 101;
+}
+
+.evalImgList image {
+  width: 100%;
+  height: 100%;
+}
+
+.evalStar {
+  padding: 20rpx;
+  margin-bottom: 10rpx;
+}
+
+.evalStar .center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 80rpx;
+}
+
+.evalStar .center image {
+  width: 30rpx;
+  height: 30rpx;
+  padding: 0 15rpx;
+}

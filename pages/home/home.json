@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "首页",
+  "usingComponents": {
+    "technical-component": "/component/technical/technical",
+    "shadow-component": "/component/shadow/shadow",
+    "header": "/component/header/header"
+  },
+  "navigationStyle": "custom"
+}

@@ -1,0 +1,22 @@
+<view class="pageTop f18">
+  <view>
+    我们已发送
+    <text class="bold">验证码</text> 到您的手机
+  </view>
+  <view class="bold f20">{{receivePhone}}</view>
+</view>
+<view class="code f18" bindtap="beFocus">
+  <text>{{code[0]}}</text>
+  <text>{{code[1]}}</text>
+  <text>{{code[2]}}</text>
+  <text>{{code[3]}}</text>
+  <text>{{code[4]}}</text>
+  <text>{{code[5]}}</text>
+  <input type="number" focus="{{focus}}" bindinput="codeInput" value="{{code}}" maxlength="6" />
+</view>
+<view class="sendAgain f16" bindtap="sendAgain">
+  {{tips}}
+</view>
+<!-- <view class='technical_support'>
+  <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+</view> -->

@@ -1,0 +1,37 @@
+<view class="progress">
+  <view class="lineItem">
+    <view class="left">
+      <text class='progressDot iconfont icon-dian clr_orange f30' style='color:#1AAD19'></text>
+      <!-- <view wx:if="{{index != 0}}" class="progressLine baseBg"></view> -->
+    </view>
+    <view class="center">
+      <view class="f16 proTitle">发起认证申请</view>
+    </view>
+  </view>
+  <view class="lineItem">
+    <view class="left">
+      <text class='progressDot iconfont icon-dian clr_orange f30' style='color:#1AAD19'></text>
+      <view class="progressLine" style='border-left: 1px dotted #1AAD19;bottom:44%;'></view>
+    </view>
+    <view class="center">
+      <view class="f16 proTitle">认证审核中</view>
+      <!-- <view class="f14">预计{{month}}月{{day}}日前审核通过</view> -->
+    </view>
+  </view>
+  <view class="lineItem">
+    <view class="left">
+      <text class='progressDot iconfont icon-dian clr_orange f30' style='color:#1AAD19'></text>
+      <view class="progressLine" style='border-left: 1px dotted #1AAD19;bottom:42%;'></view>
+    </view>
+    <view class="center">
+      <view class="f16 proTitle">认证成功</view>
+    </view>
+  </view>
+</view>
+<form bindsubmit="goIndex" report-submit>
+  <view class="next f14">
+    <button class='submit formButton success' form-type="submit" style='line-height:1.5;'>完成
+    </button>
+  </view>
+</form>
+<!-- <view class='success tc f16' bindtap='goIndex'>完成</view> -->

@@ -1,0 +1,6 @@
+{
+  "navigationBarBackgroundColor": "#666",
+  "navigationBarTitleText": "冻结金额明细",
+  "enablePullDownRefresh": true,
+  "navigationBarTextStyle": "white"
+}

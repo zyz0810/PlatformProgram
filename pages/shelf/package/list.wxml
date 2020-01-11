@@ -1,0 +1,16 @@
+<view class='package'>
+  <view class='lineItem border_bottom packageList' wx:for="{{packageList}}" wx:key="{{item.id}}" data-id="{{item.id}}" bindtap='goView'>
+    <view class='left'>
+      <image src="{{item.masterMap?item.masterMap:'/resources/images/noneimg.png'}}"></image>
+    </view>
+    <view class='center'>
+      <view class='f14 overtwo'>{{item.name}}</view>
+      <view class='f14 overone' style="color:{{mainColor}}">￥
+        <text class='f18 overone bold'>{{item.salePrice}}</text>
+      </view>
+    </view>
+    <view class='right'>
+      <view class='f14 butBtn' style="background:{{mainColor}}">立即购买</view>
+    </view>
+  </view>
+</view>

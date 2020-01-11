@@ -1,0 +1,17 @@
+<view hidden="{{!__tpljumpPayShow.show}}">
+  <view class='mask' catchtouchmove></view>
+  <view class='navPayWrap tc'>
+    <view class='title'>支付
+      <image src='/resources/images/icon/close.png' bindtap="close" data-url="{{jumpPay_closeUrl}}"></image>
+    </view>
+    <view class='bold f20'>
+      {{jumpPay_type}}
+    </view>
+    <view class='bold f40 money'>
+      <text class='f14'>￥</text>{{jumpPay_amount}}
+    </view>
+    <view class='button' bindtap='clickNavJump' data-url="{{jumpPay_closeUrl}}">
+      <navigator app-id="wx441dd0c007894173" target="miniProgram"  path="{{jumpPay_path}}">确认支付</navigator>
+    </view>
+  </view>
+</view>

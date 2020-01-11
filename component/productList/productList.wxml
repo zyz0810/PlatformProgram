@@ -1,0 +1,83 @@
+<template name="cart">
+  <view class="cartWrap">
+    <view class="cart">
+      <view class="btn" data-max="{{data.stock}}" data-orderid="{{data.orderItemId}}" data-min="{{data.minReserve}}" data-quantity="{{data.orderItemQuantity}}" data-pid="{{pid}}" data-max="{{data.stock}}" data-id="{{data.productId}}" data-t="0" bindtap="cartOp"
+        wx:if="{{data.orderItemQuantity>0}}">-</view>
+      <input class="input" data-min="{{data.minReserve}}" data-orderid="{{data.orderItemId}}" data-quantity="{{data.orderItemQuantity}}" data-pid="{{pid}}" data-id="{{data.productId}}" data-max="{{data.stock}}" data-t="1" bindblur="cartOp" value="{{data.orderItemQuantity}}"
+        type="number" wx:if="{{data.orderItemQuantity>0}}" />
+      <view class="btn" data-min="{{data.minReserve}}" data-orderid="{{data.orderItemId}}" data-quantity="{{data.orderItemQuantity}}" data-pid="{{pid}}" data-id="{{data.productId}}" data-max="{{data.stock}}" data-t="2" bindtap="cartOp">+</view>
+    </view>
+  </view>
+</template>
+<view class="productList">
+  <popup id="popup">
+    <view class="spec">
+      <view class="close flex">
+        <view class='flex-item f16' style='text-align:left;padding-left:15rpx;'>型号</view>
+        <view class='flex-item' style='text-align:right'>
+          <image bind:tap="closeSpecMask" class="closeImg" src="/resources/images/icon/close.png"></image>
+        </view>
+
+      </view>
+
+      <scroll-view scroll-y style='overflow-y:scroll;max-height:600rpx;'>
+        <view class="item" wx:for="{{cartData[popupId].specificationProducts}}" wx:key="productId">
+          <view class="left">
+            <view class="title">
+              <text wx:for="{{item.specification}}" wx:key="id">{{item.name}}</text>
+            </view>
+            <view>
+              <text class="price baseColor">￥{{item.price}}</text>
+              <text class="gray"> / {{item.unit}} ( 库存:{{item.stock}} )</text>
+            </view>
+          </view>
+          <view class="right">
+            <template is="cart" data="{{data:item,pid:popupId}}" />
+          </view>
+        </view>
+      </scroll-view>
+
+      <view class='flex tc f14'>
+        <button class='f14' open-type='getUserInfo' bindgetuserinfo="bindgetuserinfoCart">去购物车</button>
+        <button class='f14' open-type='getUserInfo' bindgetuserinfo="bindgetuserinfoPay">去结算</button>
+      </view>
+    </view>
+  </popup>
+  <checkbox-group class="checkboxGroup" bindchange="checkFn">
+    <view class="productItem" data-id="{{item.id}}" wx:for="{{list}}" wx:key="id">
+      <view class="imageWrap" bindtap="goProductDetail" data-id="{{item.id}}">
+        <image class="image" src="{{item.thumbnail}}" bind:tap="closeSpecMask"></image>
+      </view>
+      <view class="content">
+        <view class="title overtwo f14 bold" bind:tap="goProductDetail" data-id="{{item.id}}">{{item.name}}</view>
+        <view class="flex" wx:if="{{item.spec}}" bind:tap="goProductDetail" data-id="{{item.id}}">
+          <view class="f12 flex-item" style='color:#999;line-height:50rpx;margin-top:-16rpx;'>
+            <text class='clr_lightGray'>原价</text>：￥{{item.marketPrice + ' '}}
+          </view>
+        </view>
+        <!-- <template is="cart" wx:if="{{!item.spec}}" data="{{data:cartData[item.id].specificationProducts[0],pid:item.id}}" /> -->
+        <view class="standard" wx:if="{{item.uninPrice&&item.unins}}" bind:tap="goProductDetail" data-id="{{item.id}}">
+          <text class="price">￥{{item.uninPrice + ' '}}</text>
+          <text class="unit">/ {{item.unins}}</text>
+        </view>
+        <view class="standard" style='margin-top:-32rpx;' bind:tap="goProductDetail" data-id="{{item.id}}">
+          <text>优惠价</text>
+          <text class="price f20 baseColor">￥{{item.price + ' '}}</text>
+          <text class="unit">/ {{item.unit + ' '}}</text>
+          <!-- <text class="stock f11" wx:if="{{!item.spec}}">( 库存{{item.stock}} )</text> -->
+        </view>
+        <view style='margin-top:-16rpx;' bind:tap="goProductDetail" data-id="{{item.id}}">
+          <text class="stockNow f12">库存剩余：{{item.stock}}</text>
+          <!-- <text class="f12 baseColor" style='margin-left:10rpx;'>赚{{item.rebate}}元</text> -->
+        </view>
+        <view wx:if="{{item.minReserve>1}}" class="flex f12 clr_lightGray" bind:tap="goProductDetail" data-id="{{item.id}}">
+          <view class='flex-item'>起售量：{{item.minReserve}}{{item.unit}}</view>
+          <view class='flex-item'>已售：{{item.sales}}{{item.unit}}</view>
+        </view>
+        <view style='text-align:left;' style='margin-bottom:16rpx;'>
+          <text class='standardBtn baseBg' bind:tap="showSpecMask" data-id="{{item.id}}" data-index="{{index}}">立即抢购</text>
+        </view>
+      </view>
+    </view>
+  </checkbox-group>
+</view>

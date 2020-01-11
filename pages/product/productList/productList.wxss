@@ -1,0 +1,63 @@
+/* 商品列表 */
+@import '/template/productList/productListTemp.wxss';
+
+/*搜索  */
+@import '/template/search/search.wxss';
+
+page{
+  position: relative;
+  padding-top: 198rpx;
+}
+
+.container{
+  position: relative;
+  z-index: 99;
+}
+
+/*tab  */
+
+.tab {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 999;
+}
+
+.tabList {
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  padding: 20rpx 120rpx 20rpx 0;
+  text-align: center;
+}
+
+.tabList>view {
+  flex: 1;
+  position: relative;
+}
+
+.tabList>view::after {
+  content: " ";
+  position: absolute;
+  right: 0;
+  width: 1px;
+  background: #ccc;
+  transform-origin: 100% 0;
+  transform: scaleX(0.5);
+  top: 10%;
+  bottom: 10%;
+}
+.tabList>view.active{
+  color: #fd407a;
+}
+.tab .checkout{
+  position: absolute;
+  right: 40rpx;
+  bottom: 10rpx;
+}
+.tab .checkout image{
+  width: 40rpx;
+  height: 40rpx;
+}

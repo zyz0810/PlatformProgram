@@ -1,0 +1,30 @@
+<view class="container">
+  <shadow-component />
+  <view class="voucher">
+    <block wx:if="{{data.length>0}}">
+      <view class="list-ul">
+        <view class="list-li" wx:for="{{data}}" wx:key="id" wx:for-item="item">
+          <view class="list-a">
+            <view class="li-title">
+              <text class="li-h">{{item.name}}</text>
+              <text class="li-em useCoupon" wx:if="{{item.used}}">已使用</text>
+              <text class="li-em" wx:if="{{!item.used}}">未使用</text>
+            </view>
+            <text class="li-time">{{item.descr}}</text>
+            <view class="li-price">
+              <text class="pri-icon">¥</text>
+              <text class="pri-b">{{item.amount}}</text>
+            </view>
+            <text class="pri-span">{{item.type=='multipleCoupon'?'平台券':'优惠券'}}</text>
+            <text class="pri-p" wx:if="{{item.type=='tenantCoupon'}}">消费满{{item.minimumPrice}}元使用</text>
+            <text class="pri-p" wx:if="{{item.type=='multipleCoupon'}}">购物随机抵扣</text>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{data.length==0}}">
+      <view class='tips'>暂无优惠券</view>
+    </block>
+  </view>
+  <!-- <technical-component /> -->
+</view>

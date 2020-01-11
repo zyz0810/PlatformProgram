@@ -1,0 +1,81 @@
+<!-- <button loading hidden="{{cartList.length > 0}}" class="f14 loadBtn clr_lightGray">加载中</button> -->
+<!--要是够车内没有数据，就行显示没有数据-->
+<view class="cart" hidden="{{cartList.length > 0}}">
+  <view style='height:18vw;'></view>
+  <image src="/resources/images/cart/cart_none.png" />
+  <view class='tc'>购物车什么都没有，赶快去购物吧</view>
+  <button type="primary" size="mini" bindtap="goIndex" hover-class="none"> 去逛逛 </button>
+  <!-- <technical-component /> -->
+</view>
+<!--要是有数据，就显示数据-->
+<view class='cart_cont' hidden="{{cartList.length == 0}}">
+  <view class="cartList">
+    <checkbox-group bindchange="checkItemChange">
+
+      <block wx:for="{{cartList}}" wx:key="id">
+        <view class='lineItem topTenant' data-id="{{item.id}}" bindtap="goTenantDetail">
+          <view class='center clr_lightGray' data-id='{{item.id}}'>
+            <text class='iconfont icon-dianpu f22'></text>
+            <text class='f16 overone'>{{item.name}}</text>
+          </view>
+        </view>
+        <view class="" hidden="{{!mailPromotion}}">
+          <view class="padding2 f16 border_bottom">
+            <text class="f14 baseColor tip">满邮</text>{{mailPromotion.name}}</view>
+        </view>
+        <block wx:for="{{item.cartItems}}" wx:key="*this" wx:for-item="pitem">
+          <view class="cartItem border_bottom">
+            <label class="checkbox">
+              <checkbox value="{{pitem.id}}" checked="{{pitem.selected}}" />
+            </label>
+            <view class="image" bindtap='goProductDetail' data-id="{{pitem.productId}}">
+              <image class="thumbnail" src="{{pitem.thumbnail}}"></image>
+            </view>
+            <view class="detail">
+              <view class="overone f16">{{pitem.fullName}}</view>
+              <view class="specification f12" style="line-height:1.4;">
+                <block wx:for="{{pitem.specification}}" wx:key="id" wx:for-item="specification">
+                  <text class='clr_lightGray'>{{specification.title}}:</text>
+                  <text class="clr_lightGray">{{specification.name}} </text>
+                </block>
+              </view>
+              <view class="price">
+                <text class="baseColor f16" style='padding-right:10rpx;'>￥{{pitem.price}}</text>
+                <text class="sumdel f12 clr_lightGray" wx:if="{{pitem.marketPrice>pitem.price}}">￥{{pitem.marketPrice}}</text>
+              </view>
+              <block wx:for="{{pitem.promotions}}" wx:key="id" wx:for-item="promotions">
+                <view class="promotions f12">
+                  <image src="/resources/images/icon/icon-{{promotions.type}}.png" class="promotionsicon"></image>
+                  <text>{{promotions.name}}</text>
+                </view>
+              </block>
+              <view class="op">
+                <view class="amount">
+                  <button bindtap="revisenum" data-id="{{pitem.id}}" data-type="reduce" data-min="{{pitem.minReserve}}" data-num="{{pitem.quantity}}">-</button>
+                  <input bindchange="inputnum" data-id="{{pitem.id}}" class="f12" type="number" value="{{pitem.quantity}}" />
+                  <button data-id="{{pitem.id}}" data-type="add" data-min="{{pitem.minReserve}}" data-num="{{pitem.quantity}}" bindtap="revisenum">+</button>
+                </view>
+                <image bindtap="deleteItem" data-name="{{pitem.fullName}}" data-id="{{pitem.id}}" class="delete" src="/resources/images/icon/delete.png"></image>
+              </view>
+            </view>
+          </view>
+        </block>
+      </block>
+    </checkbox-group>
+  </view>
+  <!-- <technicalCart-component /> -->
+  <checkbox-group bindchange="checkAllChange">
+    <view class="tab" hidden="{{cartList.length == 0}}">
+      <label class="checkAll f14">
+        <checkbox value="true" checked="{{checkAll}}" />
+        <text>全选</text>
+      </label>
+      <view class="total f14">
+        <text>合计:￥{{total}}</text>
+      </view>
+      <view class="submit f14 clr-white baseBg" bindtap='submit'>
+        结算
+      </view>
+    </view>
+  </checkbox-group>
+</view>

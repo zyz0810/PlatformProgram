@@ -1,0 +1,36 @@
+<template name="chatRoom">
+  <view wx:if="{{your.gid == item.from&&item.yourid!=item.to}}" class="you" id="{{item.mid}}">
+    <view class="head">
+      <image src="{{your.headImg?your.headImg:'/resources/user.png'}}"></image>
+    </view>
+    <view class="content">
+      <icon class="chatTriangleLeftTop" />
+      <view class="conWrap">{{errList[item.mid]}}
+        <text wx:if="{{item.msgType=='txt'}}">{{item.data}}</text>
+        <image mode="aspectFit" binderror="imgerror" wx:elif="{{item.msgType=='img'&&!errList[item.mid]}}" data-id="{{item.mid}}" bindtap="previewImage"
+          src="{{item.data}}"></image>
+        <text style="color:red;" wx:elif="{{item.msgType=='img'&&errList[item.mid]}}">图片过期啦</text>
+        <image class="audio" binderror="audioerror" wx:elif="{{item.msgType=='audio'&&!errList[item.mid]}}" data-id="{{item.mid}}" data-url="{{item.data}}"
+          bindtap="audioPlay" src="{{isplay==item.mid?'/resources/images/chat/audioPause.png':'/resources/images/chat/audioPlay.png'}}"></image>
+        <text style="color:red;" wx:elif="{{item.msgType=='audio'&&errList[item.mid]}}">语音过期啦</text>
+      </view>
+    </view>
+  </view>
+  <view wx:elif="{{my.id == item.from}}" class="my" id="{{item.mid}}">
+    <view class="head">
+      <image src="{{my.headImg?my.headImg:'/resources/user.png'}}"></image>
+    </view>
+    <view class="content">
+      <icon class="chatTriangleRightTop" />
+      <view class="conWrap">
+        <text wx:if="{{item.msgType=='txt'}}">{{item.data}}</text>
+        <image mode="aspectFit" binderror="imgerror" wx:elif="{{item.msgType=='img'&&!errList[item.mid]}}" data-id="{{item.mid}}" bindtap="previewImage"
+          src="{{item.data}}" data-url="{{item.data}}"></image>
+        <text style="color:red;" wx:elif="{{item.msgType=='img'&&errList[item.mid]}}">图片过期啦</text>
+        <image class="audio" binderror="audioerror" wx:elif="{{item.msgType=='audio'&&!errList[item.mid]}}" data-id="{{item.mid}}" data-url="{{item.data}}"
+          bindtap="audioPlay" src="{{isplay==item.mid?'/resources/images/chat/audioPause.png':'/resources/images/chat/audioPlay.png'}}"></image>
+        <text style="color:red;" wx:elif="{{item.msgType=='audio'&&errList[item.mid]}}">语音过期啦</text>
+      </view>
+    </view>
+  </view>
+</template>

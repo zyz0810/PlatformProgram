@@ -1,0 +1,10 @@
+/* pages/member/agreement/agreement.wxss */
+
+.lineItem {
+  padding: 3%;
+  border-bottom: 1px solid #eee;
+}
+
+.iconfont {
+  font-size: 40rpx;
+}

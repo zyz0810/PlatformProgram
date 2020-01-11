@@ -1,0 +1,54 @@
+<view class="container">
+  <block wx:for="{{orderItems}}" wx:for-item="orderItem" wx:key="id">
+    <view class="evalTitle border_bottom">
+      <image src="{{orderItem.thumbnail}}"></image>
+      <view class="title overone">
+        {{orderItem.name}}
+      </view>
+    </view>
+    <view class="evalStar lineItem border_bottom">
+      <view class="f16 left">宝贝评分:</view>
+      <view class="center">
+        <block wx:for="{{5}}" wx:key="*this">
+          <image bindtap="scoreChange" data-id="{{orderItem.orderItemId}}" data-index="{{index}}" src="/resources/images/icon/{{score[orderItem.orderItemId]>index?'s':'l'}}star.png"></image>
+        </block>
+      </view>
+    </view>
+    <view class="evalInput">
+      <textarea placeholder-class="f16" class="f16" data-id="{{orderItem.orderItemId}}" bindinput="inputEval" placeholder="请输入您对宝贝的评价" maxlength="200" />
+      <view class="evalImgList">
+        <block wx:for="{{imgList[orderItem.orderItemId]}}" wx:key="*this">
+          <view>
+            <image src="{{item}}" data-src="{{item}}" data-id="{{orderItem.orderItemId}}" bindtap="preview"></image>
+            <icon type="cancel" data-index="{{index}}" data-id="{{orderItem.orderItemId}}" catchtap="deleteImg"></icon>
+          </view>
+        </block>
+        <view wx:if="{{imgList[orderItem.orderItemId].length<9}}">
+          <image src="/resources/images/icon/addimg.png" data-id="{{orderItem.orderItemId}}" bindtap="addImg"></image>
+        </view>
+      </view>
+      <view></view>
+    </view>
+  </block>
+
+  <checkbox-group bindchange="checkIsAnonym">
+    <label class="lineItem f14">
+      <checkbox class="left" value="1" />
+      <view class="center">匿名</view>
+      <view class="right clr_lightGray" wx:if="{{isAnonym}}">您写的评价会以匿名的形式展现</view>
+    </label>
+  </checkbox-group>
+  <view class="evalStar lineItem border_bottom">
+    <view class="f16 left">店铺评分:</view>
+    <view class="center">
+      <block wx:for="{{5}}" wx:key="*this">
+        <image bindtap="scoreChange" data-id="shop" data-index="{{index}}" src="/resources/images/icon/{{score.shop>index?'s':'l'}}star.png"></image>
+      </block>
+    </view>
+  </view>
+
+  <button type="primary" class="defaultBtn baseBg" open-type='getUserInfo' bindgetuserinfo="bindgetuserinfo">确认提交</button>
+  <!-- <view class='technical_support static'>
+    <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+  </view> -->
+</view>

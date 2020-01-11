@@ -1,0 +1,58 @@
+<wxs module="toFixed">
+  module.exports = function(num, pos) {
+    return num.toFixed(pos)
+  }
+</wxs>
+<view class="progress">
+  <view class="lineItem">
+    <view class="left">
+      <text class='progressDot iconfont icon-dian clr_orange f30' style='color:#1AAD19'></text>
+      <!-- <view wx:if="{{index != 0}}" class="progressLine baseBg"></view> -->
+    </view>
+    <view class="center">
+      <view class="f16 proTitle">发起提现申请</view>
+    </view>
+  </view>
+  <view class="lineItem">
+    <view class="left">
+      <text class='progressDot iconfont icon-time clr_orange f30' style='color:#10AEFF'></text>
+      <view class="progressLine" style='border-left: 1px dotted #1AAD19;bottom:62%;'></view>
+    </view>
+    <view class="center">
+      <view class="f16 proTitle">银行处理中</view>
+      <view class="f14">预计{{month}}月{{day}}日前到账</view>
+    </view>
+  </view>
+  <view class="lineItem">
+    <view class="left">
+      <text class='progressDot iconfont icon-dian clr_orange f30' style='color:#D9D9D9'></text>
+      <view class="progressLine" style='border-left: 1px dotted #D9D9D9;bottom:42%;'></view>
+    </view>
+    <view class="center">
+      <view class="f16 proTitle">到账成功</view>
+    </view>
+  </view>
+</view>
+<view class='f14 bottomInfo'>
+  <view class='flex'>
+    <view class='flex-item tl clr_lightGray'>提现金额</view>
+    <view class='flex-item tr'>￥{{moneyNum}}</view>
+  </view>
+  <view class='flex'>
+    <view class='flex-item tl clr_lightGray'>手续费</view>
+    <view class='flex-item tr'>￥1</view>
+  </view>
+  <view class='flex' wx:if="{{tax>0}}">
+    <view class='flex-item tl clr_lightGray'>税费</view>
+    <view class='flex-item tr'>￥{{tax}}</view>
+  </view>
+  <view class='flex'>
+    <view class='flex-item tl clr_lightGray'>预计到账</view>
+    <view class='flex-item tr clr_red'>￥{{toFixed(moneyNum-tax-1,2)}}</view>
+  </view>
+  <!-- <view class='flex'>
+    <view class='flex-item tl clr_lightGray'>到账银行卡</view>
+    <view class='flex-item tr'>工商银行 尾号4477</view>
+  </view> -->
+</view>
+<view class='success tc f16' bindtap='goIndex'>完成</view>

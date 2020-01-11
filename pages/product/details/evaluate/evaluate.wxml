@@ -1,0 +1,60 @@
+<!--pages/home/productDetails/evaluate/evaluate.wxml-->
+<view class='evaluate' wx:for="{{evaluateList}}" wx:key="id" wx:for-item="item">
+  <view class='lineItem border_bottom'>
+    <view class='left touxiang'>
+      <image src="/resources/images/usernone.png"></image>
+      <!-- <image src="{{item.headImg?item.headImg:'../../../../resources/images/usernone.png'}}"></image> -->
+    </view>
+    <view class='center f14'>匿名用户</view>
+    <!-- <view class='right f12 clr_mediumGray'>{{item.createDate}}</view> -->
+  </view>
+  <view class='content border_bottom f14'>{{item.content}}</view>
+
+  <!-- <view class="wxParse content border_bottom f14">
+    <template is="wxParse" data="{{wxParseData:images.nodes}}"/>
+  </view> -->
+
+  <view class='img'>
+    <block wx:for="{{item.images}}" wx:for-item="itemImg">
+      <image data-src='{{itemImg.source}}' src='{{itemImg.source}}' bindtap='preview'></image>
+    </block>
+  </view>
+
+  <view class='star tr' wx:if="{{item.score=='1'}}">
+    <text class='iconfont icon-xing f16 clr_orange' style='color:{{mainColor}}'></text>
+    <text class='iconfont icon-xing f16 clr_lightGray'></text>
+    <text class='iconfont icon-xing f16 clr_lightGray'></text>
+    <text class='iconfont icon-xing f16 clr_lightGray'></text>
+    <text class='iconfont icon-xing f16 clr_lightGray'></text>
+  </view>
+  <view class='star tr' wx:elif="{{item.score=='2'}}">
+    <text class='iconfont icon-xing f16 clr_orange' style='color:{{mainColor}}'></text>
+    <text class='iconfont icon-xing f16 clr_orange' style='color:{{mainColor}}'></text>
+    <text class='iconfont icon-xing f16 clr_gray'></text>
+    <text class='iconfont icon-xing f16 clr_lightGray'></text>
+    <text class='iconfont icon-xing f16 clr_lightGray'></text>
+    <text class='iconfont icon-xing f16 clr_lightGray'></text>
+  </view>
+  <view class='star tr' wx:elif="{{item.score=='3'}}">
+    <text class='iconfont icon-xing f16 clr_orange' style='color:{{mainColor}}'></text>
+    <text class='iconfont icon-xing f16 clr_orange' style='color:{{mainColor}}'></text>
+    <text class='iconfont icon-xing f16 clr_orange' style='color:{{mainColor}}'></text>
+    <text class='iconfont icon-xing f16 clr_lightGray'></text>
+    <text class='iconfont icon-xing f16 clr_lightGray'></text>
+  </view>
+  <view class='star tr' wx:elif="{{item.score=='4'}}">
+    <text class='iconfont icon-xing f16 clr_orange' style='color:{{mainColor}}'></text>
+    <text class='iconfont icon-xing f16 clr_orange' style='color:{{mainColor}}'></text>
+    <text class='iconfont icon-xing f16 clr_orange' style='color:{{mainColor}}'></text>
+    <text class='iconfont icon-xing f16 clr_orange' style='color:{{mainColor}}'></text>
+    <text class='iconfont icon-xing f16 clr_lightGray'></text>
+  </view>
+  <view class='star tr' wx:elif="{{item.score=='5'}}">
+    <text class='iconfont icon-xing f16 clr_orange' style='color:{{mainColor}}'></text>
+    <text class='iconfont icon-xing f16 clr_orange' style='color:{{mainColor}}'></text>
+    <text class='iconfont icon-xing f16 clr_orange' style='color:{{mainColor}}'></text>
+    <text class='iconfont icon-xing f16 clr_orange' style='color:{{mainColor}}'></text>
+    <text class='iconfont icon-xing f16 clr_orange' style='color:{{mainColor}}'></text>
+  </view>
+</view>
+<view class="tips" hidden="{{showtips}}">{{tips}}</view>

@@ -1,0 +1,43 @@
+<!--pages/pay/success.wxml-->
+<view class="container">
+  <view class="successIcon tc">
+    <text class="iconfont icon-zhifuwancheng baseColor f70"></text>
+  </view>
+  <view class="tc">
+    <text class="f16 baseColor">支付成功</text>
+  </view>
+  <view class="tc">
+    <text class="bold f40">￥{{amount}}</text>
+  </view>
+
+  <view class="successCont">
+    <view class="lineItem">
+      <view class="left clr_lightGray f14">支付单号</view>
+      <view class="right tr f16">{{sn}}</view>
+    </view>
+    <view class="lineItem">
+      <view class="left clr_lightGray f14">支付类型</view>
+      <view class="right tr f16">{{memo}}</view>
+    </view>
+    <!-- <view class="lineItem">
+      <view class="left clr_lightGray f14">收款商家</view>
+      <view class="right tr f16">{{tenantName}}</view>
+    </view> -->
+    <view class="lineItem">
+      <view class="left  clr_lightGray f14">支付时间</view>
+      <view class="right tr f16">{{createDate}}</view>
+    </view>
+    <view class="lineItem ">
+      <view class="left  clr_lightGray f14">支付方式</view>
+      <view class="right tr f16">{{paymentMethod}}</view>
+    </view>
+    <view class="lineItem ">
+      <view class="left  clr_lightGray f14">优惠金额</view>
+      <view class="right tr f16">{{discount}}</view>
+    </view>
+  </view>
+  
+  <!-- <view class='technical_support'>
+    <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+  </view> -->
+</view>

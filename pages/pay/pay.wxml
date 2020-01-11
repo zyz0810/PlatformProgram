@@ -1,0 +1,263 @@
+<include src="/template/actionsheet/actionsheet.wxml" />
+<include src="/template/password/payPassword.wxml" />
+<!--pages/pay/pay.wxml-->
+<button loading class="f16 loadBtn" hidden="{{homeLoadReady}}">加载中</button>
+<view wx:if="{{homeLoadReady}}">
+  <view class='f16  payStyleTitle'>配送方式：</view>
+  <radio-group class="radio-group tl" bindchange="radioChange">
+    <label class="radio f16" wx:for="{{objectshippingMethods}}" wx:key="id" wx:if="{{item.method!='F2F'}}">
+      <radio value="{{index}}" checked="{{(!isSelfGet&&item.method=='TPL')||(isSelfGet&&item.method=='PRIVY')}}" color='#ef2b2d' />{{item.name}}
+    </label>
+  </radio-group>
+
+  <view class='lineItem lineItem_access f14 address border_bottom' hidden="{{express}}" bindtap='chooseAddress'>
+    <view class='left' wx:if="{{receiver}}">
+      <text class='iconfont icon-dizhi f66 address_icon'></text>
+    </view>
+    <view class='left' wx:if="{{!receiver}}">
+      <text class='iconfont icon-dizhi f66 address_icon' style='margin-top:12rpx'></text>
+    </view>
+    <view class='center lineH_two' wx:if="{{receiver}}">
+      <view>{{receiver.consignee}} {{receiver.phone}}</view>
+      <view class='baseColor'>{{receiver.area.fullName}}{{receiver.address}}</view>
+    </view>
+    <view class='center lineH_two' wx:if="{{!receiver}}">
+      <view class='clr_red'>请选择收货地址</view>
+    </view>
+    <view class='right'></view>
+  </view>
+
+
+  <!-- <button class='lineItem lineItem_access f14 address chooseAddress' hidden="{{express}}" bindtap='chooseAddress'>
+    <view class='left' wx:if="{{receiver}}">
+      <text class='iconfont icon-dizhi f66 address_icon'></text>
+    </view>
+    <view class='left' wx:if="{{!receiver}}">
+      <text class='iconfont icon-dizhi f66 address_icon' style='margin-top:12rpx'></text>
+    </view>
+    <view class='center lineH_two' wx:if="{{receiver}}">
+      <view>{{receiver.consignee}} {{receiver.phone}}</view>
+      <view class='baseColor'>{{receiver.area.fullName}}{{receiver.address}}</view>
+    </view>
+    <view class='center lineH_two' wx:if="{{!receiver}}">
+      <view class='clr_red'>请选择收货地址</view>
+    </view>
+    <view class='right'></view>
+  </button> -->
+  <!-- <button class='lineItem lineItem_access f14 address chooseAddress' hidden="{{express}}" bindtap='chooseAddress'>
+    <view class='left' wx:if="{{receiver}}">
+      <text class='iconfont icon-dizhi f66 address_icon'></text>
+    </view>
+    <view class='left' wx:if="{{!receiver}}">
+      <text class='iconfont icon-dizhi f66 address_icon' style='margin-top:12rpx'></text>
+    </view>
+    <view class='center lineH_two' wx:if="{{receiver}}">
+      <view>{{receiver.consignee}} {{receiver.phone}}</view>
+      <view class='baseColor' style='color:{{mainColor}}'>{{receiver.area.fullName}}{{receiver.address}}</view>
+    </view>
+    <view class='center lineH_two' wx:if="{{!receiver}}">
+      <view class='clr_red'>请选择收货地址</view>
+    </view>
+    <view class='right'></view>
+  </button> -->
+
+  <view class='toStore f14' hidden="{{since}}">
+    <view class="section">
+      <picker bindchange="storeAdressChange" range-key='fullAddress' range="{{deliveryCenterList}}">
+        <view class="picker lineItem lineItem_access f14">
+          <view class='center'>提货地址</view>
+          <view class='right' style='width:70vw;'>{{deliveryCenterList[addressId].areaName}}{{deliveryCenterList[addressId].address}}</view>
+        </view>
+      </picker>
+    </view>
+    <view class='lineItem'>
+      <view class='center'>提货人</view>
+      <view class='right'>
+        <input type='text' bindblur="f2fName" placeholder="请输入提货人" value="{{receiver?receiver.consignee:''}}" />
+      </view>
+    </view>
+    <view class='lineItem'>
+      <view class='center'>手机号</view>
+      <view class='right'>
+        <input maxlength="11" type='number' bindblur="validatemobile" placeholder="请输入手机号" value="{{receiver?receiver.phone:''}}" />
+      </view>
+    </view>
+  </view>
+  <view style='padding-bottom:260rpx;'>
+    <view wx:for="{{order.trades}}" wx:key="id" wx:for-item="item">
+      <view class='lineItem f14 tenant'>
+        <view class='center'>
+          <text class='iconfont icon-dianpu bold f20'></text>{{item.tenantName}}</view>
+      </view>
+
+      <view class='lineItem product border_bottom' wx:for="{{item.orderItems}}" wx:key="id" wx:for-item="orderitem">
+        <view class='left product_img'>
+          <image src='{{orderitem.thumbnail}}'></image>
+        </view>
+        <view class='center product_txt'>
+          <view class='f14 overtwo'>{{orderitem.fullName}}</view>
+          <view class='f12 baseColor'>{{orderitem.spec}}</view>
+          <view class='lineItem f16 baseColor price'>
+            <view class='center'>￥{{orderitem.price}}</view>
+            <view class='right'>X{{orderitem.quantity}}</view>
+          </view>
+        </view>
+      </view>
+      <view class='lineItem f14 lineItem_access' data-index='{{index}}' wx:if="{{order.trades[index].availableCoupons.length>0}}" bindtap="toogleCouponSelect" catchtouchmove>
+        <view class='center' style='flex-direction:row;justify-content:flex-start;'>优惠券
+          <text style="background:#53AF42;color:white;padding:0 20rpx;margin-left:20rpx;">{{order.trades[index].availableCoupons.length}}张可用</text>
+        </view>
+        <view data-idnex="{{index}}" class='right {{selectCouponList[index].code?"baseColor":""}}'>{{selectCouponList[index].name?selectCouponList[index].name:'未使用'}}</view>
+      </view>
+
+
+      <view class='lineItem invoiceBtn' wx:if="{{item.makeInvoice}}">
+        <view class='center f14'>是否需要发票</view>
+        <view class='right f12'>
+          <switch size="10" bindchange="switchChange" data-index="{{index}}" />
+        </view>
+      </view>
+
+      <view class='lineItem invoiceBtn f14 lineItem_access' data-index="{{index}}" bindtap='invoiceBtn' wx:if="{{invoiceList[index].makeInvoice}}">
+        <view class='center'>开具发票</view>
+        <view class='right f12'>{{invoiceList[index].headType=='company'?"发票-企业":"发票-个人"}}{{invoiceList[index].headName?'-'+invoiceList[index].headName:''}}</view>
+      </view>
+
+
+      <view class='lineItem f14'>
+        <view class='center'>快递运费</view>
+        <view class='right'>￥{{item.freight}}</view>
+      </view>
+      <view class='lineItem border_bottom f14 word' wx:if="{{showMemo}}">
+        <view class='left'>买家留言：</view>
+        <view class='center'>
+          <input maxlength="500" placeholder="给商家留言（500字以内）" bindinput='inputMemo' data-index="{{index}}" />
+        </view>
+      </view>
+      <view class='lineItem f14' style='border-bottom:10px solid #f5f5f5'>
+        <view class='center'>小计</view>
+        <view class='right'>￥{{calculate.trades[index].amount}}</view>
+      </view>
+    </view>
+
+
+    <!-- <view class='lineItem f14' hidden="{{freight}}">
+    <view class='center'>快递运费</view>
+    <view class='right'>￥{{calculate.freight}}</view>
+  </view> -->
+
+    <view class='lineItem f14 reduct' wx:if="{{calculate.discount}}">
+      <view class='center'>随机立减</view>
+      <view class='right baseColor'>￥{{calculate.discount}}</view>
+    </view>
+    <view class='lineItem lineH_two f14' wx:if="{{calculate.couponDiscount}}">
+      <view class='center'>优惠券抵扣：</view>
+      <view class='right baseColor f16'>￥{{calculate.couponDiscount}}</view>
+    </view>
+    <view class='lineItem lineH_two f14'>
+      <view class='center tr'>小计：</view>
+      <view class='right baseColor f16'>￥{{calculate.amountPayable}}</view>
+    </view>
+    <view class='selectGuide f14' style='border-top:5px solid #eee' hidden='{{ifshowGuide}}'>
+      <view class="section">
+        <picker bindchange="guideChange" range-key='name' range="{{guideList}}">
+          <view class="picker lineItem lineItem_access f14">
+            <view class='center'>选择服务导购</view>
+            <view class='right'>{{guideList[guideId].name}}</view>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- <view class='lineItem f14'>
+  <view class='center'>邀请码</view>
+  <view class='right'>
+    <input placeholder="请输入邀请码" />
+  </view>
+</view> -->
+
+
+  <!-- <form bindsubmit="formSubmit" report-submit bindreset="formReset"> -->
+
+  <!-- <view class='lineItem lineH_three f16 bottom' style='bottom:{{isIphoneX? 68:""}}rpx' wx:if="{{!authorize}}">
+    <view class='center tc baseColor'>实付款：￥{{calculate.amountPayable}}</view>
+    <button class='right baseBg' open-type='getUserInfo' bindgetuserinfo="getUserInfo" style='border-radius:0;'>确认下单</button>
+  </view>
+  <view hidden='{{!isIphoneX}}' class='iphoneX' style='background:#f4f4f4;'></view> -->
+
+  <form bindsubmit="formSubmit" report-submit>
+    <view class='lineItem lineH_three f16 bottom' style='bottom:{{isIphoneX? 68:""}}rpx'>
+      <view class='center tc baseColor'>实付款：￥{{calculate.amountPayable}}</view>
+      <button class='right baseBg' form-type="submit" style='border-radius:0;'>确认下单</button>
+    </view>
+    <view hidden='{{!isIphoneX}}' class='iphoneX' style='background:#f4f4f4;'></view>
+  </form>
+
+
+  <view class="couponSelect" hidden="{{!showCouponSelect}}">
+    <view class="couponmask" bindtap="toogleCouponSelect"></view>
+    <view class="couponContent">
+      <view class="couponSelectTitle f16">
+        可用优惠券
+        <!-- <image src="/static/images/icon/close.png"></image> -->
+      </view>
+      <view class="couponList">
+        <block wx:for="{{order.trades[couponIndex].availableCoupons}}" wx:key="codeId">
+          <view class="lineItem f14 border_bottom" data-name="{{item.amount}}" data-id="{{item.id}}" data-code="{{item.code}}" bindtap="selectCoupon">
+            <view class="center">
+              <view class="baseColor">{{item.amount}}元优惠券</view>
+              <view>使用期限:{{item.endDate}}</view>
+            </view>
+            <view class="right">
+              <view style="background:#5ab430;color:white;padding:10rpx 20rpx;border-radius:10rpx;">使用</view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class="couponOp flex f16">
+        <view style="background:#919191;" bindtap="selectCoupon">取消使用</view>
+        <view style="background:#5ab430;" bindtap="toogleCouponSelect">关闭</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 发票 -->
+<view class='mask' wx:if='{{invoiceView}}'></view>
+<view class='invoiceView f16' wx:if='{{invoiceView}}'>
+  <view class='close' bindtap='invoiceClose'>
+    <text class='iconfont icon-quxiao'></text>
+  </view>
+  <view class='lineItem f14'>
+    <text class='left'>抬头类型：</text>
+    <view class='center type f14'>
+      <text data-id='0' bindtap='tabTap' style="color:{{invoiceList[invoiceIndex].headType == 'company'?mainColor:''}};border:1px solid {{invoiceList[invoiceIndex].headType == 'company'?mainColor:'#f1f1f1'}}">企业</text>
+      <text data-id='1' bindtap='tabTap' style="color:{{invoiceList[invoiceIndex].headType == 'personal'?mainColor:''}};border:1px solid {{invoiceList[invoiceIndex].headType == 'personal'?mainColor:'#f1f1f1'}}">个人/非企业单位</text>
+    </view>
+  </view>
+  <view class='company' wx:if="{{invoiceList[invoiceIndex].headType=='company'}}">
+    <view class='lineItem'>
+      <text class='left'>抬头名称：</text>
+      <view class='center'>
+        <input placeholder='请输入单位抬头名称' class='f16' placeholder-class='clr_lightGray' bindinput='companyName' value='{{invoiceList[invoiceIndex].headName}}'></input>
+      </view>
+    </view>
+    <view class='lineItem'>
+      <text class='left' space="emsp">税  号：</text>
+      <view class='center'>
+        <input placeholder='请输入税号或统一社会信用代码' class='f16' placeholder-class='clr_lightGray' bindinput='companyNum' value='{{invoiceList[invoiceIndex].dutyParagraph}}'></input>
+      </view>
+    </view>
+  </view>
+
+  <view class='lineItem personal' wx:if="{{invoiceList[invoiceIndex].headType=='personal'}}">
+    <text class='left'>抬头名称：</text>
+    <view class='center'>
+      <input placeholder='请输入个人/非企业单位抬头名称' class='f16' placeholder-class='clr_lightGray' bindinput='personalName' value='{{invoiceList[invoiceIndex].headName}}'></input>
+    </view>
+  </view>
+
+  <button type="primary" class="submit" style='background:{{mainColor}}' bindtap="submitInvoice">确定</button>
+</view>

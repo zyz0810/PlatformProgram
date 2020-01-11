@@ -1,0 +1,69 @@
+<!--pages/shop/register/index.wxml-->
+<view class='title f18 border_bottom'>注册资料</view>
+<form class='f12 form'>
+  <view class='f12 clr_lightGray intro'>请谨慎填写基本资料，注册后基本资料无法更改</view>
+  <view class='lineItem f14 border'>
+    <view class='left f14'>联系人：</view>
+    <view class='center'>
+      <input name="input" type='text' placeholder="请输入店铺主真实姓名 " placeholder-class='clr_lightGray' id='masterName' bindinput='bindChange' />
+    </view>
+  </view>
+  <view class='lineItem f14 border'>
+    <view class='left f14'>手机号：</view>
+    <view class='center'>
+      <input name="input" type='number' maxlength='11' placeholder="请输入手机号码 " placeholder-class='clr_lightGray' id='phone' bindinput='bindChange' style='width:360rpx;'/>
+    </view>
+    <view class='right code'><button type="primary" bindtap="getcode" class="captach" disabled="{{disabled}}">{{tips}}</button></view>
+  </view>
+  <view class='lineItem f14 border'>
+    <view class='left f14'>验证码：</view>
+    <view class='center'>
+      <input name="input" type='number' placeholder="请输入验证码 " placeholder-class='clr_lightGray' id='code' bindinput='bindChange' />
+    </view>
+  </view>
+  <view class='lineItem f14 border'>
+    <view class='left f14'>店铺名：</view>
+    <view class='center'>
+      <input name="input" type='text' placeholder="请输入店铺营业名称 " placeholder-class='clr_lightGray' id='shopName' bindinput='bindChange' />
+    </view>
+  </view>
+  <view class='lineItem f14 border lineItem_access' bindtap='chooseCategory'>
+    <view class='left f14'>所属行业：</view>
+    <view class='center {{shopCategory == "请选择所属行业"?"clr_lightGray":""}}'>{{shopCategory}}</view>
+    <view class='right'></view>
+  </view>
+  <view class='lineItem f14 border'>
+    <view class='left f14'>店铺区域：</view>
+    <view class='center'>
+      <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" range="{{objectMultiArray}}" range-key='name'>
+        <view class="picker clr_lightGray" wx:if="{{province==''}}">{{fullName}}</view>
+        <view class="picker" wx:if="{{province!=''}}">{{province}}{{city}}{{district}}</view>
+      </picker>
+    </view>
+  </view>
+  <view class='lineItem f14 border address'>
+    <view class='left f14'>详细地址：</view>
+    <view class='center'>
+      <input placeholder="填写详细地址或右侧定位选择" placeholder-class='clr_lightGray' class='shopAddress overone' id='shopAddress' value='{{formContent.shopAddress}}' bindinput='bindChange'/>
+    </view>
+    <view class='right f13 map_btn' bindtap='goMap'>
+      <text class='iconfont icon-dingwei-xianxing f20'></text>
+    </view>
+  </view>
+
+  <view class='f12 clr_lightGray agreement lineItem'>
+    <view class='center'>
+      <checkbox-group bindchange="checkboxChange">
+        <label class="checkbox">
+          <checkbox value='agree' checked="{{checked}}" />已阅读并同意
+        </label>
+        <text class='clr_lightBlue' bindtap='goAgreement'>《服务协议》</text>
+      </checkbox-group>
+
+    </view>
+  </view>
+
+  <view class='submit_btn tc'>
+    <button class='f16 clr-white' style='background:{{bg?"#15b521":"#ccc"}}' bindtap='submit'>确认注册</button>
+  </view>
+</form>

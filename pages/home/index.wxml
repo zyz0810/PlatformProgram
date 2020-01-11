@@ -1,0 +1,138 @@
+<wxs src="../../wxs/imageCut.wxs" module="imageCut" />
+<!--search  -->
+<import src="/template/search/search.wxml" />
+<!--swiper  -->
+<import src="/template/swiperIndex/swiper.wxml" />
+<!-- coupon -->
+<import src="/template/coupon/couponList.wxml" />
+<view class="container" wx:if="{{homeLoadReady}}">
+  <scroll-view scroll-y scroll-with-animation enable-back-to-top scroll-into-view="{{scrollTo}}" style="height:100%">
+    <official-account></official-account>
+    <view>
+      <shadow-component />
+      <!--搜索  -->
+      <template is="search" data="{{position:'static'}}"></template>
+      <!--头部  -->
+      <view class="head" id="top">
+        <!--轮播  -->
+        <template is="adSwiper" data="{{_swiper,name:'top',data:topImgs.data,key:topImgs.key,fn:'adTap'}}"></template>
+      </view>
+      <view class='nav_category border_bottom'>
+        <block wx:for="{{nav}}" wx:key="id">
+          <form bindsubmit="toDetail" report-submit data-id='{{item.id}}'>
+            <button class='nav_item tc formButton' form-type="submit" style='padding:0;line-height:1.5;'>
+              <image style='width:103.5rpx;height:103.5rpx;' lazy-load src="{{item.image ? imageCut(item.image,94,94,sys):'/resources/images/noneimg.png'}}"></image>
+              <view class='f13 overone'>{{item.name}}</view>
+            </button>
+          </form>
+        </block>
+      </view>
+
+      <!-- 优惠券列表 -->
+      <template is="couponList" data="{{data:couponList}}"></template>
+
+      <view class='timeLimit' hidden='{{limitLength}}'>
+        <view class='title f20'>限时抢购
+          <text class='f16 timeLimit_tag'>惊爆秒杀价</text>
+        </view>
+        <view class='timeLimit_list'>
+          <block wx:for="{{limitsell}}" wx:key="id">
+            <view class='lineItem' data-id='{{item.id}}' bindtap='__pt_toDetail'>
+              <view class='left'>
+                <image mode="widthFix" lazy-load src="{{item.thumbnail ? imageCut(item.thumbnail,210,210,sys):'/resources/images/noneimg.png'}}"></image>
+              </view>
+              <view class='center'>
+                <view>
+                  <view class='name f14 overtwo'>{{item.name}}</view>
+                  <view class='tag'>
+                    <text class='f10'>限量{{item.personLimit}}件</text>
+                  </view>
+                </view>
+                <view class='price'>
+                  <text class='f20 clr_orange' style='color:{{mainColor}}'>￥{{item.price}}</text>
+                  <text class='f12 old_price' hidden='{{item.price>=item.oriPrice}}'>原价￥{{item.oriPrice}}</text>
+                  <text class='f14 clr_orange buy' style='color:{{mainColor}};border:1px solid {{mainColor}}' data-id='{{item.id}}'>{{item.txt}}</text>
+                </view>
+                <view class='time f10 tc'>
+                  <text>{{item.countDownDay>0?item.countDownDay:0}}</text>天
+                  <text>{{item.countDownHour}}</text>:
+                  <text>{{item.countDownMinute}}</text>:
+                  <text>{{item.countDownSecond}}</text>
+                </view>
+
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+
+      <view class='hot' hidden='{{hotLength}}'>
+        <view class='title f20'>人气热销</view>
+        <view class='ad' wx:for="{{promotionAdImgs.data}}" wx:key="id">
+          <image mode="widthFix" lazy-load src="{{item.image}}" data-linkId='{{item.linkId}}' bindtap='adTap'></image>
+        </view>
+        <scroll-view class="hotList" scroll-x="{{scrollX}}" style="width: 100%" bindscrolltolower="specialtoupper" data-type="hot" data-tagIds="1">
+          <!-- <view class='hotList'> -->
+          <block wx:for="{{hotsell}}" wx:key="id">
+            <view class='hotList_item tc' data-id='{{item.id}}' bindtap="__pt_toDetail">
+              <view class='list_img'>
+                <image style='width:26vw;height:26vw;' lazy-load src="{{item.thumbnail ? imageCut(item.thumbnail,210,210,sys):'/resources/images/noneimg.png'}}"></image>
+              </view>
+              <view class='name f14 overtwo'>{{item.name}}</view>
+              <view class='clr_orange f14' style='color:{{mainColor}}'>￥{{item.price}}</view>
+            </view>
+          </block>
+          <!-- </view> -->
+        </scroll-view>
+      </view>
+
+      <view class='special {{recommendLength}}' hidden='{{recommendLength && recommendAdImgs.show}}' id='{{recommendAdImgs.show}}'>
+        <view class='title f20'>专题推荐</view>
+        <view class='ad' wx:for="{{recommendAdImgs.data}}" wx:key="id">
+          <image mode="widthFix" lazy-load src="{{item.image}}" data-linkId='{{item.linkId}}' bindtap='adTap'></image>
+        </view>
+        <scroll-view class="specialList" scroll-x="{{scrollX}}" style="width: 100%" scroll-with-animation lower-threshold='50' bindscrolltolower="specialtoupper" data-type="recommend" data-tagIds="5">
+          <!-- <view class='specialList'> -->
+          <block wx:for="{{recommendsell}}" wx:key="id">
+            <view class='specialList_item tc' data-id='{{item.id}}' bindtap="__pt_toDetail">
+              <view class='product_img'>
+                <image style='width:26vw;height:26vw;' lazy-load src="{{item.thumbnail ? imageCut(item.thumbnail,210,210,sys):'/resources/images/noneimg.png'}}"></image>
+              </view>
+              <view class='name f14 overtwo'>{{item.name}}</view>
+              <view class='clr_orange f14' style='color:{{mainColor}}'>￥{{item.price}}</view>
+            </view>
+          </block>
+          <!-- </view> -->
+        </scroll-view>
+      </view>
+
+      <view class='recommd' hidden='{{newLength}}'>
+        <view class='title f20'>新品首发</view>
+        <view class='ad' wx:for="{{newproductAdImgs.data}}" wx:key="id">
+          <image mode="widthFix" lazy-load src="{{item.image}}" data-linkId='{{item.linkId}}' bindtap='adTap'></image>
+        </view>
+        <view class='recommd_list clearfix'>
+
+          <block wx:for="{{newsell}}" wx:key="id">
+            <view class='product fl' data-id='{{item.id}}' bindtap="__pt_toDetail">
+              <image lazy-load src="{{item.thumbnail ? imageCut(item.thumbnail,210,210,sys):'/resources/images/noneimg.png'}}"></image>
+              <view class='f14 overtwo name'>{{item.name}}</view>
+              <view class='clr_orange f16 bold tl price' style='color:{{mainColor}}'>￥{{item.price}}</view>
+            </view>
+          </block>
+
+        </view>
+        <view class="tips" hidden="{{showtips}}">{{tips}}</view>
+      </view>
+      <view class='tc f14 clr_lightGray padding2' bindtap='goTenantInfo' style='background:#f5f5f5;'>------------- 店铺信息 ------------- </view>
+      <view class="toUp {{toUpShow&&'toUpshow'}}" data-to="top" bindtap="scrollto">
+        <image src="/resources/images/icon/toup.png"></image>
+      </view>
+      <view class='technical_support' bindtap='technical'>
+        <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+      </view>
+    </view>
+  </scroll-view>
+
+</view>
+<button loading class="f16 loadBtn" hidden="{{homeLoadReady}}">加载中</button>

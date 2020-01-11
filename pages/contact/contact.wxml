@@ -1,0 +1,45 @@
+<view class='page'>
+  <shadow-component />
+  <view class='tenantList' wx:for="{{listData}}" wx:key="id" wx:for-item="item">
+    <view class='lineItem tenantListItem'>
+      <view class='left'>
+        <image src='{{logo?logo:"/resources/images/noneimg.png"}}'></image>
+      </view>
+      <view class='center f14 overone'>
+        <view class='overone'>{{item.name}}</view>
+        <view class='overone clr_lightGray'>{{item.areaName}}</view>
+        <view class='overone clr_lightGray'>{{item.address}}</view>
+      </view>
+      <view class='right' bindtap='goCall' data-phone='{{item.phone}}'>
+        <text class='icon iconfont icon-lianxi baseColor f20'></text>
+      </view>
+    </view>
+    <view class='nav f16' bindtap='goNav' data-lng='{{item.location.lng}}' data-lat='{{item.location.lat}}' data-name='{{item.address}}'>
+      <text class='icon iconfont icon-daohang baseColor f16'></text>导航到门店
+    </view>
+  </view>
+  <view class='tenantList tc padding2 f20' wx:if="{{listData.length==0}}">
+    您当前区域暂无门店
+  </view>
+  <!-- <technical-component /> -->
+</view>
+<view class="foot">
+  <view class="tabbar">
+    <image src='/resources/images/tabBar/home.png' data-src="/pages/home/home" data-tenantid="{{tenantId}}" bindtap='Navigation'></image>
+    <view>
+      店铺主页
+    </view>
+  </view>
+  <view class="tabbar">
+    <image src='/resources/images/tabBar/contact-sel.png' bindtap='Navigation'></image>
+    <view class='baseColor'>
+      商家门店
+    </view>
+  </view>
+  <view class="tabbar">
+    <image src='/resources/images/tabBar/category.png' data-src="/pages/category/category" data-tenantid="{{tenantId}}" bindtap='Navigation'></image>
+    <view>
+      商品分类
+    </view>
+  </view>
+</view>

@@ -1,0 +1,52 @@
+<view class="container">
+  <view class="title f16 tc">
+    <view class="bold" wx:if="{{data.paymentStatus==0}}">订单未支付</view>
+    <view class="bold" wx:if="{{data.paymentStatus==2}}">订单已支付</view>
+    <block wx:if="{{data.paymentStatus==0}}">
+      <view data-info="{{data.id}}" class="confirmBtn" bindtap='goPay'>立即付款</view>
+    </block>
+  </view>
+  <view class="detail f14 tc">
+    <view class="head">
+      <view></view>
+      <text class="bold">订单明细</text>
+      <view></view>
+    </view>
+    <view class="orderList">
+      <view class="orderItem border_bottom">
+        <image src="{{data.masterMap}}"></image>
+        <view>
+          <view class="orderItem-top">
+            <text class="tl">{{data.name}}</text>
+          </view>
+          <view class="tl">
+            <text>￥{{data.price}}</text>
+            <text style="margin-left:20rpx;" class='fr'>x{{data.count}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="tr bold" style="padding-top:5px;">
+      总价：￥{{data.totalPrice}}
+    </view>
+  </view>
+  <view class="info f14">
+    <view class="tl bold">订单信息</view>
+    <view class="lineItem border_bottom">
+      <view class="left bold500">订单号</view>
+      <view class="right">{{data.sn}}</view>
+    </view>
+    <view class="lineItem border_bottom">
+      <view class="left bold500">创建时间</view>
+      <view class="right">{{data.createDate}}</view>
+    </view>
+    <view class="lineItem border_bottom" wx:if="{{data.payDate}}">
+      <view class="left bold500">支付时间</view>
+      <view class="right">{{data.payDate}}</view>
+    </view>
+    <view class="lineItem">
+      <view class="left bold500">联系电话</view>
+      <view class="right">{{data.mobile}}</view>
+    </view>
+  </view>
+</view>

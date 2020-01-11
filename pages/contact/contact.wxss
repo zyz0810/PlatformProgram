@@ -1,0 +1,32 @@
+/* pages/contact/contact.wxss */
+.tenantList{
+  margin-bottom: 2vw;
+  position: relative;
+  z-index: 99;
+}
+.tenantListItem{
+  border-bottom: 1px solid #d9d9d9;
+}
+.tenantListItem .left {
+  width: 16vw;
+  height: 16vw;
+}
+
+.tenantListItem .left image {
+  width: 100%;
+  height: 100%;
+}
+.tenantListItem .center{
+  margin-left: 3vw;
+}
+.tenantListItem .right text{
+  padding-left: 2vw;
+  border-left: 1px solid #d9d9d9;
+}
+.nav{
+  background: #fff;
+  padding: 2%;
+}
+.nav text{
+  margin-right: 2vw;
+}

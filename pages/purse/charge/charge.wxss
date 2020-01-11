@@ -1,0 +1,11 @@
+/* pages/index/purse/charge/charge.wxss */
+
+.chargeTop{
+  margin: 0 0 2vw;
+  padding: 2vw 3vw 3vw;
+  
+}
+
+.lineItem .left.f22{
+  margin-right: 20rpx;
+}

@@ -1,0 +1,11 @@
+<template name="search">
+  <!-- <view class="search {{borderbottom?'borderbottom':''}}" style='background:{{background?background:""}};position:{{position?position:"fixed"}};'> -->
+  <view class="search {{borderbottom?'borderbottom':''}}" style='position:{{position?position:"fixed"}};'>
+    <view class="searchWrap">
+      <image mode='scaleToFill' class="searchIcon" src='/resources/images/icon/sousuo.png'></image>
+      <!-- <view class="f14">搜索店内商品</view> -->
+      <input placeholder='搜索店内商品' value="{{val}}" placeholder-class='clr_lightGray' class="f14 clr_lightGray" bindconfirm='searchProduct'></input>
+      <!-- <image mode='scaleToFill' class="scanIcon" src='/resources/images/icon/scan.png' bindtap='wxscan'></image> -->
+    </view>
+  </view>
+</template>

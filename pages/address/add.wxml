@@ -1,0 +1,52 @@
+<!--pages/member/address/add.wxml-->
+<form class='f14' bindsubmit="revise">
+  <view class="line">
+    <view class="head"> 姓名</view>
+    <view class="classname">
+      <input bindinput="consignee" value='{{consignee}}' placeholder-class='clr_lightGray' placeholder="输入收货人姓名" maxlength='11'/>
+    </view>
+  </view>
+
+  <view class="line">
+    <view class="head">手机号</view>
+    <view class="classname">
+      <input type="number" bindinput="phone" value='{{phone}}' maxlength='11' placeholder-class='clr_lightGray' placeholder="输入收货人手机号" />
+    </view>
+  </view>
+
+  <!-- <view class="line location">
+    <view class="head">所在地区</view>
+    <view class="classname">
+      <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" range="{{objectMultiArray}}" range-key='name'>
+        <view class="picker clr_lightGray" wx:if="{{province==''}}">{{fullName}}</view>
+        <view class="picker" wx:if="{{province!=''}}">{{province}} {{city}} {{district}}</view>
+      </picker>
+    </view>
+    <view class='locationBtn tc' bindtap='location'>
+      <text class='iconfont icon-dizhi1 f20 clr_lightGray'></text>
+    </view>
+  </view> -->
+  <!-- <view class="line">
+    <view class="head">定位详细信息</view>
+    <view class="classname">
+      <input type="text" bindinput="address" value='{{address}}' placeholder-class='clr_lightGray' placeholder="输入收货人手机号" />
+    </view>
+  </view> -->
+
+  <view class="line">
+    <view class="head">所在地区</view>
+    <view class="classname">
+      <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" range="{{objectMultiArray}}" range-key='name'>
+        <view class="picker" wx:if="{{province==''}}">{{fullName}}</view>
+        <view class="picker" wx:if="{{province!=''}}">{{province}}{{city}}{{district}}</view>
+      </picker>
+    </view>
+  </view>
+  <view class="line">
+    <view class="head">详细地址</view>
+    <view class="classname">
+      <input bindinput="address" value='{{address}}' placeholder-class='clr_lightGray' placeholder="填写收货人详情地址" />
+    </view>
+  </view>
+  <button type="primary" class="submit baseBg" bindtap="submit">提交</button>
+</form>

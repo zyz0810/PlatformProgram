@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": " ",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "technical-component": "/component/technical/technical",
+    "shadow-component": "/component/shadow/shadow"
+  }
+}

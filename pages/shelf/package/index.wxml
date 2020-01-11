@@ -1,0 +1,63 @@
+<!--pages/shelf/package/index.wxml-->
+<import src="../../wxParse/wxParse.wxml" />
+<button loading="{{!pageLoad}}" hidden="{{pageLoad}}" class="f14 loadBtn clr_lightGray">加载中</button>
+<view hidden="{{!pageLoad}}">
+  <view class='header'>
+    <image src="http://cdn.laiyijia.com/upload/image/201911/e5b5783f-403f-4ac2-b406-fb07ed8f9be3.jpg" mode='widthFix'></image>
+  </view>
+
+  <view class='defaultHead'>
+    <view class='lineItem platform_title lineItem_access' bindtap='goOrder'>
+      <view class='left f14 shelfBg'></view>
+      <view class='center f15'>来一架轻加盟</view>
+      <view class='right f12 clr_lightGray' style='font-weight:normal;'>
+        查看订单
+      </view>
+    </view>
+
+    <view class='brand_list' wx:for="{{tenantData}}" wx:key="{{item.tenantId}}">
+      <view class='brand_tit lineItem border_bottom'>
+        <view class='left brand_logo' bindtap="goIntroduce" data-id="{{item.tenantId}}">
+          <image src='{{item.tenantLogo?item.tenantLogo:"/resources/images/noneimg.png"}}'></image>
+        </view>
+        <view class='center'>
+          <view class='f18 bold brand_name' bindtap="goIntroduce" data-id="{{item.tenantId}}">{{item.tenantName}}</view>
+          <view class='f12 clr_lightGray lineItem' style='padding:0'>
+            <view class='center brand_intro overtwo' wx:if="{{item.tenantIntroduce != null}}" bindtap="goIntroduce" data-id="{{item.tenantId}}">
+              <template is="wxParse" data="{{wxParseData:WxParseListArr[index]}}" />
+            </view>
+            <view class='center brand_intro overtwo' wx:if="{{item.tenantIntroduce == null}}" bindtap="goIntroduce" data-id="{{item.tenantId}}">
+              公司简介：无
+            </view>
+            <view class='right contact'>
+              <text class='iconfont icon-dianhuazhengzaibohao f20 baseColor' catchtap='callUs'></text>
+              <button open-type="contact" hover-class="none" session-from="weapp" style='border-radius:0'>
+                <text class='iconfont icon-weixin1 f22 clr_wxGreen'></text>
+              </button>
+            </view>
+          </view>
+        </view>
+        <view class='right'></view>
+      </view>
+
+
+      <view class='lineItem packageList' wx:for="{{item.shelvesPackageList}}" wx:for-item="items" wx:key="{{items.id}}" data-id="{{items.id}}" data-tenantid='{{item.tenantId}}' bindtap='goView'>
+        <view class='left'>
+          <image src="{{items.masterMap?items.masterMap:'/resources/images/noneimg.png'}}"></image>
+        </view>
+        <view class='center'>
+          <view class='f14 overtwo'>{{items.name}}</view>
+          <view class='f12 overtwo clr_lightGray'>{{items.promotionDesc}}</view>
+          <view class='f14 bold overone baseColor'>￥{{items.salePrice}}</view>
+        </view>
+        <view class='right'>
+          <!-- <view class='f14 butBtn' style="background:{{mainColor}}">立即购买</view> -->
+        </view>
+      </view>
+
+
+    </view>
+
+
+  </view>
+</view>

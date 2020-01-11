@@ -1,0 +1,47 @@
+<!--pages/member/address/add.wxml-->
+<form class='f14' bindsubmit="revise">
+  <view class="line">
+    <view class="head">
+      <text class="clr_red">*</text>门店联系人</view>
+    <view class="classname">
+      <input type="text" bindinput="linkman" value='{{linkman}}' placeholder-class='clr_lightGray' placeholder="请填写店主的真实姓名" />
+    </view>
+  </view>
+  <view class="line">
+    <view class="head">
+      <text class="clr_red">*</text>店铺名称</view>
+    <view class="classname">
+      <input bindinput="deliveryCenterName" value='{{deliveryCenterName}}' placeholder-class='clr_lightGray' placeholder="请填写店铺名称，建议与门头一致" />
+    </view>
+  </view>
+
+  <view class="line">
+    <view class="head">
+      <text class="clr_red">*</text>区域位置</view>
+    <view class="classname">
+      <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" range="{{objectMultiArray}}" range-key='name'>
+        <view class="picker" wx:if="{{province==''}}">{{fullName}}</view>
+        <view class="picker" wx:if="{{province!=''}}">{{province}}{{city}}{{district}}</view>
+      </picker>
+    </view>
+  </view>
+  <view class="line" style='position:relative;'>
+    <view class="head">
+      <text class="clr_red">*</text>详细地址</view>
+    <view class="classname" style='width:60%;'>
+      <input bindinput="address" value='{{address}}' placeholder-class='clr_lightGray' placeholder="填写详细地址或右侧定位选择" />
+    </view>
+    <!-- <view> -->
+    <text class='iconfont icon-dizhi1 f20' style='display:inline-bloc;padding:10rpx 15rpx;position:absolute;right:0;top:12rpx;' bindtap='chooseAddress'></text>
+    <!-- </view> -->
+  </view>
+  <view class="line">
+    <view class="head">
+      <text class="clr_red">*</text>门头照片</view>
+    <view class="classname tl" style='width:350rpx;position:relative;'>
+      <view class='iconfont icon-quxiao' wx:if="{{pic}}" bindtap='deletePic'></view>
+      <image style='width:350rpx;' mode='widthFix' src='{{imgdefault}}' bindtap="uploadImg"></image>
+    </view>
+  </view>
+  <button type="primary" class="submit" style='background:{{mainColor}}' bindtap="submit">下一步</button>
+</form>

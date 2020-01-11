@@ -1,0 +1,74 @@
+<!--pages/index/purse/purse.wxml-->
+
+<view class="container">
+
+  <view class='lineItem lineItem_access f12 topTips clr-white' style='background:{{mainColor}}' wx:if="{{authStatus!='success'}}" bindtap='goAuth'>
+    <view class='left'>
+      <text class='iconfont icon-tishi'></text>
+    </view>
+    <view class='center'>首次提现需完成实名认证</view>
+    <view class='right clr-white' wx:if="{{authStatus=='none'}}">去认证</view>
+    <view class='right clr-white' wx:if="{{authStatus=='wait'}}">认证中</view>
+    <view class='right clr-white' wx:if="{{authStatus=='fail'}}">认证失败</view>
+  </view>
+
+  <view class='purse_info_bg'>
+    <view class='purse_info f14 clr-white'>
+      <view>
+        <view class='iconBg tc'>
+          <text class='iconfont icon-tixian1'></text>
+        </view>
+        可提现 (元)
+      </view>
+      <view class='flex'>
+        <view class='flex-item f25'>{{balance}}</view>
+        <view class='flex-item f14 tr'>
+          <form bindsubmit="goCash" report-submit>
+            <button class='formButton cashBtn f14' form-type="submit" style='display:inline-block;line-height:1.4;background:transparent;'>提现
+            </button>
+          </form>
+          <!-- <text class='cashBtn'>提现</text> -->
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='lineItem purse_info_same'>
+    <view class='left'></view>
+    <view class='center'>
+      <view class='f14'>待入账(元)
+        <text class='iconfont iconiconset0143 freezeBalance' bindtouchstart='touchstart' bindtouchend='touchend'></text>
+      </view>
+      <view class='f20 clr_red'>{{freezeBalance}}</view>
+    </view>
+    <view class='right f14' bindtap='goFreezing'>
+      <text class='cashBtn'>查看</text>
+    </view>
+  </view>
+
+  <view class="link f14">
+    <view class="lineItem " bindtap="toBankList">
+      <view class="left">
+        <text class="iconfont icon-card clr_lightGray f20"></text>
+      </view>
+      <view class="center">
+        <view>银行卡</view>
+      </view>
+      <view class="right">
+        <text class="iconfont icon-icon clr_lightGray"></text>
+      </view>
+    </view>
+    <view class="lineItem " bindtap="toBill">
+      <view class="left">
+        <text class="iconfont icon-zhangdan clr_lightGray f18"></text>
+      </view>
+      <view class="center">
+        <view>账单</view>
+      </view>
+      <view cl0ass="right">
+        <text class="iconfont icon-icon clr_lightGray"></text>
+      </view>
+    </view>
+  </view>
+  <technical-component />
+</view>

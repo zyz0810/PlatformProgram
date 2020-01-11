@@ -1,0 +1,121 @@
+.actionsheetMask {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+  z-index: 888;
+  transition: 5s;
+}
+
+.actionsheetWrap {
+  background: #fff;
+  width: 100%;
+  height: 70%;
+  position: fixed;
+  bottom: 0;
+  z-index: 998;
+}
+
+.actionsheet_top {
+  padding: 20rpx 0;
+  position: relative;
+}
+
+.actionsheet_top image {
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  left: 20rpx;
+  z-index: 2;
+}
+
+.actionsheet_top::after {
+  content: " ";
+  display: block;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  background: #d9d9d9;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  z-index: 2;
+}
+
+.actionsheet_top>view {
+  text-align: center;
+  font-weight: 500;
+  font-size: 38rpx;
+  position: relative;
+}
+
+.actionsheet_title {
+  font-weight: bold;
+  font-size: 80rpx;
+  /* letter-spacing: 5rpx; */
+  text-align: center;
+  padding: 40rpx 0 50rpx;
+}
+
+.actionsheet_content {
+  padding: 0 20rpx;
+}
+
+.actionsheet_content>view {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 25rpx 0;
+}
+
+.actionsheet_content>view::after {
+  content: " ";
+  display: block;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  background: #d9d9d9;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  z-index: 2;
+}
+
+.actionsheet_access .right {
+  padding-right: 28rpx;
+}
+
+.actionsheet_access .right::after {
+  content: " ";
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  border-width: 2px 2px 0 0;
+  border-color: #c8c8cd;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -.71, 0.71, 0, 0);
+  position: absolute;
+  top: 50%;
+  margin-top: -4px;
+  right: 2px;
+}
+
+.actionsheet_btn {
+  width: 92%;
+  left: 4%;
+  position: absolute;
+  bottom: 30rpx;
+  background: #148de5 !important;
+  line-height: 2.2;
+}

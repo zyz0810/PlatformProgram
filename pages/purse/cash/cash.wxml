@@ -1,0 +1,90 @@
+<!--pages/purse/cash/index.wxml-->
+<view class='container {{actionSheet?"preventTouchMove":""}}'>
+  <view class='cont'>
+    <view class='top'>
+      <view class='lineItem'>
+        <view class='left f14 txt'>到账银行卡</view>
+        <view class='center f14' bindtap='choose' wx:for='{{mybank}}' wx:key='index' wx:if='{{item.id==cardId}}'>
+          <view class='lineItem choosedCard'>
+            <view class='left logo'>
+              <image src='{{item.logo}}'></image>
+            </view>
+            <view class='center'>
+              <view>{{item.bankName}}（{{item.cardNo}}）</view>
+              <view class='f12 clr_lightGray time'>到账时间为2-3个工作日</view>
+            </view>
+          </view>
+        </view>
+        <view class='right'>
+          <text class='iconfont iconarrow-right-copy-copy f14 clr_gray01'></text>
+        </view>
+      </view>
+    </view>
+    <view class='middle'>
+      <view class='f14'>提现金额
+        <text class="clr_lightGray f12">  (本月已提现{{cashedMoney}}元)</text>
+      </view>
+      <view class='lineItem money border_bottom'>
+        <view class='left f25 bold'>￥</view>
+        <view class='center'>
+          <!-- <input placeholder="{{cash}}" placeholder-class='clr_gray01' value='{{moneyNum}}' type='digit' class='f40' bindinput='cashMoney' focus /> -->
+          <input value='{{moneyNum}}' placeholder='请输入提现金额' placeholder-style='font-size:16px;' type='digit' class='f40' bindinput='cashMoney' />
+        </view>
+      </view>
+      <view class='f11 clr_lightGray' wx:if='{{moneyNum.length == 0}}'>零钱余额￥{{cash}}，
+        <text class='clr_blue02' bindtap='totalCash'>全部提现</text>
+      </view>
+      <view class='f11 clr_lightGray' wx:if='{{moneyNum > 0 && moneyNum<=cash}}'>手续费每笔1元</view>
+      <!-- <view class='f11 clr_lightGray' wx:if='{{moneyNum > 0 && moneyNum<=cash}}'>提现手续费{{fee}}元</view> -->
+      <view class='f11 clr_red' wx:if='{{moneyNum > cash}}'>提现金额大于零钱余额</view>
+
+      <form bindsubmit='{{moneyNum > 0 && moneyNum<=cash?"cashBtn":""}}' report-submit data-id='{{item.id}}'>
+        <view class="clr-white tc f14">
+          <button class='cash submit formButton clr-white' style='background:{{moneyNum > 0 && moneyNum<=cash?"#19BA5B":"#94E3B9"}}' form-type="submit">提现
+          </button>
+        </view>
+      </form>
+      <!-- 
+      <view class='cash f16 clr-white tc' style='background:{{moneyNum > 0 && moneyNum<=cash?"#19BA5B":"#94E3B9"}}' bindtap='{{moneyNum > 0 && moneyNum<=cash?"cashBtn":""}}'>提现</view> -->
+    </view>
+  </view>
+  <view class='cont f14 clr_mediumGray' style='margin-top:20px;'>
+    <view>1.每笔提现金额最低为2元；</view>
+    <view>2.每笔提现手续费为1元；</view>
+    <view>
+      <text>3.根据国家相关政策，当月时间内累计提现金额超过800元时，超出部分收取20%个税。</text>
+    </view>
+    <!-- <view class='tl'>
+      <text class='clr_darkGray'>a)本月提现累计金额未超过到800元\n</text>
+      <view class='tc clr_red'>(当前提现金额+已成功提现金额-800)*20%</view>
+    </view>
+    <view class='tl'>
+      <text class='clr_darkGray'>b)本月提现金额已到800元\n</text>
+      <view class='tc clr_red'>当前提现金额*20%</view>
+    </view> -->
+  </view>
+</view>
+<!-- 银行卡列表 -->
+<view class='mask' wx:if='{{actionSheet}}' bindtap='close' catchtouchmove></view>
+<view class='actionSheet {{actionSheet?" actionsheet_toggle":""}}'>
+  <view class='tit tc'>
+    <text class='iconfont iconquxiao1 f14 clr_lightGray close' bindtap='close'></text>
+    <view class='f18'>选择到账银行卡</view>
+    <view class='f13 clr_lightGray'>请留意各银行到账时间</view>
+  </view>
+  <view class='list'>
+    <view class='lineItem border_bottom card' wx:for="{{mybank}}" wx:key='index' data-id='{{item.id}}' bindtap='chooseCard'>
+      <view class='left bankLogo'>
+        <image src='{{item.logo}}'></image>
+      </view>
+      <view class='center bankName'>
+        <view class='f16'>{{item.bankName}} 储蓄卡({{item.cardNo}})</view>
+        <view class='f13 clr_lightGray'>24小时内到账</view>
+      </view>
+    </view>
+    <view class='lineItem border_bottom newCard' bindtap='addCard'>
+      <view class='center f16'>使用新卡提现</view>
+    </view>
+  </view>
+</view>
+<include src="/template/password/payPassword.wxml" />

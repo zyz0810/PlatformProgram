@@ -1,0 +1,56 @@
+@import "/template/actionsheet/actionsheet";
+@import "/template/password/payPassword";
+
+page {
+  background: #fff;
+}
+
+.flexC {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx;
+}
+
+.title, .details, .orderTotal {
+  position: relative;
+}
+
+.details {
+  align-items: stretch !important;
+}
+
+.title image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.title .name {
+  margin-right: auto;
+  margin-left: 30rpx;
+}
+
+.orderImg image {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.shopName {
+  width: 420rpx;
+}
+
+.shopInfo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20rpx 0 20rpx 20rpx;
+}
+
+.shopNumber {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

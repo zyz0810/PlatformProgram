@@ -1,0 +1,103 @@
+/* pages/member/share/share.wxss */
+page{
+  background: #fff;
+}
+.banner image{
+  width: 100%
+}
+.bag{
+  width: 92vw;
+  padding: 2vw;
+  margin: 2vw;
+  background: #D8D8D8;
+  border-radius: 2vw;
+}
+.red_bag{
+  width: 92vw;
+  height: 30vw;
+  position: relative;
+}
+.red_bag image{
+  width: 100%;
+  height: 100%;
+}
+.red_bag_txt{
+  width: 76vw;
+  position: absolute;
+  left: 8vw;
+  top: 8vw;
+}
+.red_bag_txt .lineItem{
+  background: transparent;
+  padding: 2% 0;
+}
+.red_bag_txt .lineItem .center,.red_bag_txt .lineItem .right{
+  flex-direction: row;
+  justify-content:flex-start;
+}
+.red_bag_txt .lineItem .money{
+  padding-right: 3em;
+}
+.price{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  line-height: 1;
+}
+.useMoney.right:after{
+  height: 4px;
+  width: 4px;
+  border-width: 1px 1px 0 0;
+  border-color: red;
+}
+.use{
+  color: #fff;
+  width: 92vw;
+  padding: .8em 0;
+  margin: 3vw 0;
+  background: #DA362C;
+  border-radius: 2vw;
+}
+.friend{
+  width: 92vw;
+  padding: 2vw;
+  margin: 2vw;
+  border-radius: 2vw;
+  background: #D8D8D8;
+}
+.friend .lineItem{
+  background: transparent;
+}
+.friend .lineItem .left{
+  width: 8vw;
+  height: 8vw;
+  border-radius: 50%;
+  margin-right: 2vw;
+}
+.friend .lineItem .left image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.anli{
+  width: 100vw;
+  height: auto;
+}
+.anli image{
+  width: 100%;
+  height: 100%;
+}
+.title .line{
+  width: 25vw;
+  height: 0.8pt;
+  background: #979797;
+  display: inline-block;
+  margin-bottom: 0.3em;
+}
+.title .title_txt{
+  margin: 0 10px;
+}
+.use.makeMoney{
+  margin: 2vw 4vw;
+}

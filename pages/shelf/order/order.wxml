@@ -1,0 +1,32 @@
+<block wx:for="{{orderList}}" wx:key="id" wx:for-item="item">
+  <view class='orderList' bindtap='goOrderView' data-id="{{item.id}}">
+    <view class=' descOrder f14 shelfColor' wx:if="{{item.finalOrderStatus.status=='waitPay'}}">{{item.finalOrderStatus.desc}}
+      <text class='iconfont icon-icon'></text>
+    </view>
+    <view class='clr_mediumGray descOrder f14' wx:if="{{item.finalOrderStatus.status!='waitPay'}}">{{item.finalOrderStatus.desc}}
+      <text class='iconfont icon-icon'></text>
+    </view>
+    <block wx:for="{{item.orderItems}}" wx:key="id" wx:for-item="orderItem">
+      <view class='lineItem orderListItem border_bottom'>
+        <view class='left'>
+          <image src='{{orderItem.thumbnail?orderItem.thumbnail:"/resources/images/noneimg.png"}}' mode=''></image>
+        </view>
+        <view class='center'>
+          <view class='lineItem lineItem_access f14'>
+            <view class='left f16 overone tl' style='width:52vw;display:block'>{{orderItem.fullName}}</view>
+            <view class='center'></view>
+          </view>
+          <view class='lineItem f14'>
+            <text>￥{{orderItem.price}}</text>
+            <text>X{{orderItem.quantity}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view class='tr f16 payAmount'>支付金额：￥{{item.amount}}</view>
+  </view>
+</block>
+<view class="tips" hidden="{{showtips}}">{{tips}}</view>
+<!-- <view class='technical_support'>
+  <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+</view> -->

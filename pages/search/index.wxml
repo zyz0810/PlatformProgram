@@ -1,0 +1,83 @@
+<view class="container">
+  <view class="header">
+    <view class="search">
+      <view class="wrap">
+        <view class="top-input f14">
+          <image wx:if="!searchFocus||align=='left'" src="/resources/images/icon/search_gray.png"></image>
+          <input placeholder='输入想要输入的商品和店铺' focus="true" type="text" confirm-type="search" bindinput="setVal" bindconfirm="search"></input>
+        </view>
+        <view class="f14 ss" bindtap="clickSearch">搜索</view>
+      </view>
+    </view>
+    <view class="tab f14">
+      <view class="{{tab==0?'active':''}}" bindtap="selectTab" data-tab="0">好货</view>
+      <view class="{{tab==1?'active':''}}" bindtap="selectTab" data-tab="1">好店</view>
+    </view>
+  </view>
+  <view class="content">
+    <view class="history" wx:if="{{history[tab].length>0}}">
+      <view class="title f13">
+        历史搜索
+        <image src="/resources/images/icon/delete.png" bindtap="clearHistory"></image>
+      </view>
+      <view class="tagList f12">
+        <view wx:for="{{history[tab]}}" wx:key="*this" data-item="{{item}}" bindtap="goSearch">{{item}}</view>
+      </view>
+    </view>
+    <view class="hot" wx:if="hotSearch.length>0">
+      <view class="title f13">
+        热门搜索
+      </view>
+      <view class="tagList f12">
+        <view wx:for="{{hotSearch}}" wx:key="*this" data-item="{{item}}" bindtap="goSearch">{{item}}</view>
+      </view>
+    </view>
+    <view class="list" wx:if="dataList[tab].length>0">
+      <view class="title f13">
+        热门{{tab==0?'好货':'好店'}}
+      </view>
+      <view class="f12 list-content">
+        <view class="productList f13" wx:if="{{tab==0}}">
+          <block wx:for="{{dataListProduct}}" wx:key="{{item.id}}">
+            <view bindtap="gotoProduct" class="proReItem" data-id="{{item.id}}">
+              <image src="{{item.thumbnail ? item.thumbnail: '/resources/images/noneimg.png'}}"></image>
+              <view class="details">
+                <view class=" overone f14 tl">{{item.name}}</view>
+                <view class="clr_lightGray">{{item.tenantName}}</view>
+                <view class="price" wx:if="{{item.price == item.marketPrice}}">
+                  <text class="baseColor f16" data-id='{{item.marketPrice}}'>￥{{item.price}}</text>
+                </view>
+                <view class="price" wx:if="{{item.price != item.marketPrice}}">
+                  <text class="baseColor f16">￥{{item.price}}</text>
+                  <text class="sumdel f12 clr_lightGray marketPrice">￥{{item.marketPrice}}</text>
+                </view>
+                <view class="f12 clr_lightGray">人气{{item.hits}}/月销量{{item.monthSales}}</view>
+              </view>
+            </view>
+          </block>
+        </view>
+
+
+        <view class="list" wx:if="{{tab==1}}">
+          <view class="lineItem" wx:for="{{dataListTenant}}" wx:key="{{item.id}}" data-id='{{item.id}}' bindtap="gotoTenant">
+            <view class="left">
+              <image src="{{item.thumbnail?item.thumbnail:'/resources/images/noneimg.png'}}"></image>
+            </view>
+            <view class="center">
+              <view class="f16 clr_darkGray tenant-name bold overtwo">{{item.name}}</view>
+              <view class="f13 clr-downGray tenant-recommend">{{item.tenantCategoryName}}</view>
+              <view class="ico f12 clr_mediumGray">
+                <span class="f11 clr_mediumGray">月售{{item.monthSales}}单</span>
+              </view>
+              <view></view>
+              <view class="flex f12 clr_darkGray">
+                <view class="flex_item f12 zhuying bold">{{item.communityName?item.communityName:''}}</view>
+                <view class="flex_item clr_lightGray tr">{{item.distance>0?item.distance+'KM':''}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

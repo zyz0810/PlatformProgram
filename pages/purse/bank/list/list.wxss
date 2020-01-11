@@ -1,0 +1,46 @@
+.bankList {
+    overflow-y: scroll;
+    padding: 0 20rpx;
+}
+
+.bankCard {
+    background: #E75B65;
+    border-radius: 15rpx;
+    display: flex;
+    color: #fff;
+    margin-top: 30rpx;
+    justify-content:space-between;
+
+}
+.cardDetails{
+  display: flex;
+  height: 200rpx;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-right:auto;
+}
+.cardImage {
+    width: 120rpx;
+    height: 120rpx;
+    margin: 20rpx 40rpx 0 20rpx;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid #fff;
+}
+
+.bankCard image {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+}
+.deleteIcon{
+  margin:auto 20rpx;
+}
+.addBank {
+    background: #f1f1f1;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 180rpx;
+}

@@ -1,0 +1,56 @@
+.line {
+  display: flex;
+  font-size: 30rpx;
+  background: #fff;
+  margin-bottom: 1px;
+  padding: 4% 2%;
+}
+
+.line .head {
+  width: 30%;
+  height: 1.4rem;
+  line-height: 1.4rem;
+}
+
+.classname text {
+  overflow: hidden;
+}
+
+.code {
+  position: absolute;
+  right: 2%;
+  z-index: 100;
+}
+
+.submit {
+  width: 90%;
+  line-height: 2;
+  background: #08bb06;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.choosebg {
+  background: #fff;
+  display: block;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 120;
+  overflow-y: scroll;
+}
+
+.citybg {
+  z-index: 121;
+}
+
+.choosebg>view {
+  padding: 20rpx 0 20rpx 2%;
+  border-bottom: 1rpx solid #f1f1f1;
+}
+
+.classname {
+  width: 60%;
+}

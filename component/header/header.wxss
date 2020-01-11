@@ -1,0 +1,187 @@
+@font-face {font-family: "iconfont";
+  src: url('//at.alicdn.com/t/font_1491585_ya8q73s2te.eot?t=1572855949353'); /* IE9 */
+  src: url('//at.alicdn.com/t/font_1491585_ya8q73s2te.eot?t=1572855949353#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAASUAAsAAAAACSAAAARHAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDSAqEbIN+ATYCJAMYCw4ABCAFhG0HfRvZB8gOJS5NQllBh8dIEKEdNJvkzi/ZFTs671L435yqPqXtZhfIycYaIrj2N4SU2lIBnQG5PY0IT0B4HV/Rf9yrmnkesPnsW1zmHpQLhcMBCtAYq7UxhVOQCnqHsYvLuAwBQjKSH6lec/RkVA2DNksA6d9Hl1G1mApTQhB8qZuz0SCLcfDVHHULxCL39+UTHaUaKByNtrBxzyEq6m/b2jN48n8HtbdRsPszAMw20EB+wICMzzWNBPuh/GhCabiPuiBifBSmr0e0tx3teHvG8yDG02xCrLPX9A/PQaNAXJAohvj6YQdsWxOBgG2PwIDtyCoXj4cINNgzKhSWuT1WBsAxwEJ8fpNG9JfTeYLquVNnk1Rv3F4hYcqN97sKK1Y7qyXR3SFNmbH5cpfUtavia/wpK8wbanU7e7X2rI1b2K5LzmX3avyK4g0smbJ6vzTl9LPmk1etI4dsvttz6poVOZPP3a8/be0G/9QDL7qBIw4Gph11dX1t/MCpHHVVziq0fAC6/mOw2j0Y95ccWNFcXbVu/+5AQDkXmogJ6/aJ0bw9iGjXpdp49a6DG/wFKc7dZ+6LF9Pu3Zt65w63UcLPTC7T8UhRo/l1+wsoV/wztXesmZieLv2ujmb/33y57KX2rn0RvVp9XjRCv8a1zci+q/MEJ6MjROFYwGRcRuwlyDasy9ybA4Z8vlN/mjT08LpNByvrN37S3W1/xbie8fllvf2K7vTF6lcdWL9xS84Q/UnmX3lz593MNgzlTapwvjW/O//plu1aD4xThDV0j57cj71rfrH5N9SoWKGmXSYutQ+IJa/sh0X1l318/Np3L4UivZNev/xYmLDi+uUuqfuJC4fDaxSVDassHebEo2EqtmJ1zOIr+oy1l5M3f3h05FDSy0doG+NBwP+H+KDO5ZKO47t6Bmk/Vro56SK+pgdG7uAtuvyP8Tfs/jdk5bz03l+riQaAhzahCjr/7/fRnvV2xdRm/wbsmi1G5mpq14jNzakI4FIODXdPEOod8PJtSXnWlyRF7UwQfFKEoPDIABqf7GiDzw8OEcXBxacShOSj1vaIZAwFIyYA8jIDgJCYQ6BIyCXQJOY22uCfgkNKvoBLYsEQ0lKyD4zIKWY4aCjIDFSSW0RMhUY1Q8sEL3si6DwsW1GuS5wKlm16SYeChZPRYRAFq48ldr7ekTGNaBaNkKHgOgiHKYlZNAgKa2swFuvZrlDPvHdqq9AIEqiGBSDDAFQIXSmC0AcFShTN7s4QUo+fCKDDCSNjlTSVaKcCWNiY/ROKUJDCNdDDRNFaTecyfBj56HRkOAwNT+uJBSUCoSY0AGE9RCEMzh8XBFBgtKV3i0CMnhRC7XrWFbUdXxK5yj1AiPYirijRYsQRVzyS9qK8gCsGtCnkcrTYoFHdV9jHGi4Uj6BBU44yyqWiDJXB8xlkcBvboLwIslQ5akMoMJPFjOeaMm2DAAA=') format('woff2'),
+  url('//at.alicdn.com/t/font_1491585_ya8q73s2te.woff?t=1572855949353') format('woff'),
+  url('//at.alicdn.com/t/font_1491585_ya8q73s2te.ttf?t=1572855949353') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('//at.alicdn.com/t/font_1491585_ya8q73s2te.svg?t=1572855949353#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-gouwuche-xuanzhong:before {
+  content: "\e65a";
+}
+
+.icon-xing:before {
+  content: "\e6b9";
+}
+
+.icon-zuojiantou:before {
+  content: "\e67c";
+}
+
+.icon-yonghuzhongxin-shouye:before {
+  content: "\e65c";
+}
+
+.icon-danseshixintubiao-:before {
+  content: "\e65e";
+}
+.header {
+  width: 100%;
+}
+
+.header-placeholder {
+  width: 100%;
+  height: 128rpx;
+}
+
+.header-wrap {
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  width: 100%;
+  height: 44px;
+  padding-top: 20px;
+}
+.teannt_name{
+  text-align: center;
+  width: 350rpx;
+  margin: 0 auto;
+}
+
+.header-wrap .back{
+  position: relative;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin: 10px 0 0 16px;
+  color: inherit;
+  background-color: transparent;
+}
+.header-wrap .back text::before{
+  position: absolute;
+  top: 3px;
+  left: 0;
+  /* font-family: "iconfont"; */
+  font-size: 20px;
+  line-height: 1;
+  content: "\e67c";
+  /* border: 0; */
+}
+
+.header-wrap .back::before {
+  /* position: absolute; */
+  /* top: 3px; */
+  /* left: 0; */
+  /* font-family: "iconfont"; */
+  /* font-size: 20px; */
+  /* line-height: 1; */
+  /* content: "\e67c"; */
+  /* border: 0; */
+  display: none;
+}
+
+.header-wrap .back::after {
+  display: none;
+}
+
+.header-title {
+  flex: 1;
+  padding: 0 16px;
+  font-size: 17px;
+  text-align: center;
+  font-weight: bold;
+  position: relative;
+  line-height: 44px;
+  border: 0;
+}
+
+.header-right {
+  width: 56px;
+}
+
+.header.isx .header-wrap {
+  padding-top: 44px;
+}
+
+.header.isx .header-placeholder {
+  height: 88px;
+}
+
+.header.android .header-placeholder {
+  height: 72px;
+}
+
+.header.android .header-wrap {
+  /* height: 76rpx; */
+  height: 84rpx;
+  padding-top: 24px;
+}
+
+.header.android .header-wrap .back::before {
+  content: "\e734";
+}
+
+.header.android .header-title {
+  text-align: center;
+}
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+.nav_btn{
+  position: absolute;
+  left: 0;
+  top: 8px;
+  z-index: 99;
+  padding: 0 10px;
+  width: 50rpx;
+}
+.nav_btn image{
+  width: 50rpx;
+  height: 50rpx;
+}
+.f20{
+  font-size: 40rpx;
+}
+.nav_platform{
+  font-size: 28rpx;
+  position: absolute;
+  top: 44px;
+  left: 0rpx;
+  z-index: 99999;
+  background: #fff;
+  line-height: 2;
+  padding: 0 20rpx;
+  box-shadow: 0 3px 5px rgb(179, 171, 171);
+  border-radius: 10rpx;
+}
+.nav_platform text{
+  margin-right: 10rpx;
+}
+.tl{
+  text-align: left;
+}
+
+.clr_mediumGray {
+  color: #434343;
+}
+/* 超出一行显示省略号 */
+
+.overone {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  overflow: hidden;
+}

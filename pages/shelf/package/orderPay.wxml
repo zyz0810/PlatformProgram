@@ -1,0 +1,64 @@
+<!--pages/shelf/package/orderPay.wxml-->
+<radio-group class="radio-group" bindchange="radioChange" style="margin-bottom:{{amount==0?'0':'2vw'}}">
+  <text class='f16'>配送方式：</text>
+  <label class="radio f16" wx:for="{{objectshippingMethods}}" wx:key="id">
+    <radio value="{{item.id}}" color='{{mainColor}}' checked="{{item.id==0}}" />{{item.method}}
+  </label>
+</radio-group>
+<view wx:if="{{amount==0}}" class='f14 padding2'>业务员会配送台卡一张</view>
+<view class='lineItem packageList'>
+  <view class='left'>
+    <image src="{{info.masterMap?info.masterMap:'/resources/images/noneimg.png'}}"></image>
+  </view>
+  <view class='center'>
+    <view class='f14 overtwo'>{{info.name}}</view>
+    <view class='clr_orange f14 overone' style='color:{{mainColor}}'>￥
+      <text class='f18 overone bold'>{{info.salePrice}}</text>
+    </view>
+  </view>
+  <view class='right'></view>
+</view>
+<view class="actionNumber lineItem" style="align-items:center;">
+  <view class="f16 ">购买数量:</view>
+  <view class="amount tr">
+    <!-- ×1 -->
+    <button data-type="reduce" bindtap="revisenum">-</button>
+    <input class="f12 " type="number " data-type="input" bindchange="revisenum" value="{{quantity}}" />
+    <button data-type="add" bindtap="revisenum">+</button>
+  </view>
+</view>
+<view class='receiver'>
+  <!-- <view class="line">
+    <view class="head">
+      姓名
+    </view>
+    <view class="classname">
+      <input type="text" bindinput="name" placeholder="请输入姓名" value='{{name}}' />
+    </view>
+  </view> -->
+  <view class="line">
+    <view class="head">
+      联系电话
+    </view>
+    <view class="classname">
+      <input bindinput="mobile" type='number' placeholder="请输入手机号" value='{{mobile}}' maxlength='11' />
+    </view>
+  </view>
+
+  <view class='lineItem border_bottom f14 word'>
+    <view class='left'>买家留言</view>
+    <view class='center'>
+      <input maxlength="200" placeholder-class='f14' placeholder="备注您的留言（200字以内）" bindinput='inputMemo' />
+    </view>
+  </view>
+
+</view>
+<view class='lineItem lineH_three f16 bottom'>
+  <view class='center tc clr_orange' style='color:{{mainColor}}'>合计：￥{{amount}}</view>
+  <button class='right formButton' open-type='getUserInfo' bindgetuserinfo="formSubmit" style='border-radius:0;background:{{mainColor}}'>确认下单</button>
+  <!-- <button class='right formButton' bindtap="formSubmit" style='border-radius:0;background:{{mainColor}}'>确认下单</button> -->
+</view>
+<view class='showModal tc f14' wx:if="{{showModal}}">
+  货架套餐购买成功，{{count}}秒后为您跳转至资料补充环节
+</view>
+<view class='defaultMask' wx:if="{{showModal}}"></view>

@@ -1,0 +1,123 @@
+<!-- <template name="couponList">
+  <view class='coupon'>
+      <view class='couponItem' data-id='{{item.id}}' wx:for="{{data}}" wx:key="id" wx:if="{{!item.hasReceived}}">
+        <view class='sawtooth fl'></view>
+        <view class='couponItem_left fl'>
+          <view class='money f14'>￥<text class='f20'>{{item.amount}}</text></view>
+          <view class='f14'>满{{item.minimumPrice}}元可用</view>
+        </view>
+        <view class='couponItem_right fr tc'>
+          <view class='f16 coupon_name'>优惠券</view>
+          <text class='f14 receive' data-id='{{item.id}}' bindtap='receiveCoupon'>点击领取</text>
+        </view>
+      </view>
+      <view class='couponItem couponGray' data-show='{{item.hasReceived}}'  wx:for="{{data}}" wx:key="id" wx:if = "{{item.hasReceived}}">
+        <view class='sawtooth fl'></view>
+        <view class='couponItem_left fl'>
+          <view class='money f14'>￥<text class='f20'>{{item.amount}}</text></view>
+          <view class='f14'>满{{item.minimumPrice}}元可用</view>
+        </view>
+        <view class='couponItem_right fr tc'>
+          <view class='f16 coupon_name'>优惠券</view>
+          <text class='f14 receive' data-id='{{item.id}}' bindtap='receiveCoupon'>已领取</text>
+        </view>
+      </view>
+  </view>
+</template> -->
+<template name="couponList">
+  <scroll-view class='coupon' wx:if="{{data.length>0 && data.length!=1}}" scroll-x="true">
+    <view class='couponItem' data-id='{{item.id}}' wx:for="{{data}}" wx:key="id" wx:if="{{!item.hasReceived}}">
+      <view class='sawtooth fl'></view>
+      <view class='couponItem_left fl'>
+        <view class='money f14'>￥
+          <!-- <text class='f27'>{{item.amount}}</text> -->
+          <block wx:for="{{''+item.amount}}" wx:key="*this">
+            <text class="f27 iconfont icon-icon-test{{item}}"></text>
+          </block>
+        </view>
+        <view class='f14'>满{{item.minimumPrice}}元可用</view>
+      </view>
+      <view class='couponItem_middle fl'>
+        <text class='circle circle_top'></text>
+        <view class='dot_line'></view>
+        <text class='circle circle_bottom'></text>
+      </view>
+      <view class='couponItem_right fl tc'>
+        <view class='f14 coupon_name'>优惠券</view>
+        <text class='f12 receive bold' data-id='{{item.id}}' bindtap='receiveCoupon'>立即领取</text>
+      </view>
+      <view class='sawtooth sawtooth_fr fr'></view>
+    </view>
+    <view class='couponItem couponGray' data-show='{{item.hasReceived}}' wx:for="{{data}}" wx:key="id" wx:if="{{item.hasReceived}}">
+      <view class='sawtooth fl'></view>
+      <view class='couponItem_left fl'>
+        <view class='money f14'>￥
+          <block wx:for="{{''+item.amount}}" wx:key="*this">
+            <text class='f27 iconfont icon-icon-test{{item}}'></text>
+          </block>
+          <!-- <text class='f27'>{{item.amount}}</text> -->
+        </view>
+        <view class='f14'>满{{item.minimumPrice}}元可用</view>
+      </view>
+      <view class='couponItem_middle fl'>
+        <text class='circle circle_top'></text>
+        <view class='dot_line'></view>
+        <text class='circle circle_bottom'></text>
+      </view>
+      <view class='couponItem_right fl tc'>
+        <view class='f14 coupon_name'>优惠券</view>
+        <text class='f12 receive' data-id='{{item.id}}' bindtap='receiveCoupon'>已领取</text>
+      </view>
+      <view class='sawtooth sawtooth_fr fr'></view>
+    </view>
+  </scroll-view>
+
+
+  <view class='coupon coupon_one' wx:if="{{data.length==1}}">
+    <view class='couponItem' data-id='{{item.id}}' wx:for="{{data}}" wx:key="id" wx:if="{{!item.hasReceived}}">
+      <view class='circle_bg1'></view>
+      <view class='circle_bg2'></view>
+      <view class='sawtooth fl'></view>
+      <view class='couponItem_left fl'>
+        <view class='money f14'>
+          <text class='symbol'>￥</text>
+          <block wx:for="{{''+item.amount}}" wx:key="*this">
+            <text class='f44 iconfont icon-icon-test{{item}}'></text>
+          </block>
+        </view>
+      </view>
+      <view class='couponItem_middle fl'>
+        <view class='f14 coupon_name'>优惠券</view>
+        <view class='f16'>满{{item.minimumPrice}}元可用</view>
+        <!-- <view class='dot_line'></view> -->
+      </view>
+      <view class='couponItem_right fl tc' data-id='{{item.id}}' bindtap='receiveCoupon'>
+        <view class='f16 receive bold'>立即</view>
+        <view class='f16 receive bold'>领取</view>
+      </view>
+      <view class='sawtooth sawtooth_fr fr'></view>
+    </view>
+    <view class='couponItem couponGray' data-show='{{item.hasReceived}}' wx:for="{{data}}" wx:key="id" wx:if="{{item.hasReceived}}">
+      <view class='circle_bg1'></view>
+      <view class='circle_bg2'></view>
+      <view class='sawtooth fl'></view>
+      <view class='couponItem_left fl'>
+        <view class='money f14'>
+          <text class='symbol'>￥</text>
+          <block wx:for="{{''+item.amount}}" wx:key="*this">
+            <text class='f44 iconfont icon-icon-test{{item}}'></text>
+          </block>
+        </view>
+      </view>
+      <view class='couponItem_middle fl'>
+        <view class='f14 coupon_name'>优惠券</view>
+        <view class='f16'>满{{item.minimumPrice}}元可用</view>
+        <!-- <view class='dot_line'></view> -->
+      </view>
+      <view class='couponItem_right fl tc' data-id='{{item.id}}' bindtap='receiveCoupon'>
+        <view class='f16 receive'>已领取</view>
+      </view>
+      <view class='sawtooth sawtooth_fr fr'></view>
+    </view>
+  </view>
+</template>

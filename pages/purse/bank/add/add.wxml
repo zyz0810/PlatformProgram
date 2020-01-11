@@ -1,0 +1,74 @@
+<view class="page">
+  <form bindsubmit="revise">
+    <view class="line" bindtap="chooseBank">
+      <view class="head">
+        <text class="clr_red">*</text> 银行选择
+      </view>
+      <view class="classname">
+        <text class="clr-mediumtGray f14" id="{{id}}">{{nowBank}}</text>
+        <!--<input type="number" id="{{id}}" bindinput="cardNo" value="{{nowBank}}" placeholder="点我选择银行" />-->
+      </view>
+    </view>
+    <view class="line" bindtap="chooseProvince">
+      <view class="head">
+        <text class="clr_red">*</text> 开户地区
+      </view>
+      <view class="classname">
+        <text class="clr-mediumtGray f14" id="{{areaId}}">{{nowArea}}{{nowCity}}</text>
+      </view>
+    </view>
+    <view class="line">
+      <view class="head">
+        <text class="clr_red">*</text> 卡号
+      </view>
+      <view class="classname">
+        <input type="number" bindinput="cardNo" placeholder="输入银行卡号" />
+      </view>
+    </view>
+    <view class="line">
+      <view class="head">
+        <text class="clr_red">*</text> 姓名
+      </view>
+      <view class="classname">
+        <input bindinput="name" placeholder="输入实名认证的姓名" />
+      </view>
+    </view>
+    <view class="line">
+      <view class="head">
+        <text class="clr_red">*</text> 证件号
+      </view>
+      <view class="classname">
+        <input type="idcard" bindinput="idCard" placeholder="输入合法身份证号" />
+      </view>
+    </view>
+    <view class="line">
+      <view class="head">
+        <text class="clr_red">*</text> 手机号
+      </view>
+      <view class="classname">
+        <input type="number" bindinput="phone" placeholder="输入银行预留手机号" />
+      </view>
+    </view>
+    <view class="line">
+      <view class="head">
+        <text class="clr_red">*</text> 验证码
+      </view>
+      <view class="classname">
+        <input type="number" maxlength="6" bindinput="captcha" placeholder="输入6数验证码" />
+      </view>
+      <view class="code">
+        <button type="primary" size="mini" disabled="{{disabled}}" bindtap="sendcode">{{tips}}</button>
+      </view>
+    </view>
+    <button type="primary" class="submit" style='background:{{mainColor}}' bindtap="submit">提交</button>
+  </form>
+  <view class="choosebg" wx:if="{{choose}}">
+    <view class="bankname f16" data-id="{{item.id}}" data-name="{{item.bankName}}" wx:for="{{info}}" wx:key="{{item.id}}" bindtap="bankCS">{{item.bankName}} </view>
+  </view>
+  <view class="choosebg" wx:if="{{provinceShow}}">
+    <view class="provincename f16" data-id="{{item.id}}" data-name="{{item.name}}" data-hasChildren='{{item.hasChildren}}' wx:for="{{province}}" wx:key="{{item.id}}" bindtap="provinceCS">{{item.name}} </view>
+  </view>
+   <view class="choosebg citybg" wx:if="{{cityShow}}">
+    <view class="provincename f16" data-id="{{item.id}}" data-name="{{item.name}}" wx:for="{{city}}" wx:key="{{item.id}}" bindtap="cityCS">{{item.name}} </view>
+  </view>
+</view>

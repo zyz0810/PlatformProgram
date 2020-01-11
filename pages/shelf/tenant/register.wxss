@@ -1,0 +1,106 @@
+/* pages/shop/register/index.wxss */
+
+page {
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.itemInput .itemright.map_btn {
+  width: auto;
+}
+
+.submit_btn {
+  margin: 0 0 50rpx;
+  width: 100%;
+}
+
+.submit_btn button {
+  width: 96%;
+  background: #15b521;
+  border-radius: 50rpx;
+  display: inline-block;
+  /* margin: 0 20rpx; */
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  background: #15b521;
+  border: 1px solid #15b521;
+}
+
+.title {
+  line-height: 2;
+  padding: 0 30rpx;
+  border-top: 20rpx solid #f7f7f7;
+}
+
+.form {
+  width: 100%;
+  padding: 5rpx 30rpx 20rpx;
+  box-sizing: border-box;
+  display: block;
+}
+
+.intro {
+  margin-bottom: 20rpx;
+}
+
+.shopAddress {
+  width: 90%;
+  /* height: 30px;
+  line-height: 1.5; */
+}
+
+.lineItem .right.map_btn {
+  position: absolute;
+  bottom: 18rpx;
+  right: 0;
+  z-index: 99;
+  width: 80rpx;
+}
+
+.lineItem .right.code {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 9999;
+  width: 150rpx;
+  height: 50px;
+  padding-right: 10rpx;
+  display: block;
+}
+
+.captach {
+  padding: 0;
+  margin-top: 10px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  background: #15b521;
+}
+
+.address {
+  line-height: 1.5;
+}
+
+.form .lineItem.agreement {
+  padding: 0 0 20rpx !important;
+  margin: 120rpx 0 0;
+}
+
+.agreement checkbox {
+  transform: scale(0.8, 0.8);
+  margin-bottom: 3px;
+}
+
+.address, .address .center {
+  /* justify-content:flex-start; */
+  align-items: flex-start;
+}
+
+.form .lineItem {
+  padding: 30rpx 0;
+}
+
+.form .lineItem .left {
+  width: 160rpx;
+}

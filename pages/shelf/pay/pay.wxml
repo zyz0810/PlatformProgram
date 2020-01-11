@@ -1,0 +1,67 @@
+<view class="container">
+  <view class="top">
+    <!-- <view class="f16 tc clr_lightGray">支付剩余时间</view> -->
+    <view class="f20 tc bold" style="border-bottom:1rpx solid #f2f2f2;padding-bottom:20rpx;">请尽快支付</view>
+    <view class="list f14">
+      <view class="listItem border_bottom">
+        <view class="overone">{{shelfName}}</view>
+        <view class='shelfColor'>￥{{order.amount}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="clr_lightGray f14" style="padding:20rpx 20rpx 20rpx;">选择支付方式</view>
+  <view class="payMethod f16">
+    <image src="/resources/images/icon/wxpay.png"></image>
+    <view style="flex:1;padding-left:20rpx;">微信支付</view>
+    <icon type="success" size="18" />
+  </view>
+  <view class="clr_lightGray f14" style="padding:40rpx 20rpx 20rpx;" wx:if="{{availableCoupons.length>0}}">选择优惠券</view>
+  <view class="payMethod f16" bindtap="toogleCouponSelect" wx:if="{{availableCoupons.length>0}}">
+    <view style="flex:1;">{{selectCoupon.title||"未选择优惠券"}}</view>
+    <icon type="success" color="{{selectCoupon.code?'#09BB07':'#666'}}" size="18" />
+  </view>
+  <view class="clr_lightGray f14" style="padding:40rpx 20rpx 20rpx;" wx:if="{{guideList.length>0}}">选择导购</view>
+  <picker bindchange="guideChange" range-key='name' range="{{guideList}}" wx:if="{{guideList.length>0}}">
+    <view class="picker payMethod f16">
+      <view style="flex:1;">{{guideSelected.name||"未选择导购"}}</view>
+      <icon type="success" color="{{guideSelected.id?'#09BB07':'#666'}}" size="18" />
+    </view>
+  </picker>
+  <form bindsubmit="submit" report-submit>
+    <button form-type='submit' class="submit" type="primary">确认支付 ( ￥{{order.amount}} )</button>
+  </form>
+
+  <view class="couponSelect" hidden="{{!showCouponSelect}}">
+    <view class="couponmask" bindtap="toogleCouponSelect"></view>
+    <view class="couponContent">
+      <view class="couponSelectTitle f16">
+        可用优惠券
+        <!-- <image src="/resources/images/icon/close.png"></image> -->
+      </view>
+      <view class="couponList">
+        <block wx:for="{{order.trades[0].availableCoupons}}" wx:key="codeId">
+          <view class="lineItem f14 border_bottom" data-name="{{item.title}}" data-id="{{item.codeId}}" data-code="{{item.code}}" bindtap="selectCoupon">
+            <view class="center">
+              <view class="clr_orange">{{item.title}}</view>
+              <view>使用期限:{{item.endDate}}</view>
+            </view>
+            <view class="right">
+              <view style="background:#ffa73d;color:white;padding:10rpx 20rpx;border-radius:10rpx;">使用</view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class="couponOp flex f16">
+        <view style="background:#919191;" bindtap="selectCoupon">取消使用</view>
+        <view style="background:#ffa73d;" bindtap="toogleCouponSelect">关闭</view>
+      </view>
+    </view>
+  </view>
+
+  <include src="/template/actionsheet/actionsheet.wxml" />
+  <include src="/template/password/payPassword.wxml" />
+
+  <!-- <view class='technical_support'>
+    <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+  </view> -->
+</view>

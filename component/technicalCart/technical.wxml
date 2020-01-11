@@ -1,0 +1,4 @@
+    <view class='technical_kong'></view>  
+  <view class='technical_support bottom50'>
+    <image src='/resources/images/member/technical_support.png' mode="widthFix" bindtap='technical'></image>
+  </view>

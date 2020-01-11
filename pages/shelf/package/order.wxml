@@ -1,0 +1,32 @@
+<block wx:for="{{orderList}}" wx:key="id" wx:for-item="item">
+  <view class='orderList'>
+    <view class=' descOrder f14 shelfColor' bindtap='goOrderView' data-id="{{item.id}}" wx:if="{{item.paymentStatus==0}}">未支付
+      <text class='iconfont icon-icon'></text>
+    </view>
+    <view class='clr_mediumGray descOrder f14' bindtap='goOrderView' data-id="{{item.id}}" wx:if="{{item.paymentStatus==2}}">已支付
+      <text class='iconfont icon-icon'></text>
+    </view>
+    <view class='lineItem orderListItem border_bottom' bindtap='goOrderView' data-id="{{item.id}}">
+      <view class='left'>
+        <image src='{{item.masterMap?item.masterMap:"/resources/images/noneimg.png"}}'></image>
+      </view>
+      <view class='center'>
+        <view class='lineItem lineItem_access f14'>
+          <view class='left f16 overone tl' style='width:52vw;display:block'>{{item.name}}</view>
+          <view class='center'></view>
+        </view>
+        <view class='lineItem f14'>
+          <text>￥{{item.price}}</text>
+          <text>X{{item.count}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='f16 payAmount flex'>
+      <view class='tl f14 flex-item shelfColor' wx:if="{{item.orderStatus==0 && item.paymentStatus==2}}" bindtap='goData' data-id="{{item.id}}">点击补全门店信息</view>
+      <view class='tl f14 flex-item clr_lightGray' wx:if="{{item.orderStatus==1 && item.paymentStatus==2}}">门店待开通></view>
+      <view class='tl f14 flex-item clr_lightGray' wx:if="{{item.orderStatus==2 && item.paymentStatus==2}}">门店已开通></view>
+      <view class='tr f14 flex-item'>支付金额：￥{{item.totalPrice}}</view>
+    </view>
+  </view>
+</block>
+<view class="tips" hidden="{{showtips}}">{{tips}}</view>

@@ -1,0 +1,204 @@
+<view class="bill">
+  <view class="bill_head f16">
+    <view class="flex_item">
+      <picker mode="date" value="{{nowyear}}-{{nowmonth}}" start="2015-09-01" end="{{nowyear}}-{{nowmonth}}" fields="month" bindchange="bindDateChange">
+        <view class="picker">
+          {{year}}年
+        </view>
+        <view class="picker">
+          {{month}}月
+        </view>
+        <image class="more" src="/resources/images/more.png"></image>
+      </picker>
+    </view>
+    <view class="flex_item">
+      <view class="mgB20">收入(元)</view>
+      <view>{{income?income:0.00}}</view>
+    </view>
+    <view class="flex_item">
+      <view class="mgB20">支出(元)</view>
+      <view>{{outcome?outcome:0.00}}</view>
+    </view>
+  </view>
+  <view class="category">
+    <view class="{{currentTab==0 ? 'active' : ''}}" data-current="0" bindtap="swichNav">明细</view>
+    <view class="{{currentTab==1 ? 'active' : ''}}" data-current="1" bindtap="swichNav">统计</view>
+  </view>
+  <swiper current="{{currentTab}}" bindchange="swiperChange" duration="500" style="height:{{height-width*(200/750)-1}}px">
+    <swiper-item>
+      <view class="bill_wrapper">
+        <view class="bill_bd" wx:for="{{billList}}" wx:key="id" wx:for-item="item">
+          <view class="bill_type">
+            <view class="" wx:if="{{item.type=='withdraw'}}">提现</view>
+            <view class="" wx:elif="{{item.type=='recharge'}}">充值</view>
+            <view class="" wx:elif="{{item.type=='payment'}}">购物</view>
+            <view class="" wx:elif="{{item.type=='receipts'}}">货款</view>
+            <view class="" wx:elif="{{item.type=='profit'}}">分润</view>
+            <view class="" wx:elif="{{item.type=='rebate'}}">佣金</view>
+            <view class="" wx:elif="{{item.type=='cashier'}}">收款</view>
+            <view class="" wx:elif="{{item.type=='income'}}">收入</view>
+            <view class="" wx:elif="{{item.type=='outcome'}}">支出</view>
+            <view class="" wx:elif="{{item.type=='coupon'}}">红包</view>
+          </view>
+          <view class="bill_date">
+            <view style="word-wrap:break-word;word-break:break-all;">{{item.memo}}</view>
+            <view style="font-size:24rpx;color:#666;">{{item.create_date}}</view>
+          </view>
+          <view class="bill_amount">
+
+            <!-- <view style="color:#ff6a0c;">{{item.amount>=0?"+"+item.amount:item.amount}}</view> -->
+            <view style="font-size:24rpx;color:#666;margin-top: 14rpx;font-weight:bold;">
+              <view class='clr_darkGray' style="font-weight:normal;" wx:if="{{item.debit!=0}}">{{item.debit>0?('-'+item.debit):('+'+-item.debit)}}</view>
+              <view class='baseColor' style="font-weight:normal;" wx:if="{{item.credit!=0}}">{{item.credit>0?('+'+item.credit):('-'+-item.credit)}}
+              </view>
+              {{item.balance}}</view>
+          </view>
+        </view>
+        <view class="tips" hidden="{{showtips}}">{{tips}}</view>
+        <view class='technical_support {{billList.length>5?"static":""}}' bindtap='technical'>
+          <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+        </view>
+      </view>
+    </swiper-item>
+    <swiper-item class="totalWrap">
+      <view class="lineItem f14 orange">
+        <view class="left flexMiddle">
+          <view class="imgWrap">
+            <text class='iconfont icon-renminbi1 clr-white tc'></text>
+          </view>
+        </view>
+        <view class="center">
+          <view class="sides">
+            <view>货款收入 {{income >0?(billTotal.receipts/income)*100:0}}%
+            </view>
+            <view>+￥{{billTotal.receipts}}</view>
+          </view>
+          <progress color="#F96A05" percent="{{income >0?(billTotal.receipts/income)*100:0}}" active stroke-width="2" />
+        </view>
+      </view>
+      <view class="lineItem f14 orange">
+        <view class="left flexMiddle">
+          <view class="imgWrap">
+            <text class='iconfont icon-meiyuan clr-white tc'></text>
+          </view>
+        </view>
+        <view class="center">
+          <view class="sides">
+            <view>分润收入 {{income >0?(billTotal.profit/income)*100:0}}%
+            </view>
+            <view>+￥{{billTotal.profit}}</view>
+          </view>
+          <progress color="#F96A05" percent="{{income >0?(billTotal.profit/income)*100:0}}" active stroke-width="2" />
+        </view>
+      </view>
+      <view class="lineItem f14 orange">
+        <view class="left flexMiddle">
+          <view class="imgWrap">
+            <text class='iconfont icon-qianbao2 clr-white tc'></text>
+          </view>
+        </view>
+        <view class="center">
+          <view class="sides">
+            <view>交易佣金 {{outcome >0?(billTotal.rebate/outcome)*100:0}}%
+            </view>
+            <view>- ￥{{billTotal.rebate}}</view>
+          </view>
+          <progress color="#F96A05" percent="{{outcome >0?(billTotal.rebate/outcome)*100:0}}" active stroke-width="2" />
+        </view>
+      </view>
+      <view class="lineItem f14 green" style="margin-top:20rpx;">
+        <view class="left flexMiddle">
+          <view class="imgWrap">
+            <text class='iconfont icon-gouwuche_yuankuang clr-white tc'></text>
+          </view>
+        </view>
+        <view class="center">
+          <view class="sides">
+            <view>购物支出 {{outcome >0?(billTotal.payment/outcome)*100:0}}%
+            </view>
+            <view>- ￥{{billTotal.payment}}</view>
+          </view>
+          <progress color="#F96A05" percent="{{outcome >0?(billTotal.payment/outcome)*100:0}}" active stroke-width="2" />
+        </view>
+      </view>
+      <view class="lineItem f14 green">
+        <view class="left flexMiddle">
+          <view class="imgWrap">
+            <text class='iconfont icon-renminbi1 clr-white tc'></text>
+          </view>
+        </view>
+        <view class="center">
+          <view class="sides">
+            <view>线下收款 {{income >0?(billTotal.cashier/income)*100:0}}%
+            </view>
+            <view>+￥{{billTotal.cashier}}</view>
+          </view>
+          <progress color="#F96A05" percent="{{income >0?(billTotal.cashier/income)*100:0}}" active stroke-width="2" />
+        </view>
+      </view>
+      <view class="lineItem f14 green">
+        <view class="left flexMiddle">
+          <view class="imgWrap">
+            <text class='iconfont icon-meiyuan clr-white tc'></text>
+          </view>
+        </view>
+        <view class="center">
+          <view class="sides">
+            <view>其它支出 {{outcome >0?(billTotal.outcome/outcome)*100:0}}%
+            </view>
+            <view>- ￥{{billTotal.outcome}}</view>
+          </view>
+          <progress color="#F96A05" percent="{{outcome >0?(billTotal.outcome/outcome)*100:0}}" active stroke-width="2" />
+        </view>
+      </view>
+      <view class="lineItem f14 green">
+        <view class="left flexMiddle">
+          <view class="imgWrap">
+            <text class='iconfont icon-qianbao2 clr-white tc'></text>
+          </view>
+        </view>
+        <view class="center">
+          <view class="sides">
+            <view>其它收入 {{income >0?(billTotal.income/income)*100:0}}%
+            </view>
+            <view>+￥{{billTotal.income}}</view>
+          </view>
+          <progress color="#F96A05" percent="{{income >0?(billTotal.income/income)*100:0}}" active stroke-width="2" />
+        </view>
+      </view>
+      <view class="lineItem f14 gray" style="margin-top:20rpx;">
+        <view class="left flexMiddle">
+          <view class="imgWrap">
+            <text class='iconfont icon-renminbi1 clr-white tc'></text>
+          </view>
+        </view>
+        <view class="center">
+          <view class="sides">
+            <view>充值 {{income >0?(billTotal.recharge/income)*100:0}}%
+            </view>
+            <view>+￥{{billTotal.recharge}}</view>
+          </view>
+          <progress color="#F96A05" percent="{{income >0?(billTotal.recharge/income)*100:0}}" active stroke-width="2" />
+        </view>
+      </view>
+      <view class="lineItem f14 gray">
+        <view class="left flexMiddle">
+          <view class="imgWrap">
+            <text class='iconfont icon-qianbao2 clr-white tc'></text>
+          </view>
+        </view>
+        <view class="center">
+          <view class="sides">
+            <view>提现 {{outcome >0?(billTotal.withdraw/outcome)*100:0}}%
+            </view>
+            <view>- ￥{{billTotal.withdraw}}</view>
+          </view>
+          <progress color="#F96A05" percent="{{outcome >0?(billTotal.withdraw/outcome)*100:0}}" active stroke-width="2" />
+        </view>
+      </view>
+      <view class='technical_support static' bindtap='technical'>
+        <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>

@@ -1,0 +1,32 @@
+<!--pages/index/seckill/index.wxml-->
+<!-- 限时抢购 -->
+<view class='timeLimit' hidden='{{limitLength}}'>
+  <view class='timeLimit_list'>
+    <block wx:for="{{limitsell}}" wx:key="{{item.id}}">
+      <view class='lineItem' data-id='{{item.id}}' bindtap='__pt_toDetail'>
+        <view class='left'>
+          <image mode="widthFix" lazy-load src="{{item.thumbnail ? item.thumbnail:'/resources/images/noneimg.png'}}"></image>
+        </view>
+        <view class='center'>
+          <view>
+            <view class='name f14 overtwo'>{{item.name}}</view>
+            <view class='tag'>
+              <text class='f10'>限量{{item.personLimit}}件</text>
+            </view>
+          </view>
+          <view class='price'>
+            <text class='f20 clr_orange' style='color:{{mainColor}}'>￥{{item.price}}</text>
+            <text class='f12 old_price' hidden='{{item.price>=item.oriPrice}}'>原价￥{{item.oriPrice}}</text>
+            <text class='f14 clr_orange buy' style='color:{{mainColor}};border:1px solid {{mainColor}}' data-id='{{item.id}}'>{{item.txt}}</text>
+          </view>
+          <view class='time f10 tc'>
+            <text>{{item.countDownDay>0?item.countDownDay:0}}</text>天
+            <text>{{item.countDownHour}}</text>:
+            <text>{{item.countDownMinute}}</text>:
+            <text>{{item.countDownSecond}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

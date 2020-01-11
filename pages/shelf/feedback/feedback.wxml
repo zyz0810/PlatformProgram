@@ -1,0 +1,19 @@
+<view class="container">
+  <view class="f16">
+    反馈类型
+    <text class="f14" style="color:#FF0000;">(必选)</text>
+  </view>
+  <view class="feedType border_bottom">
+    <block wx:for="{{typeList}}" wx:key="index">
+      <text data-ftype="{{item.ftype}}" bindtap="toggleftype" class="{{sftype==item.ftype&&'active'}}">{{item.name}}</text>
+    </block>
+  </view>
+  <view class="f16">反馈内容</view>
+  <textarea data-itype="content" bindinput="input" placeholder-style="font-size:28rpx;line-height: 40px;" auto-height cursor-spacing="10"></textarea>
+  <view class="f16">手机号</view>
+  <input bindinput="input" data-itype="mobile" placeholder-style="font-size:28rpx;" placeholder="请输入手机号"></input>
+  <button type="primary" size="mini" class="submit shelfBg" bindtap="submit">提交</button>
+  <!-- <view class='technical_support'>
+    <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+  </view> -->
+</view>

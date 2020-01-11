@@ -1,0 +1,18 @@
+module.exports = function (src, w, h, sysinfo) {
+  if (!src || src.indexOf("cdn") === -1) {
+    return src
+  } else if (src.indexOf("@") !== -1) {
+    src = src.substring(0, src.indexOf("@"))
+  }
+  var screen = sysinfo.pixelRatio * sysinfo.windowWidth
+  if (h == '1') {
+    w = Math.ceil(w * screen / 100)
+    h = 1
+    src += "@" + w + "w_" + h + "l"
+  } else {
+    w = Math.ceil(w * screen / 100)
+    h = Math.ceil(h * screen / 100)
+    src += "@" + w + "w_" + h + "h_1e_1c_100Q"
+  }
+  return src
+}

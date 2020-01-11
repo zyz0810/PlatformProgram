@@ -1,0 +1,21 @@
+<!-- 
+  横向轮播图
+  fn:点击事件 
+  showDot:显示指示点  false
+  autoplay:自动轮播   true
+  interval:轮播间隔   2000
+  name:轮播图名称
+  _swiper:swiper高度根据图片高度计算 
+-->
+
+<template name="adSwiper">
+  <swiper hidden="{{!data||data.length==0}}" duration="1000" circular indicator-active-color="rgba(255,255,255,0.6)" indicator-dots="{{showDot?showDot:false}}" autoplay="{{autoplay?autoplay:true}}" interval="{{interval?interval:3000}}"
+    style="height:{{name?_swiper[name].height+'px':_swiper['swiper'].height+'px'}};" class="adSwiper">
+    <block wx:for="{{data}}" wx:key="{{key}}">
+      <swiper-item style="padding:0;text-align:center;margin">
+        <image bindtap="{{fn?fn:'adSwiperTap'}}" data-index="{{index}}" data-linktype="{{item.linkType?item.linkType:''}}" data-linkId='{{item.linkId?item.linkId:""}}' data-name="{{name?name:'swiper'}}" bindload="_adswiperimageload" mode="widthFix" style="{{(name?_swiper[name].isLoad[index]:_swiper['swiper'].isLoad[index])?'will-change:transform':''}}"
+          src="{{key?item[key]:item}}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+</template>

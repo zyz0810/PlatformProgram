@@ -1,0 +1,21 @@
+/* pages/pay/success.wxss */
+.container{
+  background: #fff;
+  
+}
+.successIcon{
+  width: 25vw;
+  margin: 0 auto;
+  padding-top: 10vw;
+}
+.successIcon text{
+  display: block;
+}
+.successCont .lineItem{
+  background: #fff;
+  padding: 3%;
+}
+.successCont .lineItem:first-child{
+  border-top: 1px solid #eee;
+  margin-top: 10vw;
+}

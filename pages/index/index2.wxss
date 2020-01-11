@@ -1,0 +1,626 @@
+/* 商品列表 */
+@import '/template/productList/productListTemp.wxss';
+
+page {
+  position: relative;
+}
+
+.scrollWrap {
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding-top: 44px;
+}
+
+.scrollWrap swiper-item {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: translate(0%, 0px) translateZ(0px);
+}
+
+.search {
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 110;
+  padding: 15rpx 0;
+  background: #ececec;
+  height: 88rpx;
+}
+
+.search.borderbottom::after {
+  content: "";
+  display: block;
+  width: 100%;
+  position: absolute;
+  bottom: -3rpx;
+  right: 0;
+  height: 1px;
+  background: #fff;
+  transform: scaleY(0.5);
+  z-index: 2;
+}
+
+.searchWrap {
+  width: 700rpx;
+  background: #fff;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 10rpx 100rpx;
+  border-radius: 10rpx;
+  position: relative;
+  color: #fff;
+}
+
+.searchWrap image {
+  display: block;
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  top: 10rpx;
+}
+
+.searchWrap input {
+  height: 40rpx;
+  min-height: 40rpx;
+  color: #000;
+}
+
+.searchWrap .searchIcon {
+  left: 20rpx;
+}
+
+.swiperWrap {
+  position: relative;
+  background: #fff;
+}
+
+.swiperWrap image {
+  box-shadow: 0px 15px 10px -15px #ccc;
+}
+
+.swiperWrap .newsWrap {
+  width: 95%;
+  margin: 0 auto;
+  background: #fff;
+  position: absolute;
+  bottom: -50rpx;
+  left: 2.5%;
+  border-radius: 10rpx;
+  padding: 25rpx 0;
+}
+
+.wrapperContainer {
+  width: 100%;
+}
+
+.adSwiper image {
+  width: 96%;
+}
+
+.topInfo {
+  width: 750rpx;
+  margin: 0 auto;
+  padding: 0rpx 0 20rpx;
+  background: #fff;
+  /* border-bottom: 1rpx solid #ececec; */
+}
+
+.topInfo .flex-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topInfo .flex-item text {
+  color: rgb(73, 73, 73);
+  display: inline-block;
+}
+
+.topInfo .flex-item image {
+  width: 28rpx;
+  height: 28rpx;
+  padding-right: 10rpx;
+}
+
+/* 分类部分 */
+
+.channelPic {
+  height: 260rpx;
+  background: #fff;
+  padding-bottom: 15rpx;
+}
+
+.channelPicItem {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 2%;
+  box-sizing: border-box;
+}
+
+.channelPicItem > view {
+  width: 25%;
+  text-align: center;
+  font-size: 12px;
+}
+
+.channelPicItem > view>view {
+  color: #808080;
+  font-size: 27rpx;
+}
+
+.channelPicItem image {
+  display: block;
+  width: 100rpx;
+  height: 100rpx;
+  margin: -40rpx auto 2vw;
+}
+
+/* 广告位部分 */
+
+.advertise {
+  margin: 2vw 0;
+}
+
+.ad_one {
+  background: #fff;
+  border-bottom: 20rpx solid #fff;
+}
+
+.row view image {
+  width: 100%;
+  height: 100%;
+}
+
+.ad_one .col-12, .ad_one .col-12:first-child view {
+  height: 60vw;
+}
+
+.ad_one .col-12:last-child view {
+  height: 30vw;
+}
+
+/* 横屏广告位 */
+
+.lineScreenAd image {
+  width: 100%;
+  display: block;
+}
+
+/* 拼团抢购 */
+
+.collage {
+  padding: 40rpx 4%;
+  background: #fff;
+}
+
+.collage_tag {
+  color: #ffe3e3;
+  background: #fd407a;
+  display: inline-block;
+  font-style: italic;
+  padding: 2px 10px;
+  border-top-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  margin-left: 10px;
+}
+
+.collage .collage_list {
+  padding-top: 4%;
+}
+
+.collage .collage_list .lineItem {
+  padding: 0;
+  margin-bottom: 20rpx;
+  border: 1px solid #edeceb;
+}
+
+.collage .collage_list .lineItem .left {
+  width: 265rpx;
+  height: 265rpx;
+}
+
+.collage .collage_list .lineItem .left image {
+  width: 100%;
+  height: 100%;
+}
+
+.collage .collage_list .lineItem .center {
+  justify-content: space-between;
+  flex-direction: column;
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 10rpx;
+}
+
+.collage .collage_list .lineItem .oriPrice {
+  text-decoration: line-through;
+}
+
+.collage .collage_list .lineItem .collage_count {
+  background: #fd407a;
+  color: #fff;
+  padding: 8rpx 18rpx;
+  border-radius: 6rpx;
+}
+
+.collage .collage_list .lineItem .goCollage {
+  color: #fd407a;
+}
+
+/* 限时抢购 */
+
+.timeLimit {
+  padding: 20rpx 4%;
+  background: #fff;
+}
+
+.timeLimit_tag {
+  color: #ffe3e3;
+  background: #fd407a;
+  display: inline-block;
+  font-style: italic;
+  padding: 2px 10px;
+  border-top-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  margin-left: 10px;
+}
+
+.timeLimit .timeLimit_list {
+  padding-top: 4%;
+}
+
+.timeLimit .timeLimit_list .lineItem {
+  -webkit-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -moz-align-items: stretch;
+  align-items: stretch;
+  margin-bottom: 60rpx;
+  padding: 0;
+}
+
+.timeLimit .timeLimit_list .lineItem:last-child {
+  margin-bottom: 0;
+}
+
+.timeLimit .timeLimit_list .lineItem .center {
+  padding: 1% 0 1% 2%;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  justify-content: space-between;
+}
+
+.timeLimit .timeLimit_list .lineItem .left {
+  width: 27vw;
+  height: 27vw;
+}
+
+.timeLimit .timeLimit_list .lineItem .left image {
+  border-radius: 8px;
+}
+
+.timeLimit_list .lineItem .center .tag {
+  line-height: 1;
+}
+
+.timeLimit_list .lineItem .center .tag text {
+  color: #ff9c9c;
+  background: #ffeded;
+  border-radius: 3px;
+  line-height: 1.5;
+  padding: 0 5px;
+  margin-right: 5px;
+}
+
+/* .timeLimit_list .lineItem .center .price text{
+  margin-right: 20px;
+} */
+
+.timeLimit_list .lineItem .center .price {
+  position: relative;
+}
+
+.old_price {
+  color: #999;
+  text-decoration: line-through;
+  margin-left: 20rpx;
+}
+
+.buy {
+  padding: 2px 8px;
+  border-radius: 30rpx;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-right: 0;
+}
+
+.time {
+  position: absolute;
+  bottom: 4em;
+  right: 10rpx;
+}
+
+.time text {
+  color: #999;
+  background: #e6e6e6;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 2px;
+}
+
+.title {
+  font-weight: 600;
+}
+
+/* 新品上架 */
+
+.newsell .lineItem {
+  padding: 4% 2%;
+}
+
+.newsell .lineItem .right::after {
+  border-color: #333;
+}
+
+/* 城市优选标题样式 */
+
+.crossLine {
+  background: #fff;
+  /* margin-top: 2%; */
+  padding: 20rpx 0;
+  border-bottom: 10rpx solid #fafafa;
+  border-top: 10rpx solid #fafafa;
+  position: relative;
+}
+
+.crossLine text {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.crossLine  .line {
+  width: 40rpx;
+  height: 1px;
+  background: #000;
+}
+
+.crossLine .text {
+  padding: 0 40rpx;
+}
+
+/* 楼层部分样式 */
+
+.headerScroll {
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+  height: 88rpx;
+  line-height: 88rpx;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #fff;
+  overflow-x: scroll;
+}
+
+.headerScroll ::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+  display: none;
+}
+
+.headerScroll .active {
+  color: #ff3434;
+  border-bottom: 2px solid #ff3434;
+}
+
+.headerScroll view {
+  margin: 0 40rpx;
+  font-size: 28rpx;
+}
+
+.clr_price {
+  color: #ff3434;
+}
+
+.bizViewTenantList {
+  background: #ececec;
+}
+
+.bizViewTenantList .floor_num {
+  display: block;
+  color: #393939;
+  line-height: 2.5em;
+  background: #fff;
+}
+
+.bizViewTenantList .floor_num {
+  margin-top: 2%;
+}
+
+.TenantList {
+  margin-bottom: 2%;
+}
+
+.cityFineTenantList .cityFineTenant {
+  margin-bottom: 2%;
+}
+
+.cityFineTenantList .tenantInfoWrap {
+  border: 2px solid #fff;
+  width: 368rpx;
+  height: 205rpx;
+  left: 191rpx;
+  top: 15vw;
+  position: absolute;
+}
+
+.cityFineTenantList .tenantInfoWrap .tenantInfo {
+  background: #fff;
+  margin: 2vw;
+  widows: 338rpx;
+  height: 177rpx;
+}
+
+.cityFineTenantList .tenantInfoWrap .tenantInfo .imageWrap {
+  width: 10vw;
+  height: 10vw;
+  display: block;
+  margin: 0 auto;
+  padding: 20rpx 0;
+}
+
+.cityFineTenantList .tenantInfoWrap .tenantInfo .imageWrap image {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+
+.cityFineTenantList {
+  position: relative;
+}
+
+.cityFineTenantList .logo {
+  width: 750rpx;
+  height: 450rpx;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+.cityFineTenantList .logo image {
+  width: 100%;
+  height: 100%;
+}
+
+.cityFineTenantProduct {
+  padding: 0 0.5vw;
+}
+
+.cityFineTenantProduct view {
+  display: inline-block;
+  margin: 2vw 1vw;
+  width: 31vw;
+}
+
+.cityFineTenantProduct view image {
+  width: 100%;
+  height: 31vw;
+  display: block;
+  /* box-shadow: 0 0 4rpx 4rpx #d1d1d1; */
+}
+
+.cityFineTenantProduct .clr_price {
+  width: 29vw;
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000 !important;
+}
+
+.ad_swiper {
+  width: 600rpx;
+  height: 800rpx;
+  margin: 0 auto;
+  position: absolute;
+  top: 120rpx;
+  left: 75rpx;
+  z-index: 1009;
+}
+
+.ad_swiper image {
+  width: 100%;
+  height: 100%;
+}
+
+.closeImg {
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  top: 950rpx;
+  left: 345rpx;
+  z-index: 1005;
+}
+
+.closeImg  image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.closeImg button, .ad_swiper button {
+  background: transparent;
+  padding: 0;
+  border: 0;
+  color: #fff;
+}
+
+.ad_swiper button image {
+  width: 600rpx;
+  height: 800rpx;
+}
+
+.formStyle button::after, .formStyle button::before {
+  display: none;
+}
+
+/*返回顶部  */
+
+.toUpshow {
+  bottom: 65px !important;
+  opacity: 1 !important;
+}
+
+.toUp {
+  position: fixed;
+  bottom: -40px;
+  opacity: 0;
+  transition: 0.5s all;
+  background: rgba(76, 76, 76, 0.7);
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border-radius: 5px;
+  color: #fff;
+  line-height: 40px;
+  font-size: 20px;
+  right: 4%;
+  z-index: 9999;
+}
+
+.toUp image {
+  display: block;
+  margin: 20% auto;
+  width: 60%;
+  height: 60%;
+}

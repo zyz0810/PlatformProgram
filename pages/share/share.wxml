@@ -1,0 +1,56 @@
+<view class="container" hidden="{{loading}}">
+  <view class='banner'>
+    <image src='/resources/images/member/share/banner.jpg'></image>
+  </view>
+  <view class='bag' wx:if="{{isSatisfied}}">
+    <view class='red_bag'>
+      <image src='/resources/images/member/share/redBag_bg.png' mode="widthFix"></image>
+      <view class='red_bag_txt'>
+        <view class='clr_red f14'>{{couponCode.title}}</view>
+        <view class='f14 lineItem'>
+          <view class='center'>满
+            <text>{{couponCode.minimumPrice}}</text>元可用</view>
+          <view class='right clr_red bold money'>
+            <text class='f20 price'>￥{{couponCode.amount}}</text>
+          </view>
+        </view>
+        <view class='f10 lineItem lineItem_access'>
+          <view class='center clr_lightGray'>永久有效</view>
+          <view class='right clr_red useMoney' bindtap='goUseCoupon'>去使用</view>
+        </view>
+      </view>
+    </view>
+    <view class='f16 use tc' bindtap='goUseCoupon'>立即使用</view>
+    <view class='f10 tc'>红包已放入您的账户，仅供本店消费使用
+      <text>{{}}</text>
+    </view>
+  </view>
+  <view class='bag' wx:if="{{!isSatisfied}}">
+    <view class='f16 tc'>{{desc}}</view>
+  </view>
+  <view class='friend' wx:if="{{getManList.length}}">
+    <view class='title f14 tc'>
+      <text class='line'></text>
+      <text class='title_txt'>看看其他好友</text>
+      <text class='line'></text>
+    </view>
+    <view class='lineItem' wx:for="{{getManList}}" wx:key="id" wx:for-item="item">
+      <view class='left'>
+        <image src='{{item.headImg?item.headImg:"/resources/images/usernone.png"}}'></image>
+      </view>
+      <view class='center'>
+        <view class='f14'>{{item.name}}</view>
+        <view class='f10'>{{item.createDate}}</view>
+      </view>
+      <view class='f14'>{{item.amount}}元</view>
+    </view>
+  </view>
+  <view class='anli'>
+    <image src='/resources/images/member/share/share_img.jpg' mode="widthFix"></image>
+  </view>
+  <view class='f16 use tc makeMoney' bindtap='goUseCoupon'>进店逛逛</view>
+  <!-- <view class='technical_support'>
+    <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+  </view> -->
+</view>
+<button loading class="f16 loadBtn" hidden="{{!loading}}">加载中</button>

@@ -1,0 +1,261 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/category/category",
+    "pages/category/index",
+    "pages/selectTenant/index",
+    "pages/cart/index",
+    "pages/cart/cart",
+    "pages/member/member",
+    "pages/include/captcha/captcha",
+    "pages/technical/technical"
+  ],
+  "subpackages": [
+    {
+      "name": "product",
+      "root": "pages/product/",
+      "pages": [
+        "details/details",
+        "details/detailsB",
+        "details/evaluate/evaluate",
+        "list/list",
+        "productList/productList"
+      ]
+    },
+    {
+      "name": "purse",
+      "root": "pages/purse/",
+      "pages": [
+        "bank/add/add",
+        "bank/list/list",
+        "purse",
+        "cash/cash",
+        "bill/bill",
+        "freezeBill/bill",
+        "charge/charge"
+      ]
+    },
+    {
+      "name": "order",
+      "root": "pages/order/",
+      "pages": [
+        "order",
+        "logistics/logistics",
+        "orderDetails/orderDetails",
+        "orderEvaluate/orderEvaluate"
+      ]
+    },
+    {
+      "name": "shelf",
+      "root": "pages/shelf/",
+      "pages": [
+        "shelfnew",
+        "feedback/feedback",
+        "pay/pay",
+        "order/order",
+        "orderDetail/orderDetail",
+        "package/index",
+        "package/info",
+        "package/list",
+        "package/order",
+        "package/orderDetail",
+        "package/orderPay",
+        "package/view",
+        "tenant/data",
+        "tenant/dataTwo",
+        "tenant/agreement",
+        "tenant/category",
+        "tenant/register"
+      ]
+    },
+    {
+      "name": "agreement",
+      "root": "pages/agreement/",
+      "pages": [
+        "agreement"
+      ]
+    },
+    {
+      "name": "auth",
+      "root": "pages/auth/",
+      "pages": [
+        "auth",
+        "status"
+      ]
+    },
+    {
+      "name": "bind",
+      "root": "pages/bind/",
+      "pages": [
+        "bind"
+      ]
+    },
+    {
+      "name": "share",
+      "root": "pages/share/",
+      "pages": [
+        "share"
+      ]
+    },
+    {
+      "name": "password",
+      "root": "pages/password/",
+      "pages": [
+        "password"
+      ]
+    },
+    {
+      "name": "favorite",
+      "root": "pages/favorite/",
+      "pages": [
+        "favorite"
+      ]
+    },
+    {
+      "name": "coupon",
+      "root": "pages/coupon/",
+      "pages": [
+        "list"
+      ]
+    },
+    {
+      "name": "message",
+      "root": "pages/message/",
+      "pages": [
+        "index",
+        "pushMsg/pushMsg"
+      ]
+    },
+    {
+      "name": "pay",
+      "root": "pages/pay/",
+      "pages": [
+        "pay",
+        "fastPay",
+        "success",
+        "payjump",
+        "payZero"
+      ]
+    },
+    {
+      "name": "home",
+      "root": "pages/home/",
+      "pages": [
+        "home",
+        "index",
+        "tenant/info"
+      ]
+    },
+    {
+      "name": "search",
+      "root": "pages/search/",
+      "pages": [
+        "index",
+        "result"
+      ]
+    },
+    {
+      "name": "contact",
+      "root": "pages/contact/",
+      "pages": [
+        "contact"
+      ]
+    },
+    {
+      "name": "address",
+      "root": "pages/address/",
+      "pages": [
+        "list",
+        "edit",
+        "add"
+      ]
+    },
+    {
+      "name": "news",
+      "root": "pages/news/",
+      "pages": [
+        "news",
+        "view/view"
+      ]
+    },
+    {
+      "name": "article",
+      "root": "pages/article/",
+      "pages": [
+        "article"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/index/index": {
+      "network": "all",
+      "packages": [
+        "product",
+        "home",
+        "search"
+      ]
+    },
+    "pages/member/member": {
+      "network": "all",
+      "packages": [
+        "purse",
+        "order",
+        "auth",
+        "bind",
+        "address",
+        "favorite"
+      ]
+    },
+    "pages/shelf/shelfnew": {
+      "network": "all",
+      "packages": [
+        "home",
+        "product"
+      ]
+    }
+  },
+  "tabBar": {
+    "color": "#666666",
+    "backgroundColor": "#fff",
+    "selectedColor": "#ef2b2d",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/resources/images/tabBar/home.png",
+        "selectedIconPath": "/resources/images/tabBar/home-sel.png"
+      },
+      {
+        "pagePath": "pages/selectTenant/index",
+        "text": "优选店",
+        "iconPath": "/resources/images/tabBar/category.png",
+        "selectedIconPath": "/resources/images/tabBar/category-sel.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "/resources/images/tabBar/cart.png",
+        "selectedIconPath": "/resources/images/tabBar/cart-sel.png"
+      },
+      {
+        "pagePath": "pages/member/member",
+        "text": "我的",
+        "iconPath": "/resources/images/tabBar/me.png",
+        "selectedIconPath": "/resources/images/tabBar/me-sel.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": ".",
+    "navigationBarTextStyle": "black"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "为了更好地为您服务"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

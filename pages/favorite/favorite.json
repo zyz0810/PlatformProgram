@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "我的收藏",
+  "enablePullDownRefresh":true,
+  "usingComponents": {
+    "technical-component": "/component/technical/technical",
+    "shadow-component": "/component/shadow/shadow"
+  }
+}

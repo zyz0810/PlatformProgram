@@ -1,0 +1,26 @@
+<view class="page">
+  <view class="lineItem f16 chargeTop top_border">
+    <view class="left">
+      <text class="iconfont icon-weixin clr_wxGreen f22"></text>
+    </view>
+    <view class="center">
+      <view>微信</view>
+    </view>
+  </view>
+  <view class="lineItem f16 chargeTop">
+    <view class="left f22">
+      <!-- <text class="iconfont icon-weixin clr_wxGreen f22"></text> -->
+      ￥
+    </view>
+    <view class="center">
+      <input type="digit" placeholder="输入充值金额" bindinput="amount" />
+    </view>
+  </view>
+  <view>
+    <form bindsubmit="formSubmit" report-submit bindreset="formReset">
+      <button class="defaultBtn" style='background:{{mainColor}}' form-type="submit">充值</button>
+    </form>
+    <!-- <template is="payPassword" data="{{payShow:payShow,payPrice:payPrice,payLen:payLen}}"></template> -->
+  </view>
+  <technical-component />
+</view>

@@ -1,0 +1,7 @@
+<!--商品列表  -->
+<import src="/template/productList/productListIndex.wxml" />
+<shadow-component />
+<view class='container'>
+  <template is="productList" data="{{data:collectList}}"></template>
+  <view class="tips" hidden="{{showtips}}">{{tips}}</view>
+</view>

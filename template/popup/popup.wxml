@@ -1,0 +1,14 @@
+<view class="tpl_popuo" hidden="{{!__tplPopup.show}}">
+  <view class="tpl_popuo-mask"></view>
+  <view class="tpl_popuo-content">
+    <image mode="widthFix" src="/resources/images/member/popup_top.png" class="tpl_popuo-topImg"></image>
+    <view class="tpl_popuo-details">
+      <view>下载app</view>
+      <view>下载app</view>
+      <view class="clr_lightGray f12">每个好友点击都可获得现金奖励哦</view>
+      <button class="tpl_popuo-btn f16" open-type='share'>分享给好友</button>
+    </view>
+    <image mode="widthFix" src="/resources/images/member/popup_bottom.png" class="tpl_popuo-bottomImg"></image>
+    <image mode="widthFix" bindtap="{{__tplPopup.cancel}}" src="/resources/images/icon/cancel.png" class="tpl_popuo-cancel"></image>
+  </view>
+</view>

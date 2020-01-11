@@ -1,0 +1,41 @@
+/* pages/member/address/edit.wxss */
+.line {
+  display: flex;
+  background: #fff;
+  margin-bottom: 1px;
+  padding: 3% 2%;
+}
+
+.line .head {
+  width: 30%;
+  height: 1.4rem;
+  line-height: 1.4rem;
+}
+
+
+.submit {
+  width: 90%;
+  line-height: 2.6;
+  color: #fff;
+  margin-top: 20px;
+}
+
+
+.classname{
+  width: 70%;
+}
+
+.picker {
+  line-height: 1.4rem;
+}
+.button{
+  width: 90%;
+  line-height: 2.6;
+  background: #F8F8F8;
+  background: #fff;
+  color: #333;
+  margin: 20px auto 0;
+  border: 1px solid #DFDFDF;
+  border-radius: 5px;
+
+}

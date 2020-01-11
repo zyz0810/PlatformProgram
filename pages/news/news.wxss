@@ -1,0 +1,28 @@
+/* pages/home/news/news.wxss */
+
+.newsListItem {
+  margin-bottom: 2%;
+}
+
+.newsListItem .left {
+  width: 40vw;
+  height: 18.6vw;
+  margin-right: 2vw;
+}
+
+.newsListItem .left image {
+  width: 40vw;
+  height: 100%;
+}
+
+.newsListItem .center {
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+}
+
+.newsListItem .desc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

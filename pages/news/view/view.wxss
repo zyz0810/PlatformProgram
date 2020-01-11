@@ -1,0 +1,9 @@
+/* pages/home/article/article.wxss */
+@import "../../wxParse/wxParse.wxss";
+.article{
+   padding: 0 0 10rpx; 
+  background: #fff;
+}
+.title{
+  padding: 0 5px;
+}

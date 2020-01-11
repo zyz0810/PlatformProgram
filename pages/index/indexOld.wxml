@@ -1,0 +1,98 @@
+<!--swiper  -->
+<import src="/template/swiper/swiper.wxml" />
+<button loading class="f16 loadBtn" hidden="{{homeLoadReady}}">加载中</button>
+<view class="container" wx:if="{{homeLoadReady}}">
+  <view wx:if="{{showSearch}}" class="search {{borderbottom?'borderbottom':''}}" style='background:{{background?background:""}};position:{{position?position:"fixed"}};'>
+    <view class="searchWrap">
+      <image mode='scaleToFill' class="searchIcon" src='/resources/images/icon/search_gray.png'></image>
+      <!-- <view class="f14">搜索店内商品</view> -->
+      <input placeholder='搜索商品、商家' value="{{val}}" disabled placeholder-class='clr-lightGray' class="f14 clr-lightGray" confirm-type='search' bindconfirm='searchProduct' bindinput='searchVal' bindtap='goSearch'></input>
+    </view>
+  </view>
+  <view class='scrollWrap' style="height:{{winHeight - 44}}px;" bindtouchstart='touchstart' bindtouchend='touchend' bindtouchmove='touchmove'>
+    <scroll-view style="height:{{tenantListData.length>0?winHeight-44:winHeight-44}}px;" scroll-into-view="{{scrollIntoId}}" scroll-y scroll-with-animation enable-back-to-top scroll-y='{{!couponShow}}' bindscrolltolower="toLower" bindscroll="scroll">
+      <view class='wrapperContainer' id="top">
+        <view class='swiperWrap'>
+          <template is="adSwiper" data="{{_swiper,name:'top',data:topImgs.data,key:topImgs.key,fn:'adTap'}}"></template>
+        </view>
+        <view class="row ad_one">
+          <view class="col-12">
+            <view class="col-24 index_ad1" data-linkid="{{adList.ad1.linkId}}" data-linktype="{{adList.ad1.linkType}}" bindtap='toAdLink'>
+              <image src="{{adList.ad1.image}}"></image>
+            </view>
+          </view>
+          <view class="col-12">
+            <view class="col-24 index_ad2" data-linkid="{{adList.ad2.linkId}}" data-linktype="{{adList.ad2.linkType}}" bindtap='toAdLink'>
+              <image src="{{adList.ad2.image}}"></image>
+            </view>
+            <view class="col-24 index_ad3" data-linkid="{{adList.ad3.linkId}}" data-linktype="{{adList.ad3.linkType}}" bindtap='toAdLink'>
+              <image src="{{adList.ad3.image}}"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 横屏广告位 -->
+      <view class='lineScreenAd'>
+        <block wx:for="{{Ad206}}" wx:key="*this">
+          <image src='{{item.image}}' mode="widthFix" data-linkid="{{item.linkId}}" data-linktype="{{item.linkType}}" bindtap='toAdLink'></image>
+        </block>
+      </view>
+
+      <view class="tc crossLine">
+        <text class="line"></text>
+        <text class="text">品牌优选</text>
+        <text class="line"></text>
+      </view>
+      <view class="bizViewTenantList">
+        <block wx:for="{{tenantListData}}" wx:key="*this">
+          <!-- <view class="floor_num tc f18 " id="to{{item.id}}" data-id="{{item.id}}" data-communityid="{{item.communityId}}" bindtap='goFloorView'>{{item.name}}
+          <text class=" iconfont icon-icon f18"></text>
+        </view> -->
+          <view class="weui-cells TenantList bornone" style="margin-top: 0;background:#F3F3F3">
+            <view class="cityFineTenantList" bindtap='toTenant' data-id="{{item.id}}">
+              <view class="logo weui-cell">
+                <image src="{{item.thumbnail}}" lazy-load></image>
+              </view>
+              <!-- <view class='tenantInfoWrap'>
+              <view class='tenantInfo'>
+                <view class='imageWrap'>
+                  <image src="{{item.logo}}"></image>
+                </view>
+                <view class='f15 overone tc'>{{item.name}}</view>
+              </view>
+            </view> -->
+            </view>
+            <view class="cityFineTenantProduct row">
+              <view wx:for="{{item.products}}" wx:for-item="pitem" wx:key="{{pitem.id}}" class="col-8" data-id='{{pitem.id}}' bindtap='toDetail'>
+                <image src="{{pitem.thumbnail}}" lazy-load></image>
+                <view class="f16 tc clr_price bold">￥{{pitem.price}}</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class='technical_support static' bindtap='technical'>
+        <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+      </view>
+      <view class="toUp {{toUpShow&&'toUpshow'}}" data-to="top" bindtap="scrollto">
+        <image src="/resources/images/icon/toup.png"></image>
+      </view>
+    </scroll-view>
+  </view>
+
+
+  <!-- <view wx:for="{{topImgs.data}}" wx:key="*this" catchtouchmove>
+    <form bindsubmit="formSubmit" report-submit="true" class='ad_swiper'>
+      <button form-type="submit">
+        <image src="{{item.image?item.image:'/resources/images/noneimg.png'}}" class="slide-image" />
+      </button>
+    </form>
+    <form class='closeImg' bindsubmit="formSubmitClose" report-submit="true" data-index="{{index}}">
+      <button form-type="submit">
+        <image src='/resources/images/icon/cancel.png'></image>
+      </button>
+    </form>
+  </view>
+  <view class='mask' wx:if="{{topImgs.data.length>0}}" catchtouchmove></view> -->
+</view>

@@ -1,0 +1,49 @@
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+}
+
+.navPayWrap {
+  background: #fff;
+  position: fixed;
+  top: 150rpx;
+  width: 600rpx;
+  left: 75rpx;
+  z-index: 10001;
+  border-radius: 10rpx;
+}
+
+.navPayWrap>view {
+  padding: 45rpx 0;
+}
+
+.navPayWrap .money {
+  border-bottom: 1px solid #ececec;
+}
+
+.navPayWrap .title {
+  border-bottom: 1px solid #04d102;
+  padding: 25rpx 0;
+  position: relative;
+}
+
+.navPayWrap .title image {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  left: 20rpx;
+}
+
+.navPayWrap .button navigator {
+  background: #04d102;
+  color: #fff;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20rpx 0;
+  border-radius: 10rpx;
+}

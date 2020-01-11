@@ -1,0 +1,53 @@
+/* pages/member/address/add.wxss */
+
+.line {
+  display: flex;
+  background: #fff;
+  margin-bottom: 1px;
+  padding: 3% 2%;
+}
+
+.line .head {
+  width: 30%;
+  height: 1.4rem;
+  line-height: 1.4rem;
+}
+
+.submit {
+  width: 90%;
+  line-height: 2;
+  background: #08bb06;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.classname {
+  width: 70%;
+}
+
+.picker {
+  line-height: 1.4rem;
+}
+
+.location {
+  position: relative;
+}
+
+.locationBtn {
+  width: 100rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  line-height: 2.5;
+}
+
+.icon-quxiao {
+  position: absolute;
+  top: -15rpx;
+  right: -15rpx;
+  background: red;
+  padding: 6rpx;
+  border-radius: 50%;
+  color: #fff;
+}

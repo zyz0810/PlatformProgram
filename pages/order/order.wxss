@@ -1,0 +1,202 @@
+@import "/template/actionsheet/actionsheet.wxss";
+@import "/template/password/payPassword.wxss";
+
+page {
+  background: #f1f1f1;
+  height: 100%;
+  overflow: hidden;
+}
+
+swiper {
+  width: 100%;
+  height: 100%;
+}
+
+swiper-item {
+  overflow-y: auto;
+}
+.active{
+  color: #ef2b2d;
+  border-bottom: 2px solid #ef2b2d;
+}
+
+.swiper-box {
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding-top: 50px;
+}
+
+.swiper-tab {
+  width: 100%;
+  text-align: center;
+  line-height: 80rpx;
+  position: absolute;
+  top: 0;
+  background: #f1f1f1;
+  z-index: 1;
+}
+
+.on {
+  color: #5e3c20;
+}
+
+.on::after {
+  display: block;
+  position: absolute;
+  width: 60%;
+  left: 20%;
+  content: '';
+  height: 2px;
+  background: #5e3c20;
+}
+
+.detailsLineHide {
+  display: none;
+}
+
+.top {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: space-around;
+  font-size: 33rpx;
+  background: #fafafa;
+  border-bottom:2px solid transparent;
+}
+
+.top>view {
+  width: 100%;
+  text-align: center;
+  line-height: 40px;
+  position: relative;
+}
+
+scroll-view {
+  height: 100%;
+}
+
+.tips {
+  margin: 0;
+  padding-top: 5px;
+}
+
+.ordersWrap {
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+
+.ordersWrap>view, .ordersWrap .flexC {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx;
+}
+
+.title, .details, .orderTotal {
+  position: relative;
+}
+
+.details {
+  align-items: stretch !important;
+}
+
+.title image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.title .name {
+  margin-right: auto;
+  margin-left: 30rpx;
+}
+
+.orderImg image {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.shopName {
+  width: 420rpx;
+}
+
+.shopInfo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20rpx 0 20rpx 20rpx;
+}
+
+.shopNumber {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.orderTotal {
+  justify-content: flex-end !important;
+}
+
+.orderTotal>view {
+  margin-left: 30rpx;
+}
+
+.method button {
+  margin: 20rpx;
+  border: 1px solid #d9d9d9;
+  line-height: 2;
+  font-size: 28rpx;
+  border-radius: 10rpx;
+  color: #000;
+}
+
+.method {
+  justify-content: flex-end !important;
+  min-height: 0;
+  padding: 0 20rpx !important;
+}
+
+.method::after {
+  display: none;
+}
+
+.method>view {
+  margin: 20rpx 0 20rpx 30rpx;
+  border: 1px solid #d9d9d9;
+  line-height: 1.6;
+  border-radius: 10rpx;
+  padding: 6rpx 40rpx;
+}
+
+.scrollWrap {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.technical_support.static {
+  position: static;
+}
+
+.confirmBtn {
+  background: #d9141e;
+  color: #fff !important;
+  border: 1px solid #d9141e !important;
+}
+
+.goScan {
+  margin-top: 5vw;
+}
+
+.goScan text {
+  display: inline-block;
+  padding: 10rpx 80rpx;
+  border-radius: 6rpx;
+}
+.kong{
+  height: 10vw;
+}

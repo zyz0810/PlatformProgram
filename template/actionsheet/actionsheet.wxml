@@ -1,0 +1,22 @@
+
+<view class="actionsheetMask" catchtouchmove="ActionsheetCatchMove" bindtap="ActionsheetHide" hidden="{{!__actionsheet.show}}">
+</view>
+<view class="actionsheetWrap" hidden="{{!__actionsheet.show}}" style='padding-bottom:{{isIphoneX? 68:""}}rpx'>
+  <view class="actionsheet_top">
+    <image src="/resources/images/icon/close.png" bindtap="ActionsheetHide"></image>
+    <view>{{__actionsheet.title}}</view>
+    <!-- <image src="/resources/images/icon/close.png"></image> -->
+  </view>
+  <view class="actionsheet_title">
+    {{__actionsheet.header}}
+  </view>
+  <view class="actionsheet_content">
+    <block wx:for="{{__actionsheet.item}}" wx:key="index">
+      <view class="{{item.more?'actionsheet_access':''}}" bindtap="{{item.fn?item.fn:''}}">
+        <view style="color:#777;">{{item.name}}</view>
+        <view class="right" style="font-weight:500;">{{item.content}}</view>
+      </view>
+    </block>
+  </view>
+  <button class="actionsheet_btn {{__actionsheet.submit}}" bindtap="{{__actionsheet.submit}}" type="primary" style='bottom:{{isIphoneX? 98:30}}rpx'>确定</button>
+</view>

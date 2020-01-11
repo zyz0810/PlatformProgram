@@ -1,0 +1,186 @@
+<include src="/template/jumpPay/jumpPay.wxml" />
+<view class="page">
+  <shadow-component />
+  <view class="title f16">交易状态</view>
+  <view class="progress">
+    <block wx:for="{{details.orderLogs}}" wx:key="operator">
+      <view class="lineItem">
+        <view class="left">
+          <text class='progressDot iconfont icon-xiangshangjiantouquan baseColor'></text>
+          <view wx:if="{{index != 0}}" class="progressLine"></view>
+        </view>
+        <view class="center">
+          <view class="f14 proTitle">{{item.content}}</view>
+          <view class="f12">{{item.content}}</view>
+        </view>
+        <view class="right f12">{{item.createDate}}</view>
+      </view>
+    </block>
+  </view>
+  <view class="title f16">订单消息</view>
+  <view class="orderMsg f14">
+    <view class="lineItem border_none">
+      <view class="left">支付方式</view>
+      <view class="right">{{details.paymentMethod.name}}</view>
+    </view>
+    <view class="lineItem border_none">
+      <view class="left">配送方式</view>
+      <view class="right">{{details.shippingMethod.name}}</view>
+    </view>
+    <view class="lineItem">
+      <view class="left">订单号</view>
+      <view class="right">{{details.sn}}</view>
+    </view>
+    <view class="lineItem" wx:if="{{details.shippings.length}}">
+      <view class="left">快递单号</view>
+      <view class="right">{{details.shippings[0].deliveryCorp||''}}{{details.shippings[0].trackingNo||''}}</view>
+    </view>
+    <view wx:if="{{details.shippingMethod.method!='F2F'}}">
+      <view class="lineItem border_none">
+        <view class="classname">联系人：{{details.consignee}}({{details.phone}})</view>
+      </view>
+      <view class="lineItem ">
+        <view class="classname">收货地址：{{details.areaName}} {{details.address}}</view>
+      </view>
+      <view class="lineItem ">
+        <view class="classname">买家留言：{{details.memo == ' '||!details.memo?'无':details.memo}}</view>
+      </view>
+      <view class="lineItem" wx:if="{{details.finalOrderStatus.status=='sign'}}">
+        <view class="classname baseColor">若对商品无异议,系统将自发货之日起{{details.automaticSigningDays}}天后自动签收</view>
+      </view>
+    </view>
+    <view wx:if="{{details.shippingMethod.method=='F2F'}}">
+      <view class="lineItem border_none">
+        <view class="classname">提货人：{{details.consignee}}({{details.phone}})</view>
+      </view>
+      <view class="lineItem ">
+        <view class="classname">提货地址：{{details.areaName}} {{details.deliveryAddress}}</view>
+      </view>
+      <view class="pickUpcodeUrl tc">
+        <image src="{{pickUpcodeUrl}}"></image>
+        <text class="bold">提货码：{{details.pickUpCode}}</text>
+      </view>
+      <view class="lineItem ">
+        <view class="classname">买家留言：{{details.memo == ' '||!details.memo?'无':details.memo}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="title f16">商品信息</view>
+  <view class="shopMsg f14">
+    <navigator url="/pages/home/home?tenantId={{details.tenantId}}">
+      <view class="shopName lineItem ">
+        <view class="left">
+          <text class="iconfont icon-shangjia baseColor"></text>
+        </view>
+        <view class="center">
+          {{details.tenantName}}
+        </view>
+        <view class="right"></view>
+      </view>
+    </navigator>
+    <block wx:for="{{details.orderItems}}" wx:key="id">
+      <view class="shopDetails" bindtap="goProductDetails" data-id="{{item.productId}}">
+        <view class="lineItem">
+          <view class="left">
+            <image src="{{item.thumbnail?item.thumbnail:'/resources/images/share/shareTopBg.jpg'}}"></image>
+          </view>
+          <view class="center">
+            <view class="overthree">{{item.fullName}}</view>
+            <view>￥{{item.price}}</view>
+          </view>
+          <view class="right">
+            x{{item.quantity}}
+          </view>
+        </view>
+      </view>
+
+    </block>
+    <view class="total">
+      <view class="lineItem">
+        <view class="right">
+          <view>小计：
+            <text>￥{{details.productPrice}}</text>
+          </view>
+          <view>运费：
+            <text>￥{{details.freight}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="lineItem title border_none f16" wx:if="{{details.couponDiscount}}">
+    <view class="left">
+      <text class="iconfont icon-round_quan_fill clr_purple f18"></text>
+    </view>
+    <view class="center">
+      店铺优惠券
+    </view>
+    <view class="right">
+      -￥{{details.couponDiscount}}
+    </view>
+  </view>
+  <view class="lineItem title border_none f16" style='height:20rpx;'>
+    <view class="left">
+      <!-- <text class="iconfont icon-jifen baseColor f18"></text> -->
+    </view>
+    <view class="center">
+      <!-- 获得积分 -->
+    </view>
+    <view class="right">
+      <!-- {{details.point}} -->
+    </view>
+  </view>
+  <view class="op">
+    <view>
+      实付款：
+      <text class="baseColor">￥{{details.amount}}</text>
+    </view>
+  </view>
+  <view class="method f14" style='margin-bottom:{{isIphoneX ? 68 : 0}}rpx'>
+    <block wx:if="{{details.finalOrderStatus.status == 'waitPay'}}">
+      <view data-type="refund" data-info="{{details.id}}" catchtap="methodBtn">取消订单</view>
+      <form bindsubmit="formSubmit" report-submit bindreset="formReset" style='margin:auto 0;'>
+        <button data-type="waitpay" class="confirmBtn" form-type="submit" data-info="{{details.id}}" style="border:1px solid #d9d9d9;line-height:1.6;margin-left:20rpx;margin-right:0;font-size:32rpx;">立即支付</button>
+      </form>
+    </block>
+    <block wx:elif="{{details.finalOrderStatus.status == 'unconfirmed'}}">
+      <view data-type="refund" class='clr_red' data-info="{{details.id}}" bindtap="callUs">投诉</view>
+      <view data-type="refund" data-info="{{details.id}}" catchtap="methodBtn">取消订单</view>
+    </block>
+    <block wx:elif="{{details.finalOrderStatus.status == 'waitShipping'}}">
+      <view class='clr_red' data-info="{{details.id}}" bindtap="callUs">投诉</view>
+      <block wx:if="{{details.shippingMethod.method == 'TPL'}}">
+        <view data-type="return" data-info="{{details.id}}" catchtap="methodBtn">退货申请</view>
+        <view data-type="remind" data-info="{{details.id}}" class="confirmBtn" catchtap="methodBtn">提醒商家发货</view>
+      </block>
+      <block wx:else>
+        <view data-type="return" data-info="{{details.id}}" catchtap="methodBtn">退货申请</view>
+      </block>
+    </block>
+    <block wx:elif="{{details.finalOrderStatus.status == 'sign'}}">
+      <view class='clr_red' data-info="{{details.id}}" bindtap="callUs">投诉</view>
+      <view data-type="return" data-info="{{details.id}}" catchtap="methodBtn">退货</view>
+      <view wx:if="{{details.shippings[0].id}}" data-type="logistics" data-info="{{details.shippings[0].trackingNo}}" catchtap="methodBtn">查看物流</view>
+      <view data-type="confirm" data-info="{{details.id}}" class="confirmBtn" catchtap="methodBtn">立即签收</view>
+    </block>
+    <block wx:elif="{{details.finalOrderStatus.status == 'toReview'}}">
+      <view class='clr_red' data-info="{{details.id}}" bindtap="callUs">投诉</view>
+      <view wx:if="{{details.shippings[0].id}}" data-type="logistics" data-info="{{details.shippings[0].trackingNo}}" catchtap="methodBtn">查看物流</view>
+      <view class="confirmBtn" catchtap="methodBtn" data-type="evaluate" data-info="{{details.id}}">立即评价</view>
+    </block>
+    <block wx:elif="{{details.finalOrderStatus.status == 'waitReturn'}}">
+      <view class='clr_red' data-info="{{details.id}}" bindtap="callUs">投诉</view>
+      <view data-type="remind" data-info="{{details.id}}" class="confirmBtn" catchtap="methodBtn">提醒商家退款</view>
+    </block>
+    <block wx:elif="{{details.finalOrderStatus.status == 'completed'}}">
+      <view class='clr_red' data-info="{{details.id}}" bindtap="callUs">投诉</view>
+      <view wx:if="{{details.shippings[0].trackingNo}}" data-type="logistics" data-info="{{details.shippings[0].trackingNo}}" catchtap="methodBtn">查看物流</view>
+    </block>
+  </view>
+
+  <include src="/template/password/payPassword.wxml" />
+  <include src="/template/actionsheet/actionsheet.wxml" />
+  <!-- <view class='technical_support'>
+    <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+  </view> -->
+</view>

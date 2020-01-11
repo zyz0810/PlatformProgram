@@ -1,0 +1,75 @@
+<!--pages/shop/category/index.wxml-->
+<wxs module="getDepth">
+  module.exports = function(data) {
+    var depth = 1,
+      data = [data];
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].childrens && data[i].childrens != '') {
+        if (depth == 3) {
+          break;
+        }
+        depth = 2;
+        for (var j = 0; j < data[i].childrens.length; j++) {
+          if (data[i].childrens[j].childrens && data[i].childrens[j].childrens != '' && data[i].childrens[j].length != 0) {
+            depth = 3;
+            break;
+          }
+        }
+      }
+    }
+    return depth;
+  }
+</wxs>
+<view class="container" hidden="{{loading||(category.length==0)}}">
+  <view class="productCategory" hidden="{{tabIndex==1||category.length==0}}">
+    <view class="leftScroll">
+      <!-- <view class="leftScrollTips" style="top:{{activeIndex*90+21}}rpx;background:#6c69ff;"></view> -->
+      <block wx:for="{{category}}" wx:key="id">
+        <view class="leftItem overone" bindtap="checkout" data-id="{{item.id}}" data-index="{{index}}" style="background:{{activeID == item.id?'#fff':''}};}}">{{item.name}}</view>
+      </block>
+    </view>
+    <view class="rightScroll" style="top:-{{activeIndex*100}}%;">
+      <!-- <radio-group class="radio-group category_radio" bindchange="radioChange" > -->
+      <radio-group class="radio-group category_radio" >
+        <block wx:for="{{category.length}}" wx:key="*this">
+          <view class="rightItem">
+            <block wx:if="{{getDepth(category[index]) == 2}}">
+              <view class="rightItemContentList">
+                <block wx:for="{{category[index].childrens}}" wx:key="id" wx:for-item="rightItemContent">
+                  <view class="rightItemContent" catchtap='click' data-id="{{rightItemContent.id}}" data-name='{{rightItemContent.name}}'>
+                    <label>
+                      <view class='lineItem border'>
+                        <view class="f12 overone center">{{rightItemContent.name}}</view>
+                        <view class='right'>
+                          <radio class="radio" value="{{rightItemContent.name}}" checked='{{rightItemContent.name == chooseCategoryName}}'></radio>
+                        </view>
+                      </view>
+                    </label>
+                  </view>
+                </block>
+              </view>
+            </block>
+            <block wx:else>
+              <block wx:for="{{category[index].childrens||[category[index]]}}" wx:key="id" wx:for-item="rightItem">
+                <view class="rightItemContentList">
+                  <block wx:for="{{rightItem.childrens||[rightItem]}}" wx:key="i  d" wx:for-item="rightItemContent">
+                    <view class="rightItemContent" data-id="{{rightItemContent.id}}">
+                      <label  data-id="{{rightItemContent.id}}">
+                        <view class='lineItem border'>
+                          <view class="f12 overone center">{{rightItemContent.name}}</view>
+                          <view class='right'>
+                            <radio class="radio" value="{{rightItemContent.name}}" checked='{{rightItemContent.name == chooseCategoryName}}'> </radio>
+                          </view>
+                        </view>
+                      </label>
+                    </view>
+                  </block>
+                </view>
+              </block>
+            </block>
+          </view>
+        </block>
+      </radio-group>
+    </view>
+  </view>
+</view>

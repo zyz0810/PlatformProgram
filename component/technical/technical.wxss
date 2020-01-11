@@ -1,0 +1,35 @@
+.technical_support.static{
+  position: static;
+}
+.technical_support {
+  padding: 20rpx 0 !important;
+  width: 100% !important;
+  display: block !important;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+}
+.bottom50{
+  bottom: 100rpx;
+}
+
+.technical_support image {
+  width: 250rpx !important;
+  height: 100rpx !important;
+  display: block !important;
+  margin: 20rpx auto !important;
+  border-radius: 0 !important;
+}
+.technical_kong{
+  height: 240rpx;
+  position: relative;
+  z-index: 1 !important;
+  /* visibility:hidden; */
+  /* opacity: 0; */
+  /* position: relative; */
+  /* background: red; */
+    /* position: relative; 
+   z-index: -20; */
+   /* background: red;  */
+}

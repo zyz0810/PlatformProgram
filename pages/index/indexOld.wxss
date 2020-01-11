@@ -1,0 +1,349 @@
+page {
+  position: relative;
+}
+
+.scrollWrap {
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding-top: 44px;
+}
+
+.scrollWrap swiper-item {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: translate(0%, 0px) translateZ(0px);
+}
+
+.search {
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 110;
+  padding: 15rpx 0;
+  background: #ececec;
+  height: 88rpx;
+}
+
+.search.borderbottom::after {
+  content: "";
+  display: block;
+  width: 100%;
+  position: absolute;
+  bottom: -3rpx;
+  right: 0;
+  height: 1px;
+  background: #fff;
+  transform: scaleY(0.5);
+  z-index: 2;
+}
+
+.searchWrap {
+  width: 700rpx;
+  background: #fff;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 10rpx 100rpx;
+  border-radius: 10rpx;
+  position: relative;
+  color: #fff;
+}
+
+.searchWrap image {
+  display: block;
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  top: 10rpx;
+}
+
+.searchWrap input {
+  height: 40rpx;
+  min-height: 40rpx;
+  color: #000;
+}
+
+.searchWrap .searchIcon {
+  left: 20rpx;
+}
+
+.swiperWrap {
+  position: relative;
+}
+
+.swiperWrap .newsWrap {
+  width: 95%;
+  margin: 0 auto;
+  background: #fff;
+  position: absolute;
+  bottom: -50rpx;
+  left: 2.5%;
+  border-radius: 10rpx;
+  padding: 25rpx 0;
+}
+
+.wrapperContainer {
+  width: 100%;
+}
+
+.adSwiper image {
+  width: 100%;
+}
+
+/* 广告位部分 */
+
+.ad_one {
+  background: #fff;
+  margin-top: 2vw;
+}
+
+.row view image {
+  width: 100%;
+  height: 100%;
+}
+
+.ad_one {
+  border-bottom: 5px solid #fff;
+}
+
+.ad_one .col-12, .ad_one .col-12:first-child view {
+  height: 60vw;
+}
+
+.ad_one .col-12:last-child view {
+  height: 30vw;
+}
+
+/* 横屏广告位 */
+
+.lineScreenAd image {
+  width: 100%;
+  display: block;
+}
+
+/* 城市优选标题样式 */
+
+.crossLine {
+  background: #fff;
+  margin-top: 2%;
+  padding: 20rpx 0;
+  border-bottom: 1px solid #ececec;
+}
+
+/* 楼层部分样式 */
+
+.headerScroll {
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+  height: 88rpx;
+  line-height: 88rpx;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #fff;
+  overflow-x: scroll;
+}
+
+.headerScroll ::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+  display: none;
+}
+
+.headerScroll .active {
+  color: #ff3434;
+  border-bottom: 2px solid #ff3434;
+}
+
+.headerScroll view {
+  margin: 0 40rpx;
+  font-size: 28rpx;
+}
+
+.clr_price {
+  color: #ff3434;
+}
+
+.bizViewTenantList {
+  background: #ececec;
+}
+
+.bizViewTenantList .floor_num {
+  display: block;
+  color: #393939;
+  line-height: 2.5em;
+  background: #fff;
+}
+
+.bizViewTenantList .floor_num {
+  margin-top: 2%;
+}
+
+.TenantList {
+  margin-bottom: 2%;
+}
+
+.cityFineTenantList .cityFineTenant {
+  margin-bottom: 2%;
+}
+
+.cityFineTenantList .tenantInfoWrap {
+  border: 2px solid #fff;
+  width: 368rpx;
+  height: 205rpx;
+  left: 191rpx;
+  top: 15vw;
+  position: absolute;
+}
+
+.cityFineTenantList .tenantInfoWrap .tenantInfo {
+  background: #fff;
+  margin: 2vw;
+  widows: 338rpx;
+  height: 177rpx;
+}
+
+.cityFineTenantList .tenantInfoWrap .tenantInfo .imageWrap {
+  width: 10vw;
+  height: 10vw;
+  display: block;
+  margin: 0 auto;
+  padding: 20rpx 0;
+}
+
+.cityFineTenantList .tenantInfoWrap .tenantInfo .imageWrap image {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+
+.cityFineTenantList {
+  position: relative;
+}
+
+.cityFineTenantList .logo {
+  width: 750rpx;
+  height: 450rpx;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+.cityFineTenantList .logo image {
+  width: 100%;
+  height: 100%;
+}
+
+.cityFineTenantProduct {
+  padding: 0 0.5vw;
+}
+
+.cityFineTenantProduct view {
+  display: inline-block;
+  margin: 2vw 1vw;
+  width: 31vw;
+}
+
+.cityFineTenantProduct view image {
+  width: 100%;
+  height: 31vw;
+  display: block;
+  /* box-shadow: 0 0 4rpx 4rpx #d1d1d1; */
+}
+
+.cityFineTenantProduct .clr_price {
+  width: 29vw;
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000 !important;
+}
+
+.ad_swiper {
+  width: 600rpx;
+  height: 800rpx;
+  margin: 0 auto;
+  position: absolute;
+  top: 120rpx;
+  left: 75rpx;
+  z-index: 1009;
+}
+
+.ad_swiper image {
+  width: 100%;
+  height: 100%;
+}
+
+.closeImg {
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  top: 950rpx;
+  left: 345rpx;
+  z-index: 1005;
+}
+
+.closeImg  image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.closeImg button, .ad_swiper button {
+  background: transparent;
+  padding: 0;
+  border: 0;
+  color: #fff;
+}
+
+.ad_swiper button image {
+  width: 600rpx;
+  height: 800rpx;
+}
+
+.formStyle button::after, .formStyle button::before {
+  display: none;
+}
+
+/*返回顶部  */
+
+.toUpshow {
+  bottom: 65px !important;
+  opacity: 1 !important;
+}
+
+.toUp {
+  position: fixed;
+  bottom: -40px;
+  opacity: 0;
+  transition: 0.5s all;
+  background: rgba(76, 76, 76, 0.7);
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border-radius: 5px;
+  color: #fff;
+  line-height: 40px;
+  font-size: 20px;
+  right: 4%;
+  z-index: 9999;
+}
+
+.toUp image {
+  display: block;
+  margin: 20% auto;
+  width: 60%;
+  height: 60%;
+}

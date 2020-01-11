@@ -1,0 +1,30 @@
+page {
+  background: #fff;
+}
+
+.title {
+  padding: 3%;
+}
+
+.th {
+  padding: 2%;
+  color: #5a5a5a;
+  text-align: center;
+}
+
+.thLeft {
+  width: 30%;
+  box-sizing: border-box;
+}
+
+.td {
+  padding: 2%;
+  color: #828282;
+  text-align: center;
+  align-items: center;
+}
+
+.tdLeft {
+  width: 30%;
+  text-align: center;
+}

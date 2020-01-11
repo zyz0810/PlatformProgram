@@ -1,0 +1,239 @@
+/* pages/search/index.wxss */
+
+.wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding-left: 10px;
+}
+
+.search {
+  padding-top: 10rpx;
+}
+
+.ss {
+  white-space: nowrap;
+  line-height: 30px;
+  padding: 0 10px;
+}
+
+.top-input {
+  width: 100%;
+  height: 30px;
+  background: #f8f8f8;
+  flex-direction: row;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 30px;
+  line-height: 1.6;
+}
+
+.top-input image {
+  margin:0 8px;
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.top-input input {
+  width: 100%;
+  line-height: 30px;
+  box-sizing: border-box;
+}
+
+.container {
+  padding-top: 90px;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 170rpx;
+  z-index: 10;
+  background: #fff;
+}
+
+.tab {
+  display: flex;
+  height: 60px;
+  overflow: hidden;
+  /* box-shadow: 0 2px 5px -5px #da0f3a; */
+}
+
+.tab > view {
+  flex: 1;
+  text-align: center;
+  padding: 20px 0 10px;
+}
+
+.tab .active {
+  color: #ef2b2d;
+}
+
+.tab .active::after {
+  content: '';
+  display: block;
+  width: 25%;
+  height: 2px;
+  margin: 10px auto 0;
+  background: #ef2b2d;
+}
+
+.content .tagList {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 2% 2% 4%;
+}
+
+.content .tagList view {
+  width: 21%;
+  padding: 5px 1%;
+  border-radius: 5px;
+  background: #efeff4;
+  margin: 2% 1% 0;
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.content .title {
+  line-height: 1;
+  height: 13px;
+  padding: 20rpx 22.5rpx;
+  position: relative;
+}
+
+.content .title  image {
+  position: absolute;
+  top: 20rpx;
+  right: 22.5rpx;
+  width: 13px;
+  height: 13px;
+}
+
+.list-content {
+  background: #f1f1f1;
+}
+
+/* //搜索商品列表样式 */
+
+.productList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.productListLine {
+  display: block;
+}
+
+.productList .proReItem {
+  box-sizing: border-box;
+  width: 50%;
+  padding: 2%;
+  position: relative;
+  background: #fff;
+}
+
+.productList .proReItem:nth-child(2n) {
+  padding-left: 1%;
+}
+
+.productList .proReItem:nth-child(2n + 1) {
+  padding-right: 1%;
+}
+
+.productListLine .proReItem {
+  width: 100%;
+  display: flex;
+  margin-bottom: 10rpx;
+}
+
+.productList .proReItem > image {
+  display: block;
+  width: 100%;
+  height: 375rpx;
+}
+
+.productListLine .proReItem > image {
+  display: block;
+  width: 210rpx;
+  height: 210rpx;
+  border-radius: 12rpx;
+}
+
+.productList .proReItem .details {
+  flex: 1;
+  box-sizing: border-box;
+  padding-left: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 375rpx;
+}
+
+.productList .proReItem .price {
+  margin-top: auto;
+  margin-bottom: 10rpx;
+}
+
+.productList .proReItem .price .marketPrice {
+  margin-left: 10rpx;
+}
+
+.productList .proReItem .title {
+  color: #333;
+  line-height: 35rpx;
+  margin: 10rpx 0;
+}
+
+.productList .cartIcon img {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.productList .cartIcon {
+  width: 50rpx;
+  height: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #fd407a;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 15rpx;
+  right: 15rpx;
+}
+
+/* 商家列表样式 */
+
+.lineItem {
+  display: flex;
+  border-bottom: 1px solid #ececec;
+  padding: 3% 2%;
+}
+
+.lineItem .center {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.lineItem  .left {
+  width: 28vw;
+  height: 28vw;
+  margin-right: 15px;
+  position: relative;
+}
+
+.lineItem  .left image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}

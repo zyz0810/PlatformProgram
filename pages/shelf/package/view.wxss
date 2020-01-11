@@ -1,0 +1,201 @@
+/* 商品列表 */
+@import '/template/productList/productListTemp.wxss';
+@import "../../wxParse/wxParse.wxss";
+
+.adSwiper {
+  width: 750rpx;
+  height: 750rpx;
+}
+
+.adSwiper image {
+  width: 100%;
+  height: 100%;
+}
+
+page {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.bgWhite {
+  background: #fff;
+}
+
+.buyMode {
+  margin-top: 2vw;
+}
+
+.packDesc {
+  margin-top: 2vw;
+}
+
+.packDesc, .pledgeCashDesc, .promotionDesc {
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.packDesc, .pledgeCashDesc, .promotionDesc {
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.marginTwo {
+  margin-right: 6rpx;
+}
+
+.marginBtm {
+  margin-bottom: 2vw;
+}
+
+.submit {
+  width: 100%;
+  line-height: 3;
+  color: #fff;
+  margin-top: 10vw;
+  position: fixed;
+  bottom: 0;
+  border-radius: 0;
+  padding: 0;
+}
+
+.actionMask {
+  /* position: absolute; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+  box-sizing: border-box;
+}
+
+.actionContent {
+  /* position: absolute; */
+  position: fixed;
+  width: 100%;
+  background: #fff;
+  left: 0;
+  bottom: 0;
+  z-index: 10002;
+}
+
+.actionTitle {
+  padding: 0 20rpx;
+}
+
+view {
+  overflow: visible;
+}
+
+.actionTitle .left image {
+  width: 160rpx;
+  height: 160rpx;
+  position: relative;
+  top: -40rpx;
+}
+
+.actionTitle .center {
+  padding-left: 20rpx;
+}
+
+.actionTitle .right image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.actionSpecifications {
+  padding: 2% 20rpx;
+  max-height: 50vh;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.actionItemBtn {
+  padding: 20rpx 0;
+}
+
+.actionItemBtn text {
+  display: inline-block;
+  padding: 10rpx 20rpx;
+  margin: 0 20rpx 20rpx 0;
+  white-space: nowrap;
+  background: #efeff4;
+  color: #fff;
+  border-radius: 12rpx;
+}
+
+.actionItemBtn text.active {
+  color: #fff !important;
+}
+
+.actionItemBtn text.canTap {
+  color: #000;
+}
+
+.actionNumber {
+  padding: 2% 20rpx;
+}
+
+.actionNumber .amount {
+  display: flex;
+  width: 210rpx;
+  position: relative;
+}
+
+.actionNumber .amount::after {
+  content: " ";
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.actionNumber .amount input {
+  display: block;
+  position: relative;
+}
+
+.actionNumber .amount input::after {
+  content: " ";
+  width: 200%;
+  height: 200%;
+  overflow-x: scroll;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  box-sizing: border-box;
+}
+
+.actionNumber .amount button, .amount input {
+  width: 70rpx;
+  height: 70rpx !important;
+  min-height: 70rpx !important;
+  padding: 0;
+  margin: 0;
+  line-height: 70rpx !important;
+  background: #fff;
+  text-align: center;
+  background: transparent;
+  z-index: 999;
+}
+
+.actionNumber .amount button::after {
+  border: none !important;
+}
+
+.defaultBtn {
+  margin: 20rpx auto 60rpx;
+}

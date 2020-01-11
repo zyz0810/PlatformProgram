@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "technicalCart-component": "/component/technicalCart/technical",
+    "shadow-component": "/component/shadow/shadow"
+  }
+}

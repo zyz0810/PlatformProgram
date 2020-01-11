@@ -1,0 +1,57 @@
+<view>
+  <view class="lineItem  lineItem_access" bindtap="goArticle" data-id="1197">
+    <view class="left">
+      <text class="iconfont icon-zixun baseColor"></text>
+    </view>
+    <view class="center f16">
+      <view>购物须知</view>
+    </view>
+    <view class="right">
+      <view></view>
+    </view>
+  </view>
+  <view class="lineItem  lineItem_access" bindtap="goArticle" data-id="1198">
+    <view class="left">
+      <text class="iconfont icon-zixun baseColor"></text>
+    </view>
+    <view class="center f16">
+      <view>服务协议</view>
+    </view>
+    <view class="right">
+      <view></view>
+    </view>
+  </view>
+  <view class="lineItem  lineItem_access" bindtap="goArticle" data-id="1199">
+    <view class="left">
+      <text class="iconfont icon-zixun baseColor"></text>
+    </view>
+    <view class="center f16">
+      <view>退款规则</view>
+    </view>
+    <view class="right">
+      <view></view>
+    </view>
+  </view>
+  <view class="lineItem">
+    <view class="left">
+      <text class="iconfont icon-zixun baseColor"></text>
+    </view>
+    <view class="center f16">
+      <view>官方微信</view>
+    </view>
+    <view class="right">
+      <view class='f12 clr_lightGray'>Laiyijia1</view>
+    </view>
+  </view>
+  <!-- <view class="lineItem  lineItem_access" bindtap="goArticle" data-id="1043">
+    <view class="left">
+      <text class="iconfont icon-zixun baseColor"></text>
+    </view>
+    <view class="center f16">
+      <view>平台资料</view>
+    </view>
+    <view class="right">
+      <view></view>
+    </view>
+  </view> -->
+</view>

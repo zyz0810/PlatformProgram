@@ -1,0 +1,105 @@
+page {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #fff;
+}
+
+.wrapper {
+  background: #fff;
+  border-bottom: 1px solid #f2f2f2;
+  height: 122rpx;
+  padding: 4%;
+  box-sizing: border-box;
+}
+
+.inputContent {
+  background: #f4f4f4;
+  height: 64rpx;
+  border-radius: 50rpx;
+  padding-left: 26rpx;
+  display: flex;
+  align-items: center;
+  border: 1px solid #d9d9d9;
+}
+
+.icon {
+  display: block;
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+
+.input {
+  font-size: 28rpx;
+  line-height: 62rpx;
+  height: 62rpx;
+  flex: 1;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 222rpx;
+}
+
+.headerScroll {
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+  height: 88rpx;
+  line-height: 88rpx;
+  box-sizing: border-box;
+}
+
+/* .headerScroll .active {
+  color: #fd407a;
+} */
+
+.headerScroll view {
+  padding: 0 20rpx;
+  font-size: 32rpx;
+}
+
+.content {
+  padding-top: 222rpx;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.left, .right {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.left {
+  width: 24%;
+  background: rgb(234, 234, 234);
+  line-height: 100rpx;
+  font-size: 26rpx;
+  text-align: center;
+}
+
+.right {
+  flex: 1;
+}
+
+.left > view {
+  border-top: 1rpx solid #dedede;
+}
+
+.left .active {
+  background: #fff;
+}
+
+.left > view:first-child {
+  border-top: none;
+}
+
+.tips {
+  background: #fff;
+  /* margin-bottom: 150rpx;  */
+}

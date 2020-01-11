@@ -1,0 +1,6 @@
+<import src="/template/chat/chatIndex.wxml" />
+<shadow-component />
+<template is="order" data="{{item:order,showDot:order.showDot}}"></template>
+<template is="account" data="{{item:account,showDot:account.showDot}}"></template>
+<template is="message" data="{{item:message,sType:'message',showDot:message.showDot}}"></template>
+<!-- <technical-component /> -->

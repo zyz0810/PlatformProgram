@@ -1,0 +1,136 @@
+.productList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 20rpx;
+}
+
+.productListLine {
+  display: block;
+}
+
+.productList .proReItem {
+  box-sizing: border-box;
+  width: 345rpx;
+  /* padding: 2% 2% 0 2%; */
+  position: relative;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+  background: #fff;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  border-bottom-left-radius: 0;
+}
+
+.productList .proReItem:nth-child(2n) {
+  margin-right: 0;
+}
+
+/* .productList .proReItem:nth-child(2n) {
+  padding-left: 1%;
+}
+
+.productList .proReItem:nth-child(2n+1) {
+  padding-right: 1%;
+} */
+
+.productListLine .proReItem {
+  width: 100%;
+  display: flex;
+  margin-bottom: 10rpx;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 20rpx;
+}
+
+.productList .proReItem>image {
+  display: block;
+  width: 100%;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+}
+
+.productListLine .proReItem>image {
+  display: block;
+  width: 210rpx;
+  height: 210rpx;
+  border-radius: 12rpx;
+}
+
+.productList .proReItem .details {
+  flex: 1;
+  box-sizing: border-box;
+  padding-left: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.productList .proReItem .price {
+  margin-top: auto;
+  /* margin-bottom: 10rpx; */
+}
+
+.productList .proReItem .price .marketPrice {
+  margin-left: 10rpx;
+}
+
+.productList .proReItem .title {
+  color: #333;
+  height: 70rpx;
+  line-height: 35rpx;
+  margin: 10rpx 0;
+}
+
+/* 首页样式 */
+
+.proReItemIndex {
+  background: #fff !important;
+  border-radius: 20rpx;
+}
+
+.proReItemIndex .details {
+  background: #fff;
+  padding: 20rpx 0;
+  border-top: 1px solid #f1f1f1;
+  justify-content: center !important;
+  border-bottom-left-radius: 20rpx;
+  border-bottom-right-radius: 20rpx;
+}
+
+.productList .proReItemIndex .titleName {
+  color: #333;
+  height: 70rpx;
+  line-height: 35rpx;
+  margin: 0 0 10rpx;
+}
+
+.proReItemIndex .bonusAmount {
+  /* background: #fd407a; */
+  background: #fd407a;
+  color: #fff;
+  padding: 4rpx 18rpx;
+  border-radius: 6rpx;
+}
+
+.productList .cartIcon image {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.productList .cartIcon {
+  width: 50rpx;
+  height: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #fd407a;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 15rpx;
+  right: 15rpx;
+}
+
+.saleCount {
+  margin-bottom: 10rpx;
+}

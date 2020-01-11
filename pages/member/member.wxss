@@ -1,0 +1,298 @@
+.pageTop {
+  width: 100%;
+  background: #fff;
+  height: 300rpx;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+}
+
+.container {
+  padding-bottom: 0;
+}
+
+.setting {
+  color: #000;
+  text-align: right;
+}
+
+.details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.head {
+  width: 100rpx;
+  height: 100rpx;
+  margin-left: 30rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+  box-shadow: 3px 3px 5px #999;
+}
+
+.head .image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
+}
+
+.name {
+  color: #000;
+}
+
+.label text {
+  border: 1px solid #000;
+  background: red;
+  border-radius: 20rpx;
+  display: inline-block;
+  line-height: 35rpx;
+  font-size: 24rpx;
+  color: #fff;
+  padding: 0 20rpx;
+}
+
+.pageTopBottom {
+  width: 100%;
+  padding-top: 45rpx;
+  display: flex;
+}
+
+.pageTopBottom>view {
+  flex: 1;
+  text-align: center;
+  color: #000;
+  line-height: 1.8;
+}
+
+.myWallet {
+  background: rgba(0, 0, 0, 0.3);
+  margin-left: auto;
+  height: 60rpx;
+  border-radius: 25rpx 0 0 25rpx;
+  color: #fff;
+  font-size: 30rpx;
+  line-height: 1.3;
+}
+
+.myWallet .icon-qianbao {
+  padding-left: 10px;
+}
+
+.content {
+  width: 100%;
+}
+
+.content, .lineItem {
+  position: relative;
+  z-index: 99;
+}
+
+.lineItem {
+  padding: 3%;
+  border-bottom: 1px solid #eee;
+}
+
+.lineItem .center {
+  font-size: 32rpx;
+}
+
+.lineItem .right {
+  font-size: 12px;
+  color: #666;
+}
+
+.iconfont {
+  font-size: 52rpx;
+}
+
+.icon-qianbao {
+  font-size: 40rpx;
+}
+
+.icon-icon {
+  font-size: 24rpx;
+}
+
+.icon-hehuoren {
+  color: #fd407a;
+}
+
+.icon-shimingrenzheng {
+  color: #ffa406;
+}
+
+.icon-kaitongqiyeban {
+  color: #745df0;
+}
+
+/* .icon-yinhangqiabangding {
+  color: #fd407a;
+} */
+
+.icon-xiugaimima1 {
+  color: #ff9806;
+  font-size: 54rpx;
+}
+
+/* .icon-bangdingshouji, .icon-lianxiwomen {
+  color: #fd407a;
+} */
+
+.marginItem {
+  border-bottom: 20rpx solid #eee;
+}
+
+.setting {
+  margin-right: 4vw;
+}
+
+.setting text {
+  width: 8vw;
+  display: inline-block;
+  height: 6vw;
+}
+
+.item {
+  padding-top: 300rpx;
+  width: 100%;
+  border-bottom: 20rpx solid #eee;
+}
+
+.item>view:last-child {
+  display: flex;
+  height: 80px;
+  background: #fff;
+}
+
+.item>view.itemTop {
+  height: 40px;
+  margin-bottom: 1px;
+}
+
+.item>view view {
+  margin: auto 0;
+}
+
+.item .itemTop {
+  justify-content: space-between;
+  padding: 0 2% 0 4%;
+  font-size: 12px;
+  color: #818181;
+  border-bottom: 1px solid #eee;
+}
+
+.item .itemBottom view {
+  width: 100%;
+  color: #818181;
+  font-size: 20px;
+  position: relative;
+}
+
+.item .itemBottom view text {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+}
+
+.item .itemBottom view text.iconfont {
+  font-size: 16px;
+  padding-bottom: 2px;
+}
+
+.topBottomBar {
+  background: rgba(144, 190, 6, 0.7);
+  margin: 10% 0 0;
+}
+
+.topBottomBar>view {
+  background: inherit;
+}
+
+.topBottomBar text {
+  line-height: 25px;
+  color: #fff;
+  font-size: 14px !important;
+}
+
+.allOrder text {
+  font-size: 22rpx;
+  padding-left: 0px !important;
+}
+
+.orderType {
+  margin-top: 8rpx;
+}
+
+.tips {
+  position: absolute;
+  background: #ff5c5c;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 50%;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  left: 50%;
+  top: -12px;
+}
+
+.share {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: transparent;
+}
+
+.share::after {
+  display: none;
+}
+
+.actionMask {
+  /* position: absolute; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+  box-sizing: border-box;
+}
+
+.cardOption {
+  position: fixed;
+  bottom: 0;
+  background: #fff;
+  z-index: 10002;
+  width: 100%;
+}
+
+.cardOption>view {
+  background: #c9bbc9;
+  width: 700rpx;
+  margin: 30rpx auto;
+  padding: 10rpx 0;
+  border-radius: 10rpx;
+}
+
+.cardOption .bindCard {
+  background: #687ad4;
+  color: #fff;
+  padding: 20rpx 0;
+  margin: 20rpx 60rpx;
+  border-radius: 10rpx;
+}
+
+.cardOption  .openCard {
+  background: #fb0c20;
+  color: #fff;
+  padding: 20rpx 0;
+  margin: 20rpx 60rpx;
+  border-radius: 10rpx;
+}

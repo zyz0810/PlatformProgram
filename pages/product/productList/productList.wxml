@@ -1,0 +1,25 @@
+<!--商品列表  -->
+<import src="/template/productList/productListTemp.wxml" />
+<!--search  -->
+<shadow-component />
+<import src="/template/search/search.wxml" />
+<view class='container'>
+  <view class="tab border_bottom">
+    <template is="search" data="{{position:'relative',background:'#fd407a',val:keyWord}}"></template>
+    <view class="tabList f14">
+      <view data-index='0' bindtap='sortToggle' class="{{activeTabIndex == 0?'baseColor':''}}">综合排序</view>
+      <view data-index='1' bindtap='sortToggle' hidden='{{!showUp}}' class="{{activeTabIndex == 1?'baseColor':''}}">价格升序</view>
+      <view data-index='2' bindtap='sortToggle' hidden='{{showUp}}' class="{{activeTabIndex == 2?'baseColor':''}}">价格降序</view>
+      <view data-index='3' bindtap='sortToggle' class="{{activeTabIndex == 3?'baseColor':''}}">销量优先</view>
+    </view>
+    <view class="checkout" bindtap="checkoutShowType">
+      <image src="/resources/images/icon/details.png"></image>
+    </view>
+  </view>
+  <button loading hidden="{{getDataComplete}}" class="f14 loadBtn clr_lightGray">加载中</button>
+  <template is="productList" data="{{showType,data:productData}}"></template>
+  <view class="tips" hidden="{{showtips}}">{{tips}}</view>
+</view>
+<!-- <view class='technical_support static' bindtap='technical'>
+  <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+</view> -->

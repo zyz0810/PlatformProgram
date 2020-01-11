@@ -1,0 +1,88 @@
+/* pages/member/address/list.wxss */
+
+.topTips {
+  background: #cdb59b;
+  padding: 1% 54rpx;
+  /* position: fixed; *//* top: 0; *//* left: 0; */
+  width: 100%;
+  z-index: 999;
+  box-sizing: border-box;
+}
+
+.topTips .right::after {
+  border-color: #fff;
+}
+
+.info>text {
+  margin-right: 20rpx;
+}
+
+.edit {
+  padding-left: 30rpx;
+  padding-right: 2%;
+}
+
+.edit::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 25%;
+  width: 1px;
+  height: 60%;
+  bottom: 0;
+  border-left: 1px solid #d9d9d9;
+  color: #d9d9d9;
+  -webkit-transform-origin: 100% 0;
+  transform-origin: 100% 0;
+  -webkit-transform: scaleX(0.5);
+  transform: scaleX(0.5);
+}
+
+.lineItem {
+  padding: 4% 0 4% 2%;
+}
+
+.left {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.center {
+  line-height: 1.6;
+  width: 65%;
+}
+
+.list {
+  padding-bottom: 80px;
+}
+
+.add {
+  width: 90%;
+  line-height: 2.6;
+  color: #fff;
+  margin-top: 20px;
+  position: fixed;
+  bottom: 20px;
+  left: 5%;
+  border-radius: 10rpx;
+}
+
+.clicle {
+  margin-right: 2%;
+}
+
+.clicle text {
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 50%;
+  background: #b3b4b6;
+}
+
+.defaultAddress {
+  background: #fff1eb;
+  padding: 2rpx 8rpx;
+  margin-right: 2vw;
+  border-radius: 6rpx;
+  display: inline-block;
+}

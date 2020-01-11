@@ -1,0 +1,66 @@
+.tpl_popuo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 1001;
+}
+
+.tpl_popuo-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.tpl_popuo-content {
+  width: 66vw;
+  height: 96vw;
+  border-radius: 1.5vw;
+  background: #fff;
+  position: absolute;
+  left: 17vw;
+  top: 12%;
+  z-index: 999999;
+  text-align: center;
+}
+
+.tpl_popuo-topImg {
+  display: block;
+  width: 68vw;
+  margin-left: -1vw;
+}
+
+.tpl_popuo-bottomImg {
+  width: 88vw;
+  max-width: 100vw;
+  position: absolute;
+  left: -9vw;
+  bottom: -22vw;
+}
+
+.tpl_popuo-cancel {
+  position: absolute;
+  width: 10vw;
+  bottom: -20vw;
+  left: 28vw;
+  z-index: 1003;
+}
+
+.tpl_popuo-btn {
+  width: 42.66vw;
+  height: 10vw;
+  line-height: 10vw;
+  background: #ffd703;
+  display: block;
+  margin: 2vw auto 0;
+  border-radius: 1.33vw;
+}
+.tpl_popuo-btn::before{
+  display: none;
+}

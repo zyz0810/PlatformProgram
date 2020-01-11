@@ -1,0 +1,32 @@
+<!-- <view class="flexC details borderA">
+  <view class="orderImg">
+    <image src="{{orderItem.thumbnail?orderItem.thumbnail:'/resources/user.png'}}"></image>
+  </view>
+  <view class="shopInfo">
+    <view class="shopName f14 overone">{{orderItem.name}}</view>
+    <view class="orderNumber f14">订单号:{{item.sn}}</view>
+    <view class="shopPrice f14 clr_orange">￥ {{orderItem.price}}</view>
+  </view>
+  <view class="shopNumber">
+    <view>x{{orderItem.quantity}}</view>
+  </view>
+</view> -->
+<button loading="{{!dataView}}" hidden="{{dataView}}" class="f14 loadBtn clr_lightGray">加载中</button>
+<view class="flexC details borderA" hidden="{{!dataView}}">
+  <view class="orderImg">
+    <image src="{{dataView.productImages[0].thumbnail}}"></image>
+  </view>
+  <view class="shopInfo">
+    <view class="shopName f14 overone">{{dataView.fullName}}</view>
+    <!-- <view class="orderNumber f14">订单号:{{item.sn}}</view> -->
+    <view class="shopPrice f14 clr_orange">￥ {{dataView.price}}</view>
+  </view>
+  <view class="shopNumber">
+    <view>x 1</view>
+  </view>
+</view>
+<!-- <view class='technical_support'>
+  <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+</view> -->
+<include src="/template/actionsheet/actionsheet.wxml" />
+<include src="/template/password/payPassword.wxml" />

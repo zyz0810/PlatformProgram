@@ -1,0 +1,11 @@
+<import src="/template/chat/chatIndex.wxml" />
+<shadow-component />
+<view class='container'>
+  <block wx:for="{{msg}}" wx:key="id">
+    <template wx:if="{{sType == 'order'}}" is="order" data="{{item}}" wx:key="memberId"></template>
+    <template wx:elif="{{sType == 'account'}}" is="account" data="{{item}}" wx:key="memberId"></template>
+    <template wx:else is="message" data="{{item:item,sType:sType}}" wx:key="memberId"></template>
+  </block>
+  <view class="tips" hidden="{{showtips}}">{{tips}}</view>
+  <!-- <technical-component /> -->
+</view>

@@ -1,0 +1,32 @@
+<!--pages/member/address/list.wxml-->
+<view class='lineItem lineItem_access f12 topTips clr-white' wx:if="{{page!=''}}" style='padding:1% 2%;background:{{mainColor}}'>
+  <view class='left'>
+    <text class='iconfont icon-tishi'></text>
+  </view>
+  <view class='center'>点击地址即可进行切换</view>
+</view>
+<view class='list' style='padding-bottom:{{isIphoneX ? 228 : 160}}rpx;'>
+  <view class='list_item lineItem f14' wx:for='{{list}}' wx:key='{{index}}' data-id='{{item.id}}' data-index='{{index}}' data-key="{{page}}" bindtap='{{page=="pay"?"choose":""}}'>
+    <!-- <view class='left'>
+      <text class='iconfont icon-iconfontxuanzhong clr_lightGray' style='color:{{item.isDefault?mainColor:""}}'></text>
+    </view> -->
+    <view class='left clicle'>
+      <text class='f16 clr-white tc'>{{item.name}}</text>
+    </view>
+    <view class='center'>
+      <view class='info'>
+        <text class='f14'>{{item.consignee}}</text>
+        <text class='f12 clr_lightGray'>{{item.phone}}</text>
+      </view>
+      <view class='address f12 overtwo'>
+        <text style='color:{{mainColor}}' wx:if="{{item.isDefault}}" class='defaultAddress'>默认</text>{{item.area.fullName}}{{item.address}}</view>
+    </view>
+    <view class='right f12 clr_lightGray edit' data-id='{{item.id}}' catchtap='goEdit'>编辑</view>
+  </view>
+</view>
+
+<view class='tc' wx:if="{{list.length==0}}">
+  <image src='http://cdn.laiyijia.com/upload/image/201906/76d6eccd-f942-4f50-abf7-881fdff646f8.png' style='width:360rpx;margin:0 auto;display:block;' mode='widthFix'></image>
+  <text class='f14 clr_mediumGray'>您还没有填写收货地址</text>
+</view>
+<view class="add f16 baseBg tc" bindtap="goAdd" style='bottom:{{isIphoneX ? 108 : 40}}rpx;'>添加收货地址</view>

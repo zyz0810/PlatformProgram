@@ -1,0 +1,135 @@
+<!--聊天  -->
+<template name="chatIndex">
+  <view class="chatItem" data-type="{{item.type}}" data-id="{{item.gid}}" data-myid="{{item.myId}}" catchtap="toChat" catchpress="deleteChat" catchlongtap="deleteChat">
+    <view class="head">
+      <view class="unread" wx:if="{{item.unread}}"></view>
+      <image wx:if="{{item.type =='order'}}" src="{{item.image?item.image:'/resources/images/chat/order.png'}}"></image>
+      <image wx:elif="{{item.type =='account'}}" src="{{item.image?item.image:'/resources/images/chat/bill.png'}}"></image>
+      <image wx:elif="{{item.type =='review'}}" src="{{item.image?item.image:'/resources/images/chat/bill.png'}}"></image>
+      <image wx:elif="{{item.type}}" src="{{item.image?item.image:'/resources/images/chat/system.png'}}"></image>
+      <image wx:else src="{{item.headImg?item.headImg:'/resources/user.png'}}"></image>
+    </view>
+    <view class="content">
+      <view class="name f16 overone">
+        <block wx:if="{{item.type =='order'}}">
+          订单消息
+        </block>
+        <block wx:elif="{{item.type =='account'}}">
+          账单消息
+        </block>
+        <block wx:elif="{{item.type =='review'}}">
+          评价消息
+        </block>
+        <block wx:elif="{{item.type == 'notice'}}">
+          系统公告
+        </block>
+        <block wx:elif="{{item.type == 'message'}}">
+          系统消息
+        </block>
+        <block wx:elif="{{item.type == 'consultation'}}">
+          咨询回复
+        </block>
+        <block wx:elif="{{item.type == 'contact'}}">
+          分享达人
+        </block>
+        <block wx:elif="{{item.type == 'activity'}}">
+          活动提醒
+        </block>
+        <block wx:elif="{{item.type == 'chat'}}">
+          聊天消息
+        </block>
+        <block wx:elif="{{item.type == 'article'}}">
+          文章推送
+        </block>
+        <block wx:elif="{{item.type == 'card'}}">
+          会员卡提醒
+        </block>
+        <block wx:else>
+          {{item.displayName}}
+        </block>
+
+      </view>
+      <view class="details f14 overone">{{item.newMessage?item.newMessage:'暂无消息'}}</view>
+    </view>
+    <view class="time">
+      <view>{{item.newMessageTime}}</view>
+    </view>
+  </view>
+</template>
+
+<template name="order">
+  <view class="lineItem billItem border_bottom {{item.content?'lineItem_access':''}}" bindtap="toOrder" data-sid="{{item.sid}}">
+    <view class="messageDot" style="position:absolute;" wx:if="{{showDot}}"></view>
+    <view class="left">
+      <image src="/resources/images/chat/order.png"></image>
+    </view>
+    <view class="center">
+      <view class="lineItem">
+        <view class="left f14 bold">订单消息</view>
+        <view class="center f12 clr_lightGray tr">{{item.showTime}}</view>
+      </view>
+      <view class="overone f14">{{item.content?item.content:'暂无消息'}}</view>
+    </view>
+    <view class="right"></view>
+  </view>
+</template>
+<template name="account">
+  <view class="lineItem billItem border_bottom {{item.content?'lineItem_access':''}}" bindtap="toAccount">
+    <view class="messageDot" style="position:absolute;" wx:if="{{showDot}}"></view>
+    <view class="left">
+      <image src="/resources/images/chat/bill.png"></image>
+    </view>
+    <view class="center">
+      <view class="lineItem">
+        <view class="left f14 bold">账单消息</view>
+        <view class="center f12 clr_lightGray tr">{{item.showTime}}</view>
+      </view>
+      <view class="overone f14">{{item.content?item.content:'暂无消息'}}</view>
+    </view>
+    <view class="right"></view>
+  </view>
+</template>
+<template name="message">
+  <view class="systemItem lineItem {{item.content?'lineItem_access':''}}" bindtap="toMessage">
+    <view class="messageDot" style="position:absolute;" wx:if="{{showDot}}"></view>
+    <view class="left">
+      <image src="/resources/images/chat/system.png"></image>
+    </view>
+    <view class="center">
+      <view class="lineItem">
+        <view class="left f14 bold">
+          <block wx:if="{{sType =='review'}}">
+            评价消息
+          </block>
+          <block wx:elif="{{sType == 'notice'}}">
+            系统公告
+          </block>
+          <block wx:elif="{{sType == 'message'}}">
+            系统消息
+          </block>
+          <block wx:elif="{{sType == 'consultation'}}">
+            咨询回复
+          </block>
+          <block wx:elif="{{sType == 'contact'}}">
+            分享达人
+          </block>
+          <block wx:elif="{{sType == 'activity'}}">
+            活动提醒
+          </block>
+          <block wx:elif="{{sTypee == 'chat'}}">
+            聊天消息
+          </block>
+          <block wx:elif="{{sType == 'article'}}">
+            文章推送
+          </block>
+          <block wx:elif="{{sType == 'card'}}">
+            会员卡提醒
+          </block>
+        </view>
+        <view class="center f12 clr_lightGray tr">{{item.showTime}}</view>
+      </view>
+      <view class="f14" style="word-break:break-all">{{item.content?item.content:'暂无消息'}}</view>
+    </view>
+    <view class="right"></view>
+  </view>
+</template>

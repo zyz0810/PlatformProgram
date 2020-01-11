@@ -1,0 +1,38 @@
+/* pages/shelf/order/order.wxss */
+
+.orderList {
+  background: #fff;
+  position: relative;
+}
+
+.descOrder {
+  position: absolute;
+  right: 3vw;
+  z-index: 10;
+  top: 2vw;
+}
+
+.payAmount {
+  padding: 0 3% 2% 2%;
+}
+
+.orderListItem {
+  /* border-bottom: 1px solid #999; */
+  margin: 2%;
+  padding: 2% 0;
+}
+
+.orderListItem>.left {
+  width: 16vw;
+  height: 16vw;
+}
+
+.orderListItem>.left image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.orderListItem>.center {
+  margin-left: 10rpx;
+}

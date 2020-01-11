@@ -1,0 +1,30 @@
+/* pages/pay/success.wxss */
+
+.successIcon {
+  width: 100vw;
+  margin: 0 auto;
+  padding-top: 10vw;
+}
+
+.successIcon text {
+  display: block;
+}
+
+.tc {
+  background: #fff;
+}
+
+.successCont {
+  padding-top: 10vw;
+  background: #fff;
+}
+
+.successCont .lineItem {
+  background: #fff;
+  padding: 3%;
+}
+
+.successCont .lineItem:first-child {
+  border-top: 1px solid #eee;
+  margin-top: 10vw;
+}

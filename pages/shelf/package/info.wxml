@@ -1,0 +1,8 @@
+<!--pages/member/join/index.wxml-->
+<import src="../../wxParse/wxParse.wxml" />
+<view class='f16' wx:if="{{tenantData.tenantIntroduce != null}}" style='overflow-x:hieeden;'>
+  <view class="wxParse  article" style='overflow-x:hieeden;'>
+    <template is="wxParse" data="{{wxParseData:tenantIntroduce.nodes}}" />
+  </view>
+</view>
+<view class='f14 clr_lightGray tc' wx:if="{{tenantData.tenantIntroduce == null}}" style='margin:50rpx auto;'>暂无品牌介绍</view>

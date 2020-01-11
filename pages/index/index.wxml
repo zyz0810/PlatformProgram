@@ -1,0 +1,283 @@
+<!--swiper  -->
+<import src="/template/swiperIndex/swiper.wxml" />
+<!--商品列表  -->
+<import src="/template/productList/productListIndex.wxml" />
+<wxs src="../../wxs/slice_eight.wxs" module="slice" />
+<wxs src="../../wxs/sliceNew.wxs" module="sliceNew" />
+<button loading class="f16 loadBtn" hidden="{{homeLoadReady}}">加载中</button>
+<view class="container" wx:if="{{homeLoadReady}}">
+
+
+  <!-- <view wx:if="{{showSearch}}" class="search {{borderbottom?'borderbottom':''}}" style='background:{{topBg<-300&&topImgs.data.length>0?"#ef2b2d":""}};position:{{position?position:"fixed"}};'> -->
+  <view wx:if="{{showSearch}}" class="search {{borderbottom?'borderbottom':''}}" style='position:{{position?position:"fixed"}};'>
+    <view class="searchWrap">
+      <image mode='scaleToFill' class="searchIcon" src='/resources/images/icon/search_gray.png'></image>
+      <!-- <view class="f14">搜索店内商品</view> -->
+      <input placeholder='搜索商品、商家' value="{{val}}" disabled placeholder-class='clr-lightGray' class="f14 clr-lightGray" confirm-type='search' bindconfirm='searchProduct' bindinput='searchVal' bindtap='goSearch'></input>
+    </view>
+  </view>
+  <view class='scrollWrap' style="height:{{winHeight - 44}}px;" bindtouchstart='touchstart' bindtouchend='touchend' bindtouchmove='touchmove'>
+    <!-- <view class='bg' style='top:{{topBg}}rpx' hidden='{{topImgs.data.length==0}}'>
+      <view class='bg_cont'></view>
+    </view> -->
+    <scroll-view style="height:{{tenantListData.length>0?winHeight-44:winHeight-44}}px;" scroll-into-view="{{scrollIntoId}}" scroll-y scroll-with-animation enable-back-to-top scroll-y='{{!couponShow}}' bindscrolltolower="toLower" bindscroll="scroll">
+      <official-account></official-account>
+      <view class='wrapperContainer' id="top">
+        <!-- <view class='swiperWrap'>
+          <template is="adSwiper" data="{{_swiper,name:'top',data:topImgs.data,key:topImgs.key,fn:'adTap'}}"></template>
+        </view> -->
+        <view class='topInfo flex'>
+          <view class='flex-item tc '>
+            <image src='/resources/images/home/duigou.png'></image>
+            <text class='f14'>正品保障</text>
+          </view>
+          <view class='flex-item tc'>
+            <image src='/resources/images/home/duigou.png'></image>
+            <text class='f14'>自购省钱</text>
+          </view>
+          <view class='flex-item tc'>
+            <image src='/resources/images/home/duigou.png'></image>
+            <text class='f14'>分享赚钱</text>
+          </view>
+        </view>
+
+        <!-- <view class='lineScreenAd'>
+          <block wx:for="{{Ad268}}" wx:key="{{item.id}}">
+            <image src='{{item.image}}' mode="widthFix" data-linkid="{{item.linkId}}" data-linktype="{{item.linkType}}" bindtap='toAdLink'></image>
+          </block>
+        </view> -->
+        <!-- 分类 -->
+        <!-- <view class='category' wx:if="{{channelList.length>0}}">
+          <view class='crossLine border_bottom'>类目热销榜</view>
+          <swiper class="channelPic" wx:if="{{channelList.length>0}}" indicator-dots="{{channelListDots}}" indicator-color='#f7d2d2' indicator-active-color="#ef2b2d">
+            <swiper-item class="channelPicItem" wx:for="{{slice(channelList)}}" wx:key="{{index}}">
+              <view wx:for="{{item}}" wx:key="{{zitem.id}}" wx:for-item="zitem" data-id="{{zitem.id}}" class='f12 tc fl' bindtap="goCategory">
+                <image src="{{zitem.image}}"></image>
+                <view>{{zitem.name}}</view>
+              </view>
+            </swiper-item>
+          </swiper>
+        </view> -->
+        <!-- 广告位 -->
+        <!-- <view class='advertise' hidden='{{adList.ad1.image == "" && adList.ad2.image == "" && adList.ad3.image == ""}}'>
+          <view class='crossLine'>品牌推荐</view>
+          <view class="row ad_one">
+            <view class="col-12 ad_left">
+              <view class="col-24 index_ad1" data-linkid="{{adList.ad1.linkId}}" data-linktype="{{adList.ad1.linkType}}" bindtap='toAdLink'>
+                <image src="{{adList.ad1.image}}"></image>
+              </view>
+            </view>
+            <view class="col-12">
+              <view class="col-24 index_ad2" data-linkid="{{adList.ad2.linkId}}" data-linktype="{{adList.ad2.linkType}}" bindtap='toAdLink'>
+                <image src="{{adList.ad2.image}}"></image>
+              </view>
+              <view class="col-24 index_ad3" data-linkid="{{adList.ad3.linkId}}" data-linktype="{{adList.ad3.linkType}}" bindtap='toAdLink'>
+                <image src="{{adList.ad3.image}}"></image>
+              </view>
+            </view>
+          </view>
+        </view> -->
+        <!-- 新人超值专享 -->
+        <view class='new_vip' wx:if="{{newPreferential.length>0}}">
+          <view class='tit_one f16 bold clr-white tc'>- 双旦礼遇季 -</view>
+          <view class='tit_two f12 clr-white tc'>全网比价，超值优惠，分享最高赚23.9</view>
+          <view class='brand_product clearfix'>
+            <block wx:for="{{newPreferential}}" wx:key="{{item.id}}">
+              <view class='brand_product_item fl' data-id='{{item.id}}' bindtap='__pt_toDetail' wx:if="{{index<3}}">
+                <view class='product_img'>
+                  <image src="{{item.thumbnail ? item.thumbnail:'/resources/images/noneimg.png'}}"></image>
+                </view>
+                <view class='product_name f14 overtwo'>{{item.name}}</view>
+                <view class='product_price'>
+                  <text class='f14 baseColor bold'>￥{{item.price}}</text>
+                  <text class='market_price f12 clr_lightGray' wx:if="{{item.marketPrice>item.price}}">￥{{item.marketPrice}}</text>
+                </view>
+              </view>
+            </block>
+
+
+          </view>
+        </view>
+        <!-- 近期访问品牌 -->
+        <view class='historyBrand' wx:if="{{findTenatBrowseHistory.length>0}}">
+          <view class='f12'>近期访问品牌</view>
+          <view class='brand_cont'>
+            <block wx:for="{{findTenatBrowseHistory}}" wx:key="{{item.tenantId}}">
+              <view data-id='{{item.tenantId}}' bindtap='toTenant'>
+                <image src="{{item.logo?item.logo:'/resources/images/noneimg.png'}}"></image>
+              </view>
+            </block>
+          </view>
+        </view>
+
+
+      </view>
+
+      <!-- 限时抢购 -->
+      <view class='timeLimit' hidden='{{limitLength}}'>
+        <view class="crossLine">限时抢购</view>
+        <view class='timeLimit_list'>
+          <block wx:for="{{limitsell}}" wx:key="{{item.id}}">
+            <view class='lineItem border_top' data-id='{{item.id}}' bindtap='__pt_toDetail'>
+              <view class='left'>
+                <image lazy-load src="{{item.thumbnail ? item.thumbnail:'/resources/images/noneimg.png'}}"></image>
+              </view>
+              <view class='center'>
+                <view>
+                  <view class='name f14 overtwo'>{{item.name}}</view>
+                </view>
+                <view class='lineItem f12' style='padding:0;margin:0;'>
+                  <view class='f12 baseColor'>限购{{item.personLimit}}件</view>
+                  <view class='right time f12 clr_lightGray'>
+                    <text class='tc'>{{item.countDownDay>0?item.countDownDay:0}}</text>天
+                    <text class='tc'>{{item.countDownHour}}</text>:
+                    <text class='tc'>{{item.countDownMinute}}</text>:
+                    <text class='tc'>{{item.countDownSecond}}</text>
+                  </view>
+                </view>
+                <view class=' price'>
+                  <text class='f14 baseColor bold'>￥</text>
+                  <text class='f20 baseColor bold'>{{item.price}}</text>
+                  <text class='f12 old_price' hidden='{{item.price>=item.oriPrice}}'>￥{{item.oriPrice}}</text>
+                  <text class='f14 clr-white buy buy_btn baseBg' data-id='{{item.id}}'>{{item.txt}}</text>
+                </view>
+              </view>
+            </view>
+          </block>
+          <view class='switch_limit tc' data-id='{{limitPage}}' bindtap='loadMore' hidden='{{limitBtnShow}}'>
+            <text class='f14 baseColor bold'>换一批</text>
+          </view>
+        </view>
+      </view>
+      <!-- 品牌馆 -->
+      <view class='brand_recommend' wx:if="{{firstRecommend.length>0}}">
+        <view class='brand_tit f26 bold'>
+          <text class='brand_txt'>品牌馆</text>
+          <text class='brand_tit_bg'></text>
+        </view>
+        <view class='brand_list clearfix'>
+          <block wx:for="{{firstRecommend}}" wx:key="index">
+            <view class='brand_item'>
+              <view class='lineItem brand_top' data-id='{{item.id}}' bindtap='toTenant'>
+                <view class='left brand_logo'>
+                  <image src="{{item.logo?item.logo:'/resources/images/noneimg.png'}}"></image>
+                </view>
+                <view class='center'>
+                  <view class='overone one_sentence f14'>{{item.oneSentence?item.oneSentence:'精选品牌缔造美好生活'}}</view>
+                </view>
+              </view>
+              <view class='brand_product clearfix'>
+                <block wx:for="{{item.products}}" wx:for-item="pitem" wx:key="{{pitem.id}}">
+                  <view class='brand_product_item fl' data-id='{{pitem.id}}' bindtap='__pt_toDetail'>
+                    <view class='product_img'>
+                      <image src="{{pitem.thumbnail?pitem.thumbnail:'/resources/images/noneimg.png'}}"></image>
+                    </view>
+                    <view class='product_name f14 overtwo'>{{pitem.name}}</view>
+                    <view class='product_price'>
+                      <text class='f14 baseColor bold'>￥{{pitem.price}}</text>
+                      <text class='market_price f12 clr_lightGray' wx:if="{{pitem.marketPrice>pitem.price}}">￥{{pitem.marketPrice}}</text>
+                    </view>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </block>
+
+
+        </view>
+      </view>
+      <!-- 新品推荐 -->
+      <!-- <view class='newsell' wx:if="{{newsell.length>0}}">
+        <view class="crossLine">新品推荐</view>
+        <swiper wx:if="{{newsell.length>0}}" indicator-dots="{{newDots}}" autoplay="false" indicator-color='#f7d2d2' indicator-active-color='#ef2b2d' style="height:{{newHeight}}rpx;">
+          <swiper-item wx:for="{{sliceNew(newsell,6)}}" wx:key="{{index}}">
+            <view class='new_li fl tc' wx:for="{{item}}" wx:key="{{zitem.id}}" wx:for-item="zitem" data-id="{{zitem.id}}" bindtap="__pt_toDetail">
+              <view class='new_img' data-id='{{zitem.id}}'>
+                <image src='{{zitem.thumbnail}}'></image>
+              </view>
+              <view class='f14 baseColor bold'>￥{{zitem.price}}</view>
+              <view class='buy_new'>
+                <text class='buy_btn f12 clr-white baseBg'>立即购买</text>
+              </view>
+            </view>
+          </swiper-item>
+        </swiper>
+      </view> -->
+
+      <!-- 好物推荐 -->
+      <!-- 横屏广告位 -->
+      <!-- <view class='lineScreenAd'>
+        <block wx:for="{{Ad266}}" wx:key="{{item.id}}">
+          <image src='{{item.image}}' mode="widthFix" data-linkid="{{item.linkId}}" data-linktype="{{item.linkType}}" bindtap='toAdLink'></image>
+        </block>
+      </view>
+      <view class='special {{recommendLength}}' wx:if="{{goodRecList.length>0}}" id='{{recommendAdImgs.show}}'>
+        <view class="crossLine">同城优品</view>
+        <scroll-view class="specialList" scroll-x style="width: 100%" scroll-with-animation lower-threshold='50' bindscrolltolower="specialtoupper" data-type="recommend" data-tagIds="5">
+          <block wx:for="{{goodRecList}}" wx:key="id">
+            <view class='specialList_item tl' data-id='{{item.id}}' bindtap="__pt_toDetail">
+              <view class='product_img'>
+                <image lazy-load src="{{item.thumbnail ?item.thumbnail:'/resources/images/noneimg.png'}}" style='width:216rpx;height:216rpx;'></image>
+              </view>
+              <view class='name f14 overtwo'>{{item.name}}</view>
+              <view>
+                <text class='f14 baseColor bold'>￥{{item.price}}</text>
+                <text class='f12 old_price'>￥{{item.marketPrice}}</text>
+              </view>
+            </view>
+          </block>
+        </scroll-view>
+      </view> -->
+
+      <!-- 猜你喜欢 -->
+      <!-- <view class='lineScreenAd'>
+        <block wx:for="{{Ad267}}" wx:key="{{item.id}}">
+          <image src='{{item.image}}' mode="widthFix" data-linkid="{{item.linkId}}" data-linktype="{{item.linkType}}" bindtap='toAdLink'></image>
+        </block>
+      </view>
+      <view class='newsell' style='background: #fff;' wx:if="{{recomsell.length>0}}">
+        <view class="crossLine">猜你喜欢</view>
+        <template is="productList" data="{{showType,data:recomsell}}"></template>
+        <view class="tips" hidden="{{showtips}}">{{tips}}</view>
+      </view> -->
+
+      <view class='technical_support static ' bindtap='technical '>
+        <image src='/resources/images/member/technical_support.png ' mode="widthFix"></image>
+      </view>
+      <view class="toUp {{toUpShow&&'toUpshow '}}" data-to="top" bindtap="scrollto">
+        <image src="/resources/images/icon/toup.png"></image>
+      </view>
+
+    </scroll-view>
+  </view>
+</view>
+
+  <!-- 分享海报 -->
+  <button type="primary" open-type='getUserInfo' bindgetuserinfo="shareTenant" wx:if="{{showShareBtn}}" style='display:flex;align-items:center;background:#fff;padding:1%;border-radius:109rpx;box-shadow:0rpx 0rpx 20rpx #ef2b2d;position:fixed;bottom:75px;z-index:999;right:3vw;'>
+    <text class='iconfont icon-fenxiang2 clr-white f14' style='background:#ef2b2d;display:inline-block;border-radius:50%;width:60rpx;height:60rpx;text-align:center;line-height:60rpx;'></text>
+    <text class='f12' style="color:#ef2b2d;margin-left:1vw;">分享</text>
+  </button>
+  <canvas canvas-id="myCanvas" style="width:{{canvasw}};height:{{canvash}};" hidden='{{canvasHide}}' />
+  <view class='defaultMask' wx:if="{{showAction}}" bindtap='closeMask' catchtouchmove="stopPageScroll" style='background:rgba(0, 0, 0, 0.8)'></view>
+  <!-- <image src='{{shareImageSrc}}' wx:if="{{showAction}}" mode='widthFix' bindtap='closeMask' style='position:fixed;top:5vw;width:450rpx;left:150rpx;z-index:1001;' catchtouchmove="stopPageScroll"></image> -->
+    <swiper wx:if="{{showAction}}" style='position:fixed;top:5vw;width:750rpx;left:0;z-index:1001;height:{{imageHeight}}px;'  previous-margin="180rpx" next-margin="180rpx" circular="true" class='tc' current="{{currentIndex}}" bindchange="shareImgChange">
+    <block wx:for="{{drawList}}" wx:key="index">
+      <swiper-item class='share_img {{currentIndex == index?"active":""}}'>
+        <image src='{{item}}' mode='widthFix' bindtap='closeMask'></image>
+        <!-- <view class="shareMask" hidden='{{currentIndex == index}}'></view> -->
+      </swiper-item>
+    </block>
+  </swiper>
+  <canvas canvas-id="myCanvas{{index}}" wx:for="{{shareImg}}" wx:key="index" style="width:{{canvasw}};height:{{canvash}};" hidden='{{canvasHide}}' />
+  
+  <view class='flex shareTenantAction' wx:if="{{showAction}}">
+    <button class='flex-item tc formButton' open-type='share' style='padding:0;margin:0;line-height:1.2;'>
+      <view class='iconfont icon-weixin f40' style='color:#86DB49;'></view>
+      <view class='f14'>分享好友</view>
+    </button>
+    <!-- <view class='flex-item tc' bindtap='saveImage'> -->
+    <view class='flex-item tc' bindtap='saveImages'>
+      <view class='iconfont icon-download f40 baseColor'></view>
+      <view class='f14'>保存图片</view>
+    </view>
+  </view>

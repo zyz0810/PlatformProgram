@@ -1,0 +1,58 @@
+page {
+  background: #fff;
+}
+
+.container {
+  padding: 2%;
+}
+
+.f16 {
+  padding: 10px 0;
+  font-weight: bold;
+}
+
+.feedType {
+  padding-bottom: 25px;
+}
+
+.feedType text {
+  line-height: 1;
+  display: inline-block;
+  text-align: center;
+  font-size: 24rpx;
+  width: 80px;
+  padding: 5px 0;
+  margin-right: 20rpx;
+  border: 1px solid #aeaeae;
+  color: #aeaeae;
+}
+
+.feedType text.active {
+  border: 1px solid #ff6a0c;
+  color: #ff6a0c;
+}
+
+textarea {
+  width: 100%;
+  border: 1px solid #aeaeae;
+  min-height: 200px;
+  padding: 2%;
+  box-sizing: border-box;
+  font-size: 28rpx;
+}
+
+input {
+  width: 100%;
+  font-size: 28rpx;
+  line-height: 40px;
+  height: 40px;
+  padding-left: 10px;
+  box-sizing: border-box;
+  border: 1px solid #aeaeae;
+}
+
+.submit {
+  margin: 30px auto;
+  display: block !important;
+  width: 40%;
+}

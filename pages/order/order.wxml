@@ -1,0 +1,255 @@
+<view class="page">
+  <!-- <loading wx:if="{{loading}}">加载中</loading> -->
+  <shadow-component />
+  <view class="swiper-tab top">
+    <view class="f14 swiper-tab-list {{currentTab==0 ? 'active' : ''}}" data-type="all" data-current="0" bindtap="swichNav">全部</view>
+    <view class="f14 swiper-tab-list {{currentTab==1 ? 'active' : ''}}" data-type="unpaid" data-current="1" bindtap="swichNav">待支付</view>
+    <view class="f14 swiper-tab-list {{currentTab==2 ? 'active' : ''}}" data-type="unshipped" data-current="2" bindtap="swichNav">待发货</view>
+    <view class="f14 swiper-tab-list {{currentTab==3 ? 'active' : ''}}" data-type="unreciver" data-current="3" bindtap="swichNav">待收货</view>
+    <view class="f14 swiper-tab-list {{currentTab==4 ? 'active' : ''}}" data-type="unreview" data-current="4" bindtap="swichNav">待评价</view>
+  </view>
+  <swiper current="{{currentTab}}" bindtouchstart='touchstart' bindtouchend='touchend' bindtouchmove='touchmove' class="swiper-box" duration="0" style="height:{{winHeight - 50}}px;" bindchange="bindChange">
+    <swiper-item>
+      <scroll-view class="scrollWrap" scroll-y bindscroll="scroll" bindscrolltolower="lower">
+        <block wx:for="{{all}}" wx:key="id" wx:for-index="bindex">
+          <template is="orderList" data="{{item:item,bindex:bindex}}"></template>
+        </block>
+        <view class="tips f12" hidden='{{all.length==0}}'>
+          {{allTips}}
+          <view class='technical_support {{all.length>1?"static":""}} {{all[0].orderItems.length>2?"static":""}}' bindtap='technical'>
+            <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+          </view>
+        </view>
+        <view class='tc' wx:if="{{all.length==0 && allload}}">
+          <view class='kong'></view>
+          <image src='https://cdn.laiyijia.com/upload/image/201906/271a7ef6-ac79-4e67-aa23-8a896411df85.png' style='width:360rpx;margin:0 auto 0vw;display:block;' mode='widthFix'></image>
+          <text class='f14 clr_mediumGray'>您还没有相关订单，快去逛逛吧~</text>
+          <view class='goScan tc' bindtap='goScan'>
+            <text class='f14 clr-white baseBg'>去逛逛</text>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view class="scrollWrap" scroll-y bindscroll="scroll" bindscrolltolower="lower">
+        <block wx:for="{{unpaid}}" wx:key="id" wx:for-index="bindex">
+          <template is="orderList" data="{{item:item,bindex:bindex}}"></template>
+        </block>
+        <view class="tips f12" hidden='{{unpaid.length==0}}'>{{unpaidTips}}
+          <view class='technical_support {{unpaid.length>1?"static":""}} {{unpaid[0].orderItems.length>2?"static":""}}' bindtap='technical'>
+            <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+          </view>
+        </view>
+        <view class='tc' wx:if="{{unpaid.length==0 && unpaidload}}">
+        <view class='kong'></view>
+          <image src='https://cdn.laiyijia.com/upload/image/201906/271a7ef6-ac79-4e67-aa23-8a896411df85.png' style='width:360rpx;margin:0 auto 0vw;display:block;' mode='widthFix'></image>
+          <text class='f14 clr_mediumGray'>您还没有相关订单，快去逛逛吧~</text>
+          <view class='goScan tc' bindtap='goScan'>
+            <text class='f14 clr-white baseBg'>去逛逛</text>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view class="scrollWrap" scroll-y bindscroll="scroll" bindscrolltolower="lower">
+        <block wx:for="{{unshipped}}" wx:key="id" wx:for-index="bindex">
+          <template is="orderList" data="{{item:item,bindex:bindex}}"></template>
+        </block>
+        <view class="tips f12" hidden='{{unshipped.length==0}}'>{{unshippedTips}}
+          <view class='technical_support {{unshipped.length>1?"static":""}} {{unshipped[0].orderItems.length>2?"static":""}}' bindtap='technical'>
+            <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+          </view>
+        </view>
+        <view class='tc' wx:if="{{unshipped.length==0 && unshippedload}}">
+        <view class='kong'></view>
+          <image src='https://cdn.laiyijia.com/upload/image/201906/271a7ef6-ac79-4e67-aa23-8a896411df85.png' style='width:360rpx;margin:0 auto 0vw;display:block;' mode='widthFix'></image>
+          <text class='f14 clr_mediumGray'>您还没有相关订单，快去逛逛吧~</text>
+          <view class='goScan tc' bindtap='goScan'>
+            <text class='f14 clr-white baseBg'>去逛逛</text>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view class="scrollWrap" scroll-y bindscroll="scroll" bindscrolltolower="lower">
+        <block wx:for="{{unreciver}}" wx:key="id" wx:for-index="bindex">
+          <template is="orderList" data="{{item:item,bindex:bindex}}"></template>
+        </block>
+        <view class="tips f12" hidden='{{unreciver.length==0}}'>{{unreciverTips}}
+          <view class='technical_support {{unreciver.length>1?"static":""}} {{unreciver[0].orderItems.length>2?"static":""}}' bindtap='technical'>
+            <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+          </view>
+        </view>
+        <view class='tc' wx:if="{{unreciver.length==0 && unreciverload}}">
+        <view class='kong'></view>
+          <image src='https://cdn.laiyijia.com/upload/image/201906/271a7ef6-ac79-4e67-aa23-8a896411df85.png' style='width:360rpx;margin:0 auto 5vw;display:block;' mode='widthFix'></image>
+          <text class='f14 clr_mediumGray'>您还没有相关订单，快去逛逛吧~</text>
+          <view class='goScan tc' bindtap='goScan'>
+            <text class='f14 clr-white baseBg'>去逛逛</text>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view class="scrollWrap" scroll-y bindscroll="scroll" bindscrolltolower="lower">
+        <block wx:for="{{unreview}}" wx:key="id" wx:for-index="bindex">
+          <template is="orderList" data="{{item:item,bindex:bindex}}"></template>
+        </block>
+        <view class="tips f12" hidden='{{unreview.length==0 && unreviewload}}'>
+          {{unreviewTips}}
+          <view class='technical_support {{unreview.length>1?"static":""}} {{unreview[0].orderItems.length>2?"static":""}}' bindtap='technical'>
+            <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+          </view>
+        </view>
+        <view class='tc' wx:if="{{unreview.length==0}}">
+        <view class='kong'></view>
+          <image src='https://cdn.laiyijia.com/upload/image/201906/271a7ef6-ac79-4e67-aa23-8a896411df85.png' style='width:360rpx;margin:0 auto 0vw;display:block;' mode='widthFix'></image>
+          <text class='f14 clr_mediumGray'>您还没有相关订单，快去逛逛吧~</text>
+          <view class='goScan tc' bindtap='goScan'>
+            <text class='f14 clr-white baseBg'>去逛逛</text>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+  <include src="/template/actionsheet/actionsheet.wxml" />
+  <include src="/template/password/payPassword.wxml" />
+</view>
+
+<template name="orderList">
+  <view class="ordersWrap">
+    <navigator >
+      <view class="flexC title borderA">
+        <image src="{{item.tenantThumbnail?item.tenantThumbnail:'/resources/user.png'}}"></image>
+        <view class="name f16">{{item.tenantName}}
+          <text class='f14 clr_red'>({{item.shippingMethod.method == 'PRIVY'?'货架订单':'商城订单'}})</text>
+        </view>
+        <view class="orderType f14 baseColor">{{item.shippingMethod.method == 'F2F'?'('+item.shippingMethod.name+')':''}}{{item.finalOrderStatus.desc}}</view>
+      </view>
+    </navigator>
+    <navigator url="./orderDetails/orderDetails?id={{item.id}}">
+      <block wx:for="{{item.orderItems}}" wx:key="id" wx:for-item="orderItem">
+        <view class="flexC details borderA">
+          <view class="orderImg">
+            <image src="{{orderItem.thumbnail?orderItem.thumbnail:'/resources/user.png'}}"></image>
+          </view>
+          <view class="shopInfo">
+            <view class="shopName f14 overone">{{orderItem.name}}</view>
+            <view class="orderNumber f14">订单号:{{item.sn}}</view>
+            <view class="shopPrice f14 baseColor">￥ {{orderItem.price}}</view>
+          </view>
+          <view class="shopNumber">
+            <view>x{{orderItem.quantity}}</view>
+          </view>
+        </view>
+      </block>
+    </navigator>
+    <view class="orderTotal borderA f14">
+      <view>共
+        <text class="baseColor">{{item.quantity}}</text>件商品</view>
+      <view>实付款
+        <text class="baseColor">￥{{item.amount}}</text>
+      </view>
+      <view>(含运费
+        <text class="baseColor">￥{{item.freight}}</text>)</view>
+    </view>
+
+    <view class="method f14">
+      <block wx:if="{{item.finalOrderStatus.status == 'waitPay'}}">
+        <form bindsubmit="orederMethodBtn" report-submit>
+          <button data-type="refundWaitPay" class="formButton" data-index="{{bindex}}" form-type="submit" data-info="{{item.id}}">取消订单</button>
+        </form>
+        <form bindsubmit="orederMethodBtn" report-submit>
+          <button data-type="waitpay" class="formButton confirmBtn" data-index="{{bindex}}" form-type="submit" data-info="{{item.id}}">立即支付</button>
+        </form>
+      </block>
+      <block wx:elif="{{item.finalOrderStatus.status == 'unconfirmed'}}">
+        <form bindsubmit="orederMethodBtn" report-submit>
+          <button data-type="refund" class="formButton" data-index="{{bindex}}" form-type="submit" data-info="{{item.id}}">取消订单</button>
+        </form>
+      </block>
+      <block wx:elif="{{item.finalOrderStatus.status == 'waitShipping'}}">
+        <block wx:if="{{item.shippingMethod.method == 'TPL'}}">
+          <form bindsubmit="orederMethodBtn" report-submit>
+            <button data-type="return" class="formButton" data-index="{{bindex}}" form-type="submit" data-info="{{item.id}}">退货申请</button>
+          </form>
+          <form bindsubmit="orederMethodBtn" report-submit>
+            <button data-type="remind" class="formButton" data-index="{{bindex}}" form-type="submit" data-info="{{item.id}}">提醒商家发货</button>
+          </form>
+        </block>
+        <block wx:else>
+          <form bindsubmit="orederMethodBtn" report-submit>
+            <button data-type="return" class="formButton" data-index="{{bindex}}" form-type="submit" data-info="{{item.id}}">退货申请</button>
+          </form>
+        </block>
+      </block>
+      <block wx:elif="{{item.finalOrderStatus.status == 'sign'}}">
+        <form bindsubmit="orederMethodBtn" report-submit>
+          <button data-type="return" class="formButton" data-index="{{bindex}}" form-type="submit" data-info="{{item.id}}">退货申请</button>
+        </form>
+        <form bindsubmit="orederMethodBtn" report-submit wx:if="{{item.shippings[0].trackingNo}}">
+          <button form-type="submit" data-type="logistics" class="formButton" data-info="{{item.id}}" data-name="{{item.shippings[0].deliveryCorpCode}}" data-phone="{{item.shippings[0].phone}}" data-no="{{item.shippings[0].trackingNo}}" data-cname="{{item.shippings[0].deliveryCorp}}">查看物流</button>
+        </form>
+        <form bindsubmit="orederMethodBtn" report-submit>
+          <button data-type="confirm" class="formButton confirmBtn" data-index="{{bindex}}" form-type="submit" data-info="{{item.id}}">立即签收</button>
+        </form>
+      </block>
+      <block wx:elif="{{item.finalOrderStatus.status == 'toReview'}}">
+        <form bindsubmit="orederMethodBtn" report-submit wx:if="{{item.shippings[0].trackingNo}}">
+          <button form-type="submit" data-type="logistics" class="formButton" data-info="{{item.id}}" data-name="{{item.shippings[0].deliveryCorpCode}}" data-phone="{{item.shippings[0].phone}}" data-no="{{item.shippings[0].trackingNo}}" data-cname="{{item.shippings[0].deliveryCorp}}">查看物流</button>
+        </form>
+        <form bindsubmit="orederMethodBtn" report-submit>
+          <button data-type="evaluate" class="formButton confirmBtn" data-index="{{bindex}}" form-type="submit" data-info="{{item.id}}">立即评价</button>
+        </form>
+      </block>
+      <block wx:elif="{{item.finalOrderStatus.status == 'waitReturn'}}">
+        <form bindsubmit="orederMethodBtn" report-submit>
+          <button data-type="remind" class="formButton confirmBtn" data-index="{{bindex}}" form-type="submit" data-info="{{item.id}}">提醒商家退款</button>
+        </form>
+      </block>
+      <block wx:elif="{{item.finalOrderStatus.status == 'completed'}}">
+        <form bindsubmit="orederMethodBtn" report-submit wx:if="{{item.shippings[0].trackingNo}}">
+          <button form-type="submit" data-type="logistics" class="formButton" data-info="{{item.id}}" data-name="{{item.shippings[0].deliveryCorpCode}}" data-phone="{{item.shippings[0].phone}}" data-no="{{item.shippings[0].trackingNo}}" data-cname="{{item.shippings[0].deliveryCorp}}">查看物流</button>
+        </form>
+      </block>
+    </view>
+    <!-- <view class="method f14">
+      <block wx:if="{{item.finalOrderStatus.status == 'waitPay'}}">
+        <view data-type="refundWaitPay" data-info="{{item.id}}" data-index="{{bindex}}" catchtap="methodBtn">取消订单</view>
+        <form bindsubmit="formSubmit" report-submit bindreset="formReset">
+          <button data-type="waitpay" class="confirmBtn" data-index="{{bindex}}" form-type="submit" data-info="{{item.id}}" style="border:1px solid #d9d9d9;line-height:1.6;margin-left:20rpx;margin-right:0;font-size:32rpx;">立即支付</button>
+        </form>
+      </block>
+      <block wx:elif="{{item.finalOrderStatus.status == 'unconfirmed'}}">
+        <view data-type="refund" data-info="{{item.id}}" data-index="{{bindex}}" catchtap="methodBtn">取消订单</view>
+      </block>
+      <block wx:elif="{{item.finalOrderStatus.status == 'waitShipping'}}">
+        <block wx:if="{{item.shippingMethod.method == 'TPL'}}">
+          <view data-type="return" data-info="{{item.id}}" data-index="{{bindex}}" catchtap="methodBtn">退货申请</view>
+          <view data-type="remind" data-info="{{item.id}}" data-index="{{bindex}}" class="confirmBtn" catchtap="methodBtn">提醒商家发货</view>
+        </block>
+        <block wx:else>
+          <view data-type="return" data-info="{{item.id}}" data-index="{{bindex}}" catchtap="methodBtn">退货申请</view>
+        </block>
+      </block>
+      <block wx:elif="{{item.finalOrderStatus.status == 'sign'}}">
+        <view data-type="return" data-info="{{item.id}}" data-index="{{bindex}}" catchtap="methodBtn">退货</view>
+        <view wx:if="{{item.shippings[0].trackingNo}}" data-info="{{item.id}}" data-name="{{item.shippings[0].deliveryCorpCode}}" data-phone="{{item.shippings[0].phone}}" data-type="logistics" data-no="{{item.shippings[0].trackingNo}}" data-cname="{{item.shippings[0].deliveryCorp}}"
+          catchtap="methodBtn">查看物流</view>
+        <view data-type="confirm" data-info="{{item.id}}" class="confirmBtn" data-index="{{bindex}}" catchtap="methodBtn">立即签收</view>
+      </block>
+      <block wx:elif="{{item.finalOrderStatus.status == 'toReview'}}">
+        <view wx:if="{{item.shippings[0].trackingNo}}" data-info="{{item.id}}" data-name="{{item.shippings[0].deliveryCorpCode}}" data-type="logistics" data-no="{{item.shippings[0].trackingNo}}" data-cname="{{item.shippings[0].deliveryCorp}}" data-phone="{{item.shippings[0].phone}}"
+          catchtap="methodBtn">查看物流</view>
+        <view data-type="evaluate" data-info="{{item.id}}" class="confirmBtn" data-index="{{bindex}}" catchtap="methodBtn">立即评价</view>
+      </block>
+      <block wx:elif="{{item.finalOrderStatus.status == 'waitReturn'}}">
+        <view data-type="remind" data-info="{{item.id}}" class="confirmBtn" data-index="{{bindex}}" catchtap="methodBtn">提醒商家退款</view>
+      </block>
+      <block wx:elif="{{item.finalOrderStatus.status == 'completed'}}">
+        <view wx:if="{{item.shippings[0].trackingNo}}" data-name="{{item.shippings[0].deliveryCorpCode}}" data-type="logistics" data-info="{{item.id}}" data-no="{{item.shippings[0].trackingNo}}" data-cname="{{item.shippings[0].deliveryCorp}}" data-phone="{{item.shippings[0].phone}}"
+          catchtap="methodBtn">查看物流</view>
+      </block>
+    </view> -->
+  </view>
+</template>

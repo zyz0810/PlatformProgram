@@ -1,0 +1,54 @@
+<view class="container">
+  <view class="title f16 tc">
+    <view class="bold">订单{{data.finalOrderStatus.desc}}</view>
+    <block wx:if="{{data.finalOrderStatus.status=='waitPay'}}">
+      <view data-info="{{data.id}}" class="confirmBtn" bindtap='goPay'>立即付款</view>
+    </block>
+    <!-- <view>detail</view> -->
+  </view>
+  <view class="detail f14 tc">
+    <view class="head">
+      <view></view>
+      <text class="bold">订单明细</text>
+      <view></view>
+    </view>
+    <view class="orderList">
+      <block wx:for="{{data.orderItems}}" wx:key="id">
+        <view class="orderItem border_bottom">
+          <image src="{{item.thumbnail}}"></image>
+          <view>
+            <view class="orderItem-top">
+              <text class="tl">{{item.name}}</text>
+              <!-- <text class="clr_lightGray">{{data.finalOrderStatus.desc}}</text> -->
+            </view>
+            <view class="tl">
+              <text>￥{{item.price}}</text>
+              <text style="margin-left:20rpx;" class='fr'>x{{item.quantity}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class="tr bold" style="padding-top:5px;">
+      总价：￥{{data.amount}}
+    </view>
+  </view>
+  <view class="info f14">
+    <view class="tl bold">订单信息</view>
+    <view class="lineItem border_bottom">
+      <view class="left">订单号</view>
+      <view class="right">{{data.sn}}</view>
+    </view>
+    <view class="lineItem border_bottom">
+      <view class="left">创建时间</view>
+      <view class="right">{{data.createDate}}</view>
+    </view>
+    <view class="lineItem">
+      <view class="left">货架名称</view>
+      <view class="right">{{data.shelvesName}}</view>
+    </view>
+  </view>
+  <!-- <view class='technical_support'>
+    <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+  </view> -->
+</view>

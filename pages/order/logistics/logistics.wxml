@@ -1,0 +1,17 @@
+<view class="f26 tc title border_bottom">
+  {{cname}}：{{no}}
+</view>
+<view class="flex th f16 border_bottom">
+  <view class="thLeft">时间</view>
+  <view class="flex-item thRight">地点和跟踪进度</view>
+</view>
+<block wx:for="{{dataList}}" wx:key="originalTime">
+  <view class="border_bottom flex td">
+    <view class="tdLeft">
+      <view class="f14" style='color:{{index==0?mainColor:""}}'>{{item.time}}</view>
+    </view>
+    <view class="tdRight f14 flex-item" style='color:{{index==0?mainColor:""}}'>
+      {{item.status}}
+    </view>
+  </view>
+</block>

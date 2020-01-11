@@ -1,0 +1,5 @@
+/* pages/home/tenant/info.wxss */
+
+page {
+  background: #fff;
+}

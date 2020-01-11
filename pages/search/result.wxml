@@ -1,0 +1,96 @@
+<view class="container">
+  <view class="header">
+    <view class="search">
+      <view class="wrap">
+        <view class="top-input f14">
+          <image wx:if="!searchFocus||align=='left'" src="/resources/images/icon/search_gray.png"></image>
+          <input placeholder='输入想要搜索的内容' type="text" confirm-type="search" bindinput="setVal" bindconfirm="search" value='{{selectedData.keyword}}'></input>
+        </view>
+        <view class="f14 ss" bindtap="clickSearch">搜索</view>
+      </view>
+    </view>
+  </view>
+  <view class="top f14">
+    <view bindtap="selectShowChange" data-name='areaSelect' class="{{areaSelect.show?'baseColor':''}}">{{areaSelect.title}}</view>
+    <view bindtap="selectShowChange" data-name='categorySelect' class="{{categorySelect.show?'baseColor':''}}">{{categorySelect.title}}</view>
+    <view bindtap="selectShowChange" data-name='sortSelect' class="{{sortSelect.show?'baseColor':''}}">{{sortSelect.title}}</view>
+    <view class="checkoutProductType" wx:if="{{showTempType==0}}" bindtap="changeProductListType">
+      <image src="/resources/images/icon/details.png"></image>
+    </view>
+  </view>
+  <view class="wrap2" wx:if="{{areaSelect.show}}">
+    <view class="mask" bindtap="close"></view>
+    <view class="select f14">
+      <view class="left">
+        <view wx:for="{{areaSelect.data}}" data-id="{{item.id}}" data-name="{{item.name}}" data-hideright="false" class="border-1px {{item.id==areaSelect.leftAc?'selected baseColor':''}}" bindtap="changeLeft" wx:key="*this" data-childname="communities">{{item.name}}</view>
+      </view>
+      <view class="right" :style="'display:'+(hideRight&&'none')" v-if="!hideRight">
+        <view wx:for="{{areaSelect.rightData}}" class="border-1px {{item.id==selectedData.communityId?'selected baseColor':''}}" bindtap="change" data-id="{{item.id}}" data-name="{{item.name}}" wx:key="{{item.id}}">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="wrap2" wx:if="{{categorySelect.show}}">
+    <view class="mask" bindtap="close"></view>
+    <view class="select f14">
+      <view class="left">
+        <view wx:for="{{categorySelect.data}}" data-id="{{item.id}}" data-name="{{item.name}}" data-hideright="false" class="border-1px {{item.id==categorySelect.leftAc?'selected baseColor':''}}" bindtap="changeLeft" data-childname="childrens" wx:key="*this">{{item.name}}</view>
+      </view>
+      <view class="right" :style="'display:'+(hideRight&&'none')" v-if="!hideRight">
+        <view wx:for="{{categorySelect.rightData}}" class="border-1px {{item.id==selectedData.tenantCategoryId?'selected baseColor':''}}" bindtap="change" data-id="{{item.id}}" data-name="{{item.name}}" wx:key="item.id">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="wrap2" wx:if="{{sortSelect.show}}">
+    <view class="mask" bindtap="close"></view>
+    <view class="select f14">
+      <view class="left">
+        <view wx:for="{{sortSelect.data}}" data-id="{{item.id}}" data-name="{{item.name}}" data-hideright="true" class="border-1px {{item.id==selectedData.orderType?'selected baseColor':''}}" bindtap="changeLeft" wx:key="*this">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='resultWrap'>
+    <view class="productList f13 {{productListLine?'productListLine':''}}" wx:if="{{showTempType==0}}">
+      <block wx:for="{{dataList}}" wx:key="{{item.id}}">
+        <view bindtap="goToproduct" class="proReItem" data-id="{{item.id}}">
+          <image src="{{item.thumbnail ? item.thumbnail: '/resources/images/noneimg.png'}}"></image>
+          <view class="details">
+            <view class=" overone f14 tl">{{item.name}}</view>
+            <!-- <view class="clr_lightGray">{{item.tenantName}}</view> -->
+            <view class="price" wx:if="{{item.price == item.marketPrice}}">
+              <text class="baseColor f16" data-id='{{item.marketPrice}}'>￥{{item.price}}</text>
+            </view>
+            <view class="price" wx:if="{{item.price != item.marketPrice}}">
+              <text class="baseColor f16">￥{{item.price}}</text>
+              <text class="sumdel f12 clr_lightGray marketPrice">￥{{item.marketPrice}}</text>
+            </view>
+            <view class="f12 clr_lightGray">人气{{item.hits}}/月销量{{item.monthSales}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class="list" wx:if="{{showTempType==1}}">
+      <view class="lineItem" wx:for="{{dataList}}" wx:key="{{item.id}}" bindtap="gotoTennat" data-id="{{item.id}}">
+        <view class="left">
+          <image src="{{item.thumbnail?item.thumbnail:'/resources/images/placeholder/tenant.png'}}"></image>
+        </view>
+        <view class="center">
+          <view class="f16 clr_darkGray tenant-name bold overtwo">{{item.name}}</view>
+          <view class="f13 clr-downGray tenant-recommend">{{item.tenantCategoryName}}</view>
+          <view class="ico f12 clr_mediumGray">
+            <span class="f11 clr_mediumGray">月售{{item.monthSales}}单</span>
+          </view>
+          <view></view>
+          <view class="flex f12 clr_darkGray">
+            <view class="flex-item f12 zhuying bold">{{item.communityName?item.communityName:''}}</view>
+            <view class="flex-item clr_lightGray tr">{{item.distance>0?item.distance+'KM':''}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="tips" hidden="{{showtips}}">{{tips}}</view>
+</view>

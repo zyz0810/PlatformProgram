@@ -1,0 +1,288 @@
+<wxs src="../../wxs/imageCut.wxs" module="imageCut" />
+<wxs module="toFixed">
+  module.exports = function(num, pos) {
+    return num.toFixed(pos)
+  }
+</wxs>
+<!--swiper  -->
+<import src="/template/swiperIndex/swiper.wxml" />
+<view class="container" hidden="{{list.length===0||hidePage}}">
+  <view class="header lineItem f16">
+    <view class='left shop_logo'>
+      <image src='{{headImg?headImg:"/resources/images/noneimg.png"}}'></image>
+    </view>
+    <view class='center f14 clr_lightGray'>{{storeName}}</view>
+  </view>
+  <scroll-view style="height:{{cartList.length>0&&isIphoneX?winHeight-bottomHeight-45-24:winHeight-45}}px;" scroll-into-view="{{scrollIntoId}}" bindscroll="setActiveFloor" lower-threshold="0" bindscrolltolower="scrollBottom" scroll-y scroll-with-animation enable-back-to-top   bindtouchstart='touchstart' bindtouchend='touchend' bindtouchmove='touchmove'>
+    <official-account></official-account>
+
+    <view class='swiperWrap'>
+      <template is="adSwiper" data="{{_swiper,name:'top',data:topImgs.data,key:topImgs.key,fn:'adTap'}}"></template>
+    </view>
+
+    <view class='timeLimit' hidden='{{limitLength}}'>
+      <view class='title f20'>限时抢购
+        <text class='f16 timeLimit_tag'>惊爆秒杀价</text>
+      </view>
+      <view class='timeLimit_list'>
+        <block wx:for="{{limitsell}}" wx:key="id">
+          <view class='lineItem' data-id='{{item.id}}' bindtap='goProductDetail'>
+            <view class='left'>
+              <image mode="widthFix" lazy-load src="{{item.thumbnail ? imageCut(item.thumbnail,210,210,sys):'/resources/images/noneimg.png'}}"></image>
+            </view>
+            <view class='center'>
+              <view>
+                <view class='name f14 overtwo'>{{item.name}}</view>
+                <view class='tag'>
+                  <text class='f10'>限量{{item.personLimit}}件</text>
+                </view>
+              </view>
+              <view class='price'>
+                <text class='f20 baseColor' style='color:{{mainColor}}'>￥{{item.price}}</text>
+                <text class='f12 old_price' hidden='{{item.price>=item.oriPrice}}'>原价￥{{item.oriPrice}}</text>
+                <text class='f14 baseColor buy' style='color:{{mainColor}};border:1px solid {{mainColor}}' data-id='{{item.id}}'>{{item.txt}}</text>
+              </view>
+              <view class='time f10 tc'>
+                <text>{{item.countDownDay>0?item.countDownDay:0}}</text>天
+                <text>{{item.countDownHour}}</text>:
+                <text>{{item.countDownMinute}}</text>:
+                <text>{{item.countDownSecond}}</text>
+              </view>
+
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="content">
+      <block wx:for="{{list}}" wx:key="id" wx:for-index="pIndex" wx:if="{{item.productListModels&&item.productListModels.length>0}}">
+        <view data-id="{{item.id}}">
+          <block wx:for="{{item.productListModels}}" wx:key="id" wx:for-item="zItem">
+            <template is="goodsItem" data="{{data:zItem,tagName:item.name,cartListById}}" />
+          </block>
+        </view>
+      </block>
+    </view>
+
+
+    <view class='brand f12 clr_lightGray tc' bindtap='goTenant'>上拉/点击查看品牌商场</view>
+    <!-- <view style='height:200rpx;' bindtap='goTenant'></view> -->
+
+  </scroll-view>
+  <!-- <view class="bottom-icon-shadow" wx:if="{{cartList.length}}"></view> -->
+  <view class="bottom f18" wx:if="{{cartList.length}}" style='bottom:{{isIphoneX ? 68 : 0}}rpx;'>
+    <view class="bottom-icon tc" bindtap="cartListToggle">
+      <text class="bottom-num baseBg" hidden="{{cartNum==0}}">{{cartNum}}</text>
+      <!-- <image src="/resources/images/shelf/cart.png"></image> -->
+      <text class='iconfont icon-gouwuche3 shelfColor' style='font-size:60rpx;color:{{mainColor}}'></text>
+    </view>
+    <view class="bottom-price" bindtap="cartListToggle">￥{{effectivePrice}}</view>
+    <!-- <form bindsubmit="orderCreat" report-submit> -->
+    <button open-type='getUserInfo' bindgetuserinfo="orderCreat" class="bottom-btn f16 formButton baseBg" style="{{actionsheetShow?'background:#ef2b2d;':''}};margin:0;">
+      <!-- <button bindtap="orderCreat" class="bottom-btn f16 formButton" style="{{actionsheetShow?'background:#ff6d06;':''}};margin:0;"> -->
+      {{actionsheetShow?'立即付款':'确认购买'}}
+    </button>
+    <!-- </form> -->
+  </view>
+
+  <!-- <view class="dialog" animation="{{dialogAnimation}}"> -->
+  <view class="dialog" hidden="{{!dialogShow}}">
+    <view class="mask" bindtap="dialogToggle" catchtouchmove></view>
+    <view class="dialog-content">
+      <view class="dialog-title tc f16">{{listAll[swiperCurrentIndex].tagName}}</view>
+      <swiper circular current="{{swiperCurrentIndex}}" bindchange="swiperChange">
+        <block wx:for="{{listAll}}" wx:key="index">
+          <swiper-item>
+            <image mode="widthFix" data-id="{{item.id}}" src="{{item.thumbnail}}" class="slide-image" width="355" height="150" bindtap='goProductDetail' />
+            <view class="price f14 overone">{{item.name}}</view>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="dialog-op">
+        <view class="dialog-opTitle f14 overtwo shelfColor">￥{{listAll[swiperCurrentIndex].price}}</view>
+        <view class="calc" wx:if="{{!cartListById[listAll[swiperCurrentIndex].id].quantity}}">
+          <!-- <image data-id="{{listAll[swiperCurrentIndex].id}}" data-utype="add" bindtap="editCartFn" src="/resources/images/shelf/cart.png"></image> -->
+          <text class='iconfont icon-dibuicon07 shelfColor' style='font-size:46rpx' data-id="{{listAll[swiperCurrentIndex].id}}" data-utype="add" bindtap="editCartFn"></text>
+        </view>
+        <view class="calc" wx:else>
+          <image data-id="{{listAll[swiperCurrentIndex].id}}" data-utype="reduce" bindtap="editCartFn" src="/resources/images/shelf/reduce.png"></image>
+          <!-- <input type="number" value=""></input> -->
+          <text>{{cartListById[listAll[swiperCurrentIndex].id]?cartListById[listAll[swiperCurrentIndex].id].quantity:0}}</text>
+          <image data-id="{{listAll[swiperCurrentIndex].id}}" data-utype="add" bindtap="editCartFn" src="/resources/images/shelf/add.png"></image>
+        </view>
+      </view>
+      <image class="swiperControlLeft" data-direction="left" bindtap="swiperControl" src="/resources/images/shelf/slideLeft.png"></image>
+      <image class="swiperControlRight" data-direction="right" bindtap="swiperControl" src="/resources/images/shelf/slideRight.png"></image>
+    </view>
+  </view>
+  <!-- <view class="actionsheetWrap" animation="{{asAnimation}}"> -->
+  <view class="actionsheetWrap" hidden="{{!actionsheetShow}}">
+    <view class="mask" bindtap="asToggle" catchtouchmove></view>
+    <view class="actionsheet">
+      <view class="actionsheet-head f14">
+        <view>已选商品</view>
+        <image bindtap="clearCart" src="/resources/images/icon/delete.png"></image>
+        <view bindtap="clearCart">清空</view>
+      </view>
+      <view class="actionsheet-content">
+        <view class="acGoodsItem" wx:for="{{cartListById}}" wx:key="id">
+          <view class="acGoodsItem-title f16 overone">{{item.fullName}}</view>
+          <view class="price shelfColor f16" style='color:{{mainColor}}'>￥{{toFixed(item.quantity*item.price, 2)}}</view>
+          <view class="calc">
+            <image data-id="{{item.productId}}" data-utype="reduce" bindtap="editCartFnBt" src="/resources/images/shelf/reduce.png"></image>
+            <!-- <input type="number" value="1"></input> -->
+            <text>{{item.quantity}}</text>
+            <image data-id="{{item.productId}}" data-utype="add" bindtap="editCartFnBt" src="/resources/images/shelf/add.png"></image>
+          </view>
+        </view>
+      </view>
+      <view style="height:15px;"></view>
+    </view>
+  </view>
+</view>
+<button loading class="f14 loadBtn clr_lightGray" hidden="{{list.length>0}}">加载中</button>
+
+<view class='mask' catchtouchmove="true" wx:if="{{couponShow}}"></view>
+<view class='coupon' wx:if="{{couponShow}}">
+  <text class='iconfont icon-cancel cancel f30' bindtap='cancelCoupon'></text>
+  <image src='/resources/images/shelf/cupon_tit.png' class='coupon_tit' mode='widthFix'></image>
+  <view class='coupon_cont'>
+    <block wx:for="{{couponList}}" wx:key="index" wx:for-item="citem">
+
+      <view class='coupon_item' data-id='{{citem.id}}'>
+        <view class='coupon_left fl f25'>{{citem.amount}}元</view>
+
+        <view class='coupon_middle fl'>
+          <text class='circle circle_top'></text>
+          <text class='line'></text>
+          <text class='circle circle_bottom'></text>
+        </view>
+        <view class='coupon_right fl f12'>
+          <view>满减券</view>
+          <view>满{{citem.minimumPrice}}减{{citem.amount}}</view>
+        </view>
+        <view class='coupon_revice fr f14' bindtap='reviceCoupon' data-id='{{citem.id}}'>
+          <view>立即</view>
+          <view>领取</view>
+        </view>
+      </view>
+
+      <view class='coupon_item' data-id='{{citem.id}}' wx:if="{{!citem.hasReceived}}">
+        <view class='coupon_left fl f25'>{{citem.amount}}元</view>
+
+        <view class='coupon_middle fl'>
+          <text class='circle circle_top'></text>
+          <text class='line'></text>
+          <text class='circle circle_bottom'></text>
+        </view>
+        <view class='coupon_right fl f12'>
+          <view>满减券</view>
+          <view>满{{citem.minimumPrice}}减{{citem.amount}}</view>
+        </view>
+        <view class='coupon_revice fr f14' bindtap='reviceCoupon' data-id='{{citem.id}}'>
+          <view>立即</view>
+          <view>领取</view>
+        </view>
+      </view>
+
+      <view class='coupon_item coupon_gray' data-id='{{citem.id}}' wx:if="{{citem.hasReceived}}">
+        <view class='coupon_left fl f25'>{{citem.amount}}元</view>
+
+        <view class='coupon_middle fl'>
+          <text class='circle circle_top'></text>
+          <text class='line'></text>
+          <text class='circle circle_bottom'></text>
+        </view>
+        <view class='coupon_right fl f12'>
+          <view>满减券</view>
+          <view>满{{citem.minimumPrice}}减{{citem.amount}}</view>
+        </view>
+        <view class='coupon_revice fr f14' bindtap='reviceCoupon' data-id='{{citem.id}}'>
+          <view>立即</view>
+          <view>领取</view>
+        </view>
+      </view>
+
+
+    </block>
+
+
+  </view>
+  <view class='f12 myCoupon' bindtap='myCoupon'>我的券包</view>
+</view>
+
+
+<template name="goodsItem">
+  <view class="goodsItem lineItem" data-id="{{data.id}}" bindtap='goProductDetail'>
+    <view class='left'>
+      <!-- <image bindtap="showSwiper" data-tagname="{{tagName}}" data-id="{{data.id}}" src="{{data.thumbnail}}"></image> -->
+       <image data-tagname="{{tagName}}" data-id="{{data.id}}" src="{{data.thumbnail}}"></image>
+    </view>
+    <view class='center'>
+      <view class="overtwo f14">{{data.name}}</view>
+      <view class="op f14">
+        <text class="price shelfColor">￥{{data.price}}</text>
+        <view class="calc">
+          <text class='iconfont icon-dibuicon07 shelfColor' style='font-size:46rpx;' data-id="{{data.id}}" data-utype="add" catchtap="editCartFn"></text>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</template>
+
+<view class="actionMask" catchtouchmove hidden="{{!showAction}}" bindtap="toggleMask"></view>
+<view class="actionContent" hidden="{{!showAction}}">
+  <view class="actionTitle border_bottom lineItem">
+    <view class="left">
+      <image src="{{selectData.thumbnail?selectData.thumbnail:productData.productImages[0].thumbnail}}" data-imgsrc='{{selectData.thumbnail}}' bindtap='prevImg'></image>
+    </view>
+    <view class="center f14">
+      <view class="f16 baseColor bold" style='color:{{mainColor}}'>￥{{selectData.price}}</view>
+      <view>库存{{selectData.availableStock}}件</view>
+      <view>已选
+        <text class="baseColor" style='color:{{mainColor}}'>{{selectData.specifications[0].name}} {{selectData.specifications[1].name}}</text>
+      </view>
+    </view>
+    <view class="right" bindtap="toggleMask">
+      <image src="/resources/images/icon/close.png"></image>
+    </view>
+  </view>
+  <wxs module="canClickFn">
+    module.exports = function(arr, id, selectArr) {
+      if (selectArr.length == 1) {
+        return true;
+      }
+      if (!arr) {
+        return false;
+      }
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i] == id) {
+          return true;
+        }
+      }
+      return false;
+    }
+  </wxs>
+  <view class="actionSpecifications">
+    <block wx:for="{{specification.all}}" wx:key="id" wx:for-index="idx">
+      <view class="actionItemTitle f16" data-id="{{item.id}}">{{item.name}}：</view>
+      <view class="actionItemBtn f16">
+        <block wx:for="{{item.specificationValues}}" wx:for-item="citem" wx:key="id">
+          <text bindtap="checkout" class="{{canClickFn(canClick[selectArr[1-idx]],citem.id,selectArr)?'canTap':'' }} {{selectArr[idx] == citem.id?'baseBg':''}}" data-idx="{{idx}}" data-can="{{canClickFn(canClick[selectArr[1-idx]],citem.id,selectArr)}}" data-id="{{citem.id}}" style="background:{{selectArr[idx] == citem.id?mainColor:''}};color:{{selectArr[idx] == citem.id?'#fff':''}}">{{citem.name}}</text>
+        </block>
+      </view>
+    </block>
+  </view>
+  <view class="actionNumber border_bottom lineItem" style="align-items:center;">
+    <view class="f16 ">购买数量:</view>
+    <view class="amount">
+      <button data-type="reduce" bindtap="revisenum">-</button>
+      <input class="f12 " type="number " data-type="input" bindchange="revisenum" value="{{selectData.quantity}}" />
+      <button data-type="add" bindtap="revisenum">+</button>
+    </view>
+  </view>
+  <!-- <button class="defaultBtn buyBtn fr f16 clr_darkGray" bindtap="buySubmit">立即支付</button> -->
+  <button open-type='getUserInfo' bindgetuserinfo="buyCreat" class="defaultBtn buyBtn fr f16  baseBg" style='margin-bottom:{{isIphoneX ? 68 : 0}}rpx;'>立即支付</button>
+  <button class="defaultBtn fr f16" bindtap="paySubmit" style='background:#feae31;margin-bottom:{{isIphoneX ? 68 : 0}}rpx;'>加入购物车</button>
+</view>

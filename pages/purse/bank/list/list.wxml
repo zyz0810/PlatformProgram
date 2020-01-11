@@ -1,0 +1,15 @@
+<import src="/template/index/bankList.wxml" />
+
+<view class="page top_border">
+  <view class="bankList" wx:if="{{bankInfoList.length}}" style='padding-bottom:{{isIphoneX?258:190}}rpx'>
+    <block wx:for="{{bankInfoList}}" wx:key="{{item}}">
+      <template is="bankListM" data="{{item}}"></template>
+    </block>
+  </view>
+  <view class="bankList" wx:if="{{showNoneCard}}">
+    <view class='tips f20'>暂无银行卡</view>
+  </view>
+  <view class="addBank" style='height:{{isIphoneX?248:180}}rpx'>
+    <button class="submit defaultBtn" bindtap="addBank">+ 添加银行卡</button>
+  </view>
+</view>

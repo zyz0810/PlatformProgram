@@ -1,0 +1,194 @@
+<!--swiper  -->
+<import src="/template/swiperIndex/swiper.wxml" />
+<!--商品列表  -->
+<import src="/template/productList/productListIndex.wxml" />
+<wxs src="../../wxs/slice.wxs" module="slice" />
+<button loading class="f16 loadBtn" hidden="{{homeLoadReady}}">加载中</button>
+<view class="container" wx:if="{{homeLoadReady}}">
+  <view wx:if="{{showSearch}}" class="search {{borderbottom?'borderbottom':''}}" style='background:{{background?background:""}};position:{{position?position:"fixed"}};'>
+    <view class="searchWrap">
+      <image mode='scaleToFill' class="searchIcon" src='/resources/images/icon/search_gray.png'></image>
+      <!-- <view class="f14">搜索店内商品</view> -->
+      <input placeholder='搜索商品、商家' value="{{val}}" disabled placeholder-class='clr-lightGray' class="f14 clr-lightGray" confirm-type='search' bindconfirm='searchProduct' bindinput='searchVal' bindtap='goSearch'></input>
+    </view>
+  </view>
+  <view class='scrollWrap' style="height:{{winHeight - 44}}px;" bindtouchstart='touchstart' bindtouchend='touchend' bindtouchmove='touchmove'>
+    <scroll-view style="height:{{tenantListData.length>0?winHeight-44:winHeight-44}}px;" scroll-into-view="{{scrollIntoId}}" scroll-y scroll-with-animation enable-back-to-top scroll-y='{{!couponShow}}' bindscrolltolower="toLower" bindscroll="scroll">
+      <view class='wrapperContainer' id="top">
+        <view class='swiperWrap'>
+          <template is="adSwiper" data="{{_swiper,name:'top',data:topImgs.data,key:topImgs.key,fn:'adTap'}}"></template>
+        </view>
+
+        <view class='topInfo flex'>
+          <view class='flex-item tc '>
+            <image src='/resources/images/home/duigou.png'></image>
+            <text class='f16'>正品保障</text>
+          </view>
+          <view class='flex-item tc'>
+            <image src='/resources/images/home/duigou.png'></image>
+            <text class='f16'>自购省钱</text>
+          </view>
+          <view class='flex-item tc'>
+            <image src='/resources/images/home/duigou.png'></image>
+            <text class='f16'>分享赚钱</text>
+          </view>
+        </view>
+
+        <!-- 分类 -->
+        <swiper class="channelPic" wx:if="{{channelList.length>0}}" indicator-dots="true" indicator-color indicator-active-color="#fd407a">
+          <swiper-item class="channelPicItem" wx:for="{{slice(channelList)}}" wx:key="{{index}}">
+            <view wx:for="{{item}}" wx:key="{{zitem.id}}" wx:for-item="zitem" data-id="{{zitem.id}}" bindtap="goCategory">
+              <image src="{{zitem.image}}"></image>
+              <view>{{zitem.name}}</view>
+            </view>
+          </swiper-item>
+        </swiper>
+
+
+        <view class='advertise'>
+          <view class='lineItem ' style='padding:30rpx 2% 30rpx 2%'>
+            <view class='left  f20'> 品牌制造商直供</view>
+          </view>
+          <view class="row ad_one">
+            <view class="col-12">
+              <view class="col-24 index_ad1" data-linkid="{{adList.ad1.linkId}}" data-linktype="{{adList.ad1.linkType}}" bindtap='toAdLink'>
+                <image src="{{adList.ad1.image}}"></image>
+              </view>
+            </view>
+            <view class="col-12">
+              <view class="col-24 index_ad2" data-linkid="{{adList.ad2.linkId}}" data-linktype="{{adList.ad2.linkType}}" bindtap='toAdLink'>
+                <image src="{{adList.ad2.image}}"></image>
+              </view>
+              <view class="col-24 index_ad3" data-linkid="{{adList.ad3.linkId}}" data-linktype="{{adList.ad3.linkType}}" bindtap='toAdLink'>
+                <image src="{{adList.ad3.image}}"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 拼团抢购 -->
+      <!-- <view class='collage ' hidden='{{limitLength}}'>
+        <view class='title f20'>拼团抢购
+          <text class='f16 collage_tag'>惊爆秒杀价</text>
+        </view>
+        <view class='collage_list'>
+          <block wx:for="{{limitsell}}" wx:key="{{item.id}}">
+            <view class='lineItem'>
+              <view class='left'>
+                <image lazy-load src="{{item.thumbnail ? item.thumbnail:'/resources/images/noneimg.png'}}"></image>
+              </view>
+              <view class='center f14'>
+                <view class='overtwo'>{{item.name}}</view>
+                <view>
+                  <text class='bold_500'>限时价</text>
+                  <text class='bold f16'>￥600</text>
+                  <text class='clr_lightGray' style='margin-left:10rpx;'>吊牌价</text>
+                  <text class='oriPrice clr_lightGray'>￥790</text>
+                </view>
+                <view>
+                  <text class='collage_count'>需要10人参团</text>
+                </view>
+                <view class='flex'>
+                  <view class='flex-item tl clr_lightGray'>已团220件</view>
+                  <view class='flex-item tr f16 goCollage'>立即参团>>
+                  </view>
+                </view>
+              </view>
+              <view class=''></view>
+            </view>
+          </block>
+        </view>
+      </view> -->
+
+
+      <!-- 限时抢购 -->
+      <view class='timeLimit' hidden='{{limitLength}}' style='border-bottom:15rpx solid #f5f5f5'>
+        <view class='lineItem '>
+          <view class='left bold f20'>限时抢购</view>
+          <view class='center'></view>
+          <view class='right'>
+            <navigator url='seckill/index'>
+              <view class='f14 clr_darkGray'>更多
+                <text class='iconfont icon-icon'></text>
+              </view>
+            </navigator>
+          </view>
+        </view>
+        <view class='timeLimit_list'>
+          <block wx:for="{{limitsell}}" wx:key="{{item.id}}">
+            <view class='lineItem' data-id='{{item.id}}' bindtap='__pt_toDetail'>
+              <view class='left'>
+                <image mode="widthFix" lazy-load src="{{item.thumbnail ? item.thumbnail:'/resources/images/noneimg.png'}}"></image>
+              </view>
+              <view class='center'>
+                <view>
+                  <view class='name f14 overtwo'>{{item.name}}</view>
+                  <view class='tag'>
+                    <text class='f10'>限量{{item.personLimit}}件</text>
+                  </view>
+                </view>
+                <view class='price'>
+                  <text class='f20 clr_orange' style='color:{{mainColor}}'>￥{{item.price}}</text>
+                  <text class='f12 old_price' hidden='{{item.price>=item.oriPrice}}'>原价￥{{item.oriPrice}}</text>
+                  <text class='f14 clr_orange buy' style='color:{{mainColor}};border:1px solid {{mainColor}}' data-id='{{item.id}}'>{{item.txt}}</text>
+                </view>
+                <view class='time f10 tc'>
+                  <text>{{item.countDownDay>0?item.countDownDay:0}}</text>天
+                  <text>{{item.countDownHour}}</text>:
+                  <text>{{item.countDownMinute}}</text>:
+                  <text>{{item.countDownSecond}}</text>
+                </view>
+
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+
+
+
+
+      <!-- 横屏广告位 -->
+      <view class='lineScreenAd'>
+        <block wx:for="{{Ad206}}" wx:key="{{item.id}}">
+          <image src='{{item.image}}' mode="widthFix" data-linkid="{{item.linkId}}" data-linktype="{{item.linkType}}" bindtap='toAdLink'></image>
+        </block>
+      </view>
+
+      <!-- 新品上架 -->
+      <view class='newsell' style='border-top:15rpx solid #f5f5f5'>
+        <view class='lineItem '>
+          <view class='left  f20'>新品上架</view>
+          <view class='center'></view>
+          <view class='right'>
+            <navigator url='../home/product/list'>
+              <view class='f14 clr_darkGray'>更多
+                <text class='iconfont icon-icon'></text>
+              </view>
+            </navigator>
+          </view>
+        </view>
+        <template is="productList" data="{{showType,data:newsell}}"></template>
+      </view>
+
+      <!-- 精品推荐 -->
+      <view class='newsell' style='border-top:15rpx solid #f5f5f5'>
+        <view class="tc crossLine">
+          <text class="line"></text>
+          <text class="text">精品推荐</text>
+          <text class="line"></text>
+        </view>
+        <template is="productList" data="{{showType,data:recomsell}}"></template>
+        <view class="tips" hidden="{{showtips}}">{{tips}}</view>
+      </view>
+
+      <view class='technical_support static' bindtap='technical'>
+        <image src='/resources/images/member/technical_support.png' mode="widthFix"></image>
+      </view>
+      <view class="toUp {{toUpShow&&'toUpshow'}}" data-to="top" bindtap="scrollto">
+        <image src="/resources/images/icon/toup.png"></image>
+      </view>
+    </scroll-view>
+  </view>
+</view>

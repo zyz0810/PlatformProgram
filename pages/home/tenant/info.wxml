@@ -1,0 +1,12 @@
+<!--pages/member/join/index.wxml-->
+<import src="../../wxParse/wxParse.wxml" />
+<view class='padding2 f16'>
+  企业名称：{{productData.companyName?productData.companyName:productData.name}}
+</view>
+<view class='padding2 f16' wx:if="{{productData.businessLic}}">
+  企业营业执照：
+</view>
+<view class='padding2 f16' wx:if="{{!productData.businessLic}}">
+  企业营业执照：暂未上传，正在联系商家
+</view>
+<image class='padding2 f16' bindtap='preview' src='{{productData.businessLic}}' style='width:96%;' mode='widthFix' wx:if="{{productData.businessLic}}"></image>

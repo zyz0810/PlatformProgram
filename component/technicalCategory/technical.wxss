@@ -1,0 +1,29 @@
+.technical_support.static{
+  position: static;
+}
+.technical_support {
+  padding: 20rpx 0 !important;
+  width: 76% !important;
+  display: block !important;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  background: #fff;
+}
+.bottom50{
+  bottom: 100rpx;
+}
+
+.technical_support image {
+  width: 750rpx !important;
+  height: 220rpx !important;
+  display: block !important;
+  margin: 0 auto !important;
+  border-radius: 0 !important;
+}
+.technical_kong{
+  height: 240rpx;
+  position: relative;
+  z-index: 1 !important;
+}

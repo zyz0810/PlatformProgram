@@ -1,0 +1,186 @@
+/* pages/purse/cash/index.wxss */
+@import "/template/password/payPassword.wxss";
+page {
+  background: #ebebeb;
+}
+
+.container {
+  padding: 50rpx 0;
+}
+
+.cont {
+  width: 92%;
+  margin: 0 auto;
+}
+
+.top {
+  padding: 3% 5%;
+  background: #fafafa;
+}
+
+.top .lineItem {
+  background: transparent;
+  line-height: 1;
+}
+
+.top .lineItem .txt {
+  margin-right: 30rpx;
+}
+
+.top .lineItem .left, .top .lineItem .right {
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.time {
+  margin-top: 18rpx;
+}
+
+.middle {
+  padding: 5% 6%;
+  background: #fff;
+}
+
+.money {
+  padding: 4% 0;
+  margin: 50rpx auto 10rpx;
+}
+
+.money .left {
+  margin-right: 10rpx;
+}
+
+.money input {
+  height: 80rpx;
+  /* caret-color: red; */
+}
+
+.actionSheet {
+  width: 100%;
+  background: #fafafa;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  overflow-y: auto;
+  transform: translate(0, 100%);
+  transition: transform 0.3s;
+}
+
+.actionsheet_toggle {
+  transform: translate(0, 0);
+}
+
+.tit {
+  line-height: 1.7;
+  padding: 3% 0;
+  border: 1rpx solid #eaeaea;
+}
+
+.list {
+  height: 50vh;
+  overflow-y: auto;
+  -webkit-overflow-scroll: touch;
+}
+
+.list .lineItem {
+  padding: 4%;
+  background: transparent;
+}
+
+.bankLogo {
+  margin-right: 20rpx;
+}
+
+.bankLogo image {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+}
+
+.bankName {
+  line-height: 1;
+}
+
+.bankName>view:nth-child(1) {
+  margin-bottom: 15rpx;
+}
+
+.list .left {
+  align-items: flex-start;
+}
+
+.info {
+  padding-left: 70rpx;
+}
+
+.list .newCard {
+  line-height: 2;
+}
+
+.list .newCard .center {
+  margin-left: 70rpx;
+}
+
+.newCard::after {
+  border-color: #eaeaea;
+}
+
+.card::after {
+  width: 96%;
+  left: 2%;
+  border-color: #eaeaea;
+}
+
+.close {
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
+  z-index: 99;
+}
+
+.mask {
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+}
+
+.cash {
+  width: 100%;
+  line-height: 2.5;
+  margin: 50rpx auto 20rpx;
+  background: #94e3b9;
+  border-radius: 10rpx;
+}
+
+.logo {
+  margin-right: 10rpx;
+}
+
+.logo image {
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+}
+
+.choosedCard {
+  padding: 0;
+}
+
+.choosedCard .center {
+  line-height: 1;
+}
+
+.preventTouchMove {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  z-index: 0;
+}

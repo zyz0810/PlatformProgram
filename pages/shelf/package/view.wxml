@@ -1,0 +1,90 @@
+<!--swiper  -->
+<!-- <import src="/template/swiper/swiper.wxml" /> -->
+<import src="/template/swiperProduct/swiper.wxml" />
+<!--商品列表  -->
+<import src="/template/productList/productListTemp.wxml" />
+<!-- 商品详情 -->
+<import src="../../wxParse/wxParse.wxml" />
+<button loading="{{!pageLoad}}" hidden="{{pageLoad}}" class="f14 loadBtn clr_lightGray">加载中</button>
+<view hidden="{{!pageLoad}}">
+  <view style='padding-bottom:104rpx;'>
+    <template is="adSwiper" wx:if="{{packageData.packImage}}" data="{{_swiper,showDot:packageData.packImage.length>1,name:'top',data:packageData.packImage}}"></template>
+
+    <view class="header padding2 bgWhite">
+      <view class='marginBtm f16'>{{packageData.name}}</view>
+      <view class="clr_orange f16">￥{{packageData.salePrice}}</view>
+    </view>
+
+    <view class='flex f14 padding2 bgWhite buyMode'>
+      <view class='flex-item'>
+        购买模式：{{packageData.buyMode}}
+      </view>
+      <view class='flex-item'>
+        时长：{{packageData.pledgeCashDeadline}}月
+      </view>
+    </view>
+
+    <view class='packDesc  bgWhite'>
+      <view class='f14 tc marginBtm padding2'>
+        <text class='iconfont icon-taocan clr_mediumGray marginTwo'></text>货架套餐描述</view>
+      <view class='f14 clr_lightGray'>
+        <!-- <text>{{packageData.packDesc}}</text> -->
+        <view class="wxParse  article" style='overflow-x:hieeden;'>
+          <template is="wxParse" data="{{wxParseData:packDesc.nodes}}" />
+        </view>
+      </view>
+    </view>
+    <!-- <view class='pledgeCashDesc padding2 bgWhite'>
+      <view class='f14'>
+        <text class='iconfont icon-yajinguanli clr_mediumGray marginTwo'></text>押金介绍</view>
+      <view class='f14 clr_lightGray'>
+        {{packageData.pledgeCashDesc}}
+      </view>
+    </view>
+    <view class='promotionDesc padding2 bgWhite'>
+      <view class='f14'>
+        <text class='iconfont icon-zizhutuiguang clr_mediumGray marginTwo'></text>推广话术</view>
+      <view class='f14 clr_lightGray'>
+        {{packageData.promotionDesc}}
+      </view>
+    </view> -->
+
+    <button type="primary" class="submit f16 formButton" style='background:{{mainColor}}' bindtap="toggleMask">立即购买</button>
+
+  </view>
+
+
+  <view class="actionMask" catchtouchmove hidden="{{!showAction}}" bindtap="toggleMask"></view>
+  <view class="actionContent" hidden="{{!showAction}}">
+    <view class="actionTitle border_bottom lineItem">
+      <view class="left">
+        <image src="{{packageData.masterMap}}" data-imgsrc='{{packageData.masterMap}}' bindtap='prevImg'></image>
+      </view>
+      <view class="center f14">
+        <view class="f16 clr_orange bold" style='color:{{mainColor}}'>￥{{packageData.salePrice}}</view>
+        <view>已选
+          <text class="clr_orange" style='color:{{mainColor}}'>{{packageData.name}}</text>
+        </view>
+      </view>
+      <view class="right" bindtap="toggleMask">
+        <image src="/resources/images/icon/close.png"></image>
+      </view>
+    </view>
+    <view class="actionNumber border_bottom lineItem" style="align-items:center;">
+      <view class="f16 ">购买数量:</view>
+      <view class="amount">
+        <button data-type="reduce" bindtap="revisenum">-</button>
+        <input class="f12 " type="number" disabled data-type="input" bindchange="revisenum" value="{{quantity}}" />
+        <button data-type="add" bindtap="revisenum">+</button>
+      </view>
+    </view>
+    <!-- <button class="defaultBtn " bindtap="paySubmit" style='background:{{mainColor}}'>确认</button> -->
+    <form bindsubmit="paySubmit" report-submit>
+      <button class='defaultBtn formButton' form-type="submit" style='background:{{mainColor}};border-radius:10rpx;'>确认
+      </button>
+    </form>
+  </view>
+
+
+
+</view>

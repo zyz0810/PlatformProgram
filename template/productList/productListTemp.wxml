@@ -1,0 +1,23 @@
+<template name="productList">
+  <view class="productList {{showType?'productListLine':''}}">
+    <block wx:for="{{data}}" wx:key="id">
+      <view bindtap="__pt_toDetail" url='/pages/product/details/details?id={{item.id}}' class="proReItem" data-id="{{item.id}}">
+        <image mode="widthFix" src="{{item.thumbnail ? item.thumbnail: '../../../resources/images/noneimg.png'}}"></image>
+        <view class="details">
+          <view class="title overtwo f14">{{item.name}}</view>
+          <view class="price" wx:if="{{item.price == item.marketPrice}}">
+            <text class="baseColor f16" data-id='{{item.marketPrice}}'>￥{{item.price}}</text>
+          </view>
+          <view class="price" wx:else>
+            <text class="baseColor f16">￥{{item.price}}</text>
+            <text class="sumdel f12 clr_lightGray marketPrice">￥{{item.marketPrice}}</text>
+          </view>
+          <view class="f12 clr_lightGray saleCount">人气{{item.hits}}/月销量{{item.monthSales}}</view>
+          <!-- <view class="cartIcon">
+          <image src="/resources/images/home/cart.png"></image>
+        </view> -->
+        </view>
+      </view>
+    </block>
+  </view>
+</template>
